@@ -1,0 +1,115 @@
+DROP TABLE Power_Link;
+DROP TABLE Cadence_Link;
+DROP TABLE Speed_Link;
+
+DROP TABLE Power;
+DROP TABLE Cadence;
+DROP TABLE Speed;
+
+DROP TABLE Activity_Summary;
+DROP TABLE Activity;
+DROP TABLE Athlete;
+
+
+CREATE TABLE Athlete
+(Athlete_ID BIGINT NOT NULL
+              GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1)
+              CONSTRAINT Athlete_PK PRIMARY KEY,
+ StravaID BIGINT NOT NULL,			  
+ Firstname VARCHAR(50),
+ Lastname VARCHAR(50) 
+);
+
+CREATE TABLE Activity
+(Activity_ID BIGINT NOT NULL
+              GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1)
+              CONSTRAINT Activity_PK PRIMARY KEY,
+Athlete_ID BIGINT NOT NULL
+              CONSTRAINT Athlete_ID_FK REFERENCES Athlete(Athlete_Id)
+              ON DELETE CASCADE,			  
+ StravaID BIGINT NOT NULL,			  
+ Name VARCHAR(50),
+ Start_Date DATE,
+ Time_Zone VARCHAR(50)
+);
+
+CREATE TABLE Activity_Summary
+(Activity_Summary_ID BIGINT NOT NULL
+              GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1)
+              CONSTRAINT Activity_Summary_PK PRIMARY KEY,
+Activity_ID BIGINT NOT NULL
+              CONSTRAINT Activity_ID_FK REFERENCES Activity(Activity_Id)
+              ON DELETE CASCADE,			  
+ Moving_Time BIGINT,			  
+ Distance DECIMAL(19,2),
+ Max_Speed DECIMAL(19,2),
+ Max_Watts DECIMAL(19,2),
+ Average_Speed DECIMAL(19,2),
+ Average_Watts DECIMAL(19,2),
+ Average_Cadence DECIMAL(19,2),
+ Kilojoules DECIMAL(19,2)
+);
+
+CREATE TABLE Power
+(Power_ID BIGINT NOT NULL
+              GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1)
+              CONSTRAINT Power_PK PRIMARY KEY,			  
+ Datapoint DECIMAL(19,2),
+ Secondstamp BIGINT			  
+);
+
+CREATE TABLE Speed
+(Speed_ID BIGINT NOT NULL
+              GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1)
+              CONSTRAINT Speed_PK PRIMARY KEY,			  
+ Datapoint DECIMAL(19,2),
+ Secondstamp BIGINT			  
+);
+
+CREATE TABLE Cadence
+(Cadence_ID BIGINT NOT NULL
+              GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1)
+              CONSTRAINT Cadence_PK PRIMARY KEY,			  
+ Datapoint DECIMAL(19,2),
+ Secondstamp BIGINT			  
+);
+
+
+CREATE TABLE Power_Link
+(Power_Link_ID BIGINT NOT NULL
+              GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1)
+              CONSTRAINT Power_Link_PK PRIMARY KEY,
+Activity_ID BIGINT NOT NULL
+              CONSTRAINT Activity_ID_FK1 REFERENCES Activity(Activity_ID)
+              ON DELETE CASCADE,
+Power_ID BIGINT NOT NULL
+              CONSTRAINT Power_ID_FK REFERENCES Power(Power_ID)
+              ON DELETE CASCADE
+);
+
+CREATE TABLE Cadence_Link
+(Cadence_Link_ID BIGINT NOT NULL
+              GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1)
+              CONSTRAINT Cadence_Link_PK PRIMARY KEY,
+Activity_ID BIGINT NOT NULL
+              CONSTRAINT Activity_ID_FK2 REFERENCES Activity(Activity_ID)
+              ON DELETE CASCADE,
+Cadence_ID BIGINT NOT NULL
+              CONSTRAINT Cadence_ID_FK REFERENCES Cadence(Cadence_ID)
+              ON DELETE CASCADE
+);
+
+CREATE TABLE Speed_Link
+(Speed_Link_ID BIGINT NOT NULL
+              GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1)
+              CONSTRAINT Speed_Link_PK PRIMARY KEY,
+Activity_ID BIGINT NOT NULL
+              CONSTRAINT Activity_ID_FK3 REFERENCES Activity(Activity_ID)
+              ON DELETE CASCADE,
+Speed_ID BIGINT NOT NULL
+              CONSTRAINT Speed_ID_FK REFERENCES Speed(Speed_ID)
+              ON DELETE CASCADE
+);
+
+
+
