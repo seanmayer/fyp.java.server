@@ -18,6 +18,13 @@ public class Athlete_dto implements Serializable
     private String firstname;
     private String lastname;
 
+    public Athlete_dto(Long athleteId, long stravaid, String firstname, String lastname) {
+        this.athleteId = athleteId;
+        this.stravaid = stravaid;
+        this.firstname = firstname;
+        this.lastname = lastname;
+    }
+
     /**
      * @return the athleteId
      */
