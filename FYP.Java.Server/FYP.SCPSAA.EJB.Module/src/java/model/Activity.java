@@ -20,6 +20,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -64,8 +65,6 @@ public class Activity implements Serializable {
     @Column(name = "TIME_ZONE")
     private String timeZone;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "activityId")
-    private Collection<ActivitySummary> activitySummaryCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "activityId")
     private Collection<CadenceLink> cadenceLinkCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "activityId")
     private Collection<PowerLink> powerLinkCollection;
@@ -74,6 +73,9 @@ public class Activity implements Serializable {
     @JoinColumn(name = "ATHLETE_ID", referencedColumnName = "ATHLETE_ID")
     @ManyToOne(optional = false)
     private Athlete athleteId;
+    
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "activityId")
+    private ActivitySummary activitySummaryId;
 
     public Activity() {
     }
@@ -127,13 +129,12 @@ public class Activity implements Serializable {
         this.timeZone = timeZone;
     }
 
-    @XmlTransient
-    public Collection<ActivitySummary> getActivitySummaryCollection() {
-        return activitySummaryCollection;
+    public ActivitySummary getActivitySummaryId() {
+        return activitySummaryId;
     }
 
-    public void setActivitySummaryCollection(Collection<ActivitySummary> activitySummaryCollection) {
-        this.activitySummaryCollection = activitySummaryCollection;
+    public void setActivitySummaryId(ActivitySummary activitySummaryId) {
+        this.activitySummaryId = activitySummaryId;
     }
 
     @XmlTransient

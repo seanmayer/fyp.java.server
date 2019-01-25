@@ -17,12 +17,14 @@ public class Athlete_dto implements Serializable
     private long stravaid;
     private String firstname;
     private String lastname;
+    private Credentials_dto credentialsId;
 
-    public Athlete_dto(Long athleteId, long stravaid, String firstname, String lastname) {
+    public Athlete_dto(Long athleteId, long stravaid, String firstname, String lastname, Credentials_dto credentialsId) {
         this.athleteId = athleteId;
         this.stravaid = stravaid;
         this.firstname = firstname;
         this.lastname = lastname;
+        this.credentialsId = credentialsId;
     }
 
     /**
@@ -79,6 +81,20 @@ public class Athlete_dto implements Serializable
      */
     public void setLastname(String lastname) {
         this.lastname = lastname;
+    }
+
+    /**
+     * @return the credentialsId
+     */
+    public Credentials_dto getCredentialsId() {
+        return credentialsId;
+    }
+
+    /**
+     * @param credentialsId the credentialsId to set
+     */
+    public void setCredentialsId(Credentials_dto credentialsId) {
+        this.credentialsId = credentialsId;
     }
     
     

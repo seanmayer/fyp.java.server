@@ -10,15 +10,30 @@ DROP TABLE Activity_Summary;
 DROP TABLE Activity;
 DROP TABLE Athlete;
 
+DROP TABLE Credentials;
+
+
+CREATE TABLE Credentials
+(Credentials_ID BIGINT NOT NULL
+              GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1)
+              CONSTRAINT Credentials_PK PRIMARY KEY,			  
+ Username VARCHAR(128),
+ Password VARCHAR(9) 
+);
+
 
 CREATE TABLE Athlete
 (Athlete_ID BIGINT NOT NULL
               GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1)
               CONSTRAINT Athlete_PK PRIMARY KEY,
+Credentials_ID BIGINT NOT NULL
+              CONSTRAINT Credentials_ID_FK REFERENCES Credentials(Credentials_Id)
+              ON DELETE CASCADE,	
  StravaID BIGINT NOT NULL,			  
- Firstname VARCHAR(50),
- Lastname VARCHAR(50) 
+ Firstname VARCHAR(35),
+ Lastname VARCHAR(35) 
 );
+
 
 CREATE TABLE Activity
 (Activity_ID BIGINT NOT NULL

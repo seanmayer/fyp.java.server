@@ -6,22 +6,21 @@
 package model;
 
 import java.io.Serializable;
-import java.util.Collection;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -48,14 +47,15 @@ public class Athlete implements Serializable {
     @NotNull
     @Column(name = "STRAVAID")
     private long stravaid;
-    @Size(max = 50)
+    @Size(max = 35)
     @Column(name = "FIRSTNAME")
     private String firstname;
-    @Size(max = 50)
+    @Size(max = 35)
     @Column(name = "LASTNAME")
     private String lastname;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "athleteId")
-    private Collection<Activity> activityCollection;
+    @JoinColumn(name = "CREDENTIALS_ID", referencedColumnName = "CREDENTIALS_ID")
+    @OneToOne(optional = false)
+    private Credentials credentialsId;
 
     public Athlete() {
     }
@@ -101,13 +101,12 @@ public class Athlete implements Serializable {
         this.lastname = lastname;
     }
 
-    @XmlTransient
-    public Collection<Activity> getActivityCollection() {
-        return activityCollection;
+    public Credentials getCredentialsId() {
+        return credentialsId;
     }
 
-    public void setActivityCollection(Collection<Activity> activityCollection) {
-        this.activityCollection = activityCollection;
+    public void setCredentialsId(Credentials credentialsId) {
+        this.credentialsId = credentialsId;
     }
 
     @Override

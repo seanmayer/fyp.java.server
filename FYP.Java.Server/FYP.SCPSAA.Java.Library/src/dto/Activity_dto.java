@@ -19,12 +19,12 @@ class Activity_dto
     private String name;
     private Date startDate;
     private String timeZone;
-    private Collection<ActivitySummary_dto> activitySummaryCollection;
     private Collection<CadenceLink_dto> cadenceLinkCollection;
     private Collection<PowerLink_dto> powerLinkCollection;
     private Collection<SpeedLink_dto> speedLinkCollection;
     private Athlete_dto athleteId;
-
+    
+    private ActivitySummary_dto activitySummary;
     public Activity_dto(Long activityId, long stravaid, String name, Date startDate, String timeZone, Athlete_dto athleteId) {
         this.activityId = activityId;
         this.stravaid = stravaid;
@@ -34,9 +34,6 @@ class Activity_dto
         this.athleteId = athleteId;
     }
 
-    
-    
-    
     /**
      * @return the activityId
      */
@@ -108,20 +105,6 @@ class Activity_dto
     }
 
     /**
-     * @return the activitySummaryCollection
-     */
-    public Collection<ActivitySummary_dto> getActivitySummaryCollection() {
-        return activitySummaryCollection;
-    }
-
-    /**
-     * @param activitySummaryCollection the activitySummaryCollection to set
-     */
-    public void setActivitySummaryCollection(Collection<ActivitySummary_dto> activitySummaryCollection) {
-        this.activitySummaryCollection = activitySummaryCollection;
-    }
-
-    /**
      * @return the cadenceLinkCollection
      */
     public Collection<CadenceLink_dto> getCadenceLinkCollection() {
@@ -175,6 +158,20 @@ class Activity_dto
      */
     public void setAthleteId(Athlete_dto athleteId) {
         this.athleteId = athleteId;
+    }
+
+    /**
+     * @return the activitySummary
+     */
+    public ActivitySummary_dto getActivitySummary() {
+        return activitySummary;
+    }
+
+    /**
+     * @param activitySummary the activitySummary to set
+     */
+    public void setActivitySummary(ActivitySummary_dto activitySummary) {
+        this.activitySummary = activitySummary;
     }
     
     
