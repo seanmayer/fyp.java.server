@@ -1,16 +1,44 @@
 package controller;
 
-//import dto.Athlete_dto;
-import java.util.ArrayList;
-import java.util.Iterator;
+import dto.Athlete_dto;
 import java.util.List;
-import javax.ejb.EJBException;
-import javax.ejb.Singleton;
-import model.Athlete;
+import javax.ejb.Stateless;
 
-@Singleton(mappedName="athleteFacade")
-public class AthleteHandler extends AbstractEntityManager //implements Athlete_FacadeRemote 
+
+
+@Stateless(mappedName="athletefacade")
+public class AthleteHandler extends AbstractEntityManager implements Athlete_FacadeRemote 
 {
+
+    @Override
+    public void createAthlete(Athlete_dto details) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void editAthlete(Athlete_dto details) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void removeAthlete(Long id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Athlete_dto find(Object pk) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Athlete_dto findById(Long id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Athlete_dto> findAll() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
 //    private List<Student_dto> copyStudent(List<Student_> students)
 //    {

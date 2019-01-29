@@ -11,18 +11,18 @@ import model.CadenceLink;
 import model.PowerLink;
 import model.SpeedLink;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2019-01-24T15:27:35")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2019-01-29T19:15:11")
 @StaticMetamodel(Activity.class)
 public class Activity_ { 
 
     public static volatile SingularAttribute<Activity, Long> activityId;
     public static volatile CollectionAttribute<Activity, PowerLink> powerLinkCollection;
+    public static volatile SingularAttribute<Activity, ActivitySummary> activitySummaryId;
     public static volatile CollectionAttribute<Activity, SpeedLink> speedLinkCollection;
     public static volatile SingularAttribute<Activity, Athlete> athleteId;
     public static volatile SingularAttribute<Activity, Long> stravaid;
     public static volatile SingularAttribute<Activity, String> name;
     public static volatile SingularAttribute<Activity, String> timeZone;
-    public static volatile CollectionAttribute<Activity, ActivitySummary> activitySummaryCollection;
     public static volatile CollectionAttribute<Activity, CadenceLink> cadenceLinkCollection;
     public static volatile SingularAttribute<Activity, Date> startDate;
 

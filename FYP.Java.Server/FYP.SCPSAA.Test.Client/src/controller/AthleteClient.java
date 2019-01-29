@@ -3,13 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package bank;
+package controller;
 
 
 import controller.Athlete_FacadeRemote;
-import static java.lang.Long.parseLong;
-import java.math.BigDecimal;
-import java.util.List;
 import javax.naming.InitialContext;
 
 
@@ -24,8 +21,11 @@ public class AthleteClient {
     
     public AthleteClient()
     {
-        request = (Athlete_FacadeRemote)getEJBBean("athleteFacade");
-        insertInfo();
+        request = (Athlete_FacadeRemote)getEJBBean("athletefacade"); //cant find athlete facade bug!
+        
+        requestActivities();
+        
+        //insertInfo();
         //displayInfo();
         //editInfo();
         //displayInfo();
@@ -51,7 +51,12 @@ public class AthleteClient {
             return null;
         }
     }
+
+private void requestActivities()
+{
     
+}
+
 private void insertInfo()
 {
     try
