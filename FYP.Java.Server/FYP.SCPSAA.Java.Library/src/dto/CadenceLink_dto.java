@@ -5,11 +5,13 @@
  */
 package dto;
 
+import java.io.Serializable;
+
 /**
  *
  * @author 2008s
  */
-class CadenceLink_dto 
+public class CadenceLink_dto implements Serializable
 {
     private Long cadenceLinkId;
     private Activity_dto activityId;

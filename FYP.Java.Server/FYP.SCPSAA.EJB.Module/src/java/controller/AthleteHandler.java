@@ -1,8 +1,12 @@
 package controller;
 
 import dto.Athlete_dto;
+import dto.Credentials_dto;
 import java.util.List;
+import javax.ejb.EJBException;
 import javax.ejb.Stateless;
+import model.Athlete;
+import model.Credentials;
 
 
 
@@ -11,8 +15,19 @@ public class AthleteHandler extends AbstractEntityManager implements Athlete_Fac
 {
 
     @Override
-    public void createAthlete(Athlete_dto details) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void createCredendentedAthlete(Credentials_dto credentialsDetails, Athlete_dto athleteDetails) {
+        try
+        {
+            Credentials credentials = em.getReference(Credentials.class, credentialsDetails.getCredentialsId());
+            Athlete athlete = new Athlete(athleteDetails.getAthleteId(),athleteDetails.getStravaid(),athleteDetails.getFirstname(),athleteDetails.getLastname(), credentials);
+            
+            em.persist(athlete);
+
+        }
+        catch (Exception ex)
+        {
+            throw new EJBException(ex);
+        }
     }
 
     @Override

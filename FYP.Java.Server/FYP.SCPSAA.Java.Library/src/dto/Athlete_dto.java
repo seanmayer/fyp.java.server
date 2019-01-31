@@ -19,6 +19,13 @@ public class Athlete_dto implements Serializable
     private String lastname;
     private Credentials_dto credentialsId;
 
+    public Athlete_dto(Long athleteId, long stravaid, String firstname, String lastname) {
+        this.athleteId = athleteId;
+        this.stravaid = stravaid;
+        this.firstname = firstname;
+        this.lastname = lastname;
+    }    
+    
     public Athlete_dto(Long athleteId, long stravaid, String firstname, String lastname, Credentials_dto credentialsId) {
         this.athleteId = athleteId;
         this.stravaid = stravaid;

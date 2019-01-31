@@ -5,6 +5,7 @@
  */
 package dto;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
@@ -12,7 +13,7 @@ import java.math.BigInteger;
  *
  * @author 2008s
  */
-public class ActivitySummary_dto 
+public class ActivitySummary_dto implements Serializable
 {
     private Long activitySummaryId;
     private BigInteger movingTime;

@@ -5,11 +5,13 @@
  */
 package dto;
 
+import java.io.Serializable;
+
 /**
  *
  * @author 2008s
  */
-class PowerLink_dto 
+public class PowerLink_dto implements Serializable
 {
     private Long powerLinkId;
     private Activity_dto activityId;

@@ -17,7 +17,6 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -49,8 +48,8 @@ public class Credentials implements Serializable {
     @Size(max = 9)
     @Column(name = "PASSWORD")
     private String password;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "credentialsId")
-    private Athlete athleteId;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "credentialsId")
+    private Collection<Athlete> athleteCollection;
 
     public Credentials() {
     }
@@ -59,6 +58,12 @@ public class Credentials implements Serializable {
         this.credentialsId = credentialsId;
     }
 
+    public Credentials(Long credentialsId, String username, String password) {
+        this.credentialsId = credentialsId;
+        this.username = username;
+        this.password = password;
+    }
+    
     public Long getCredentialsId() {
         return credentialsId;
     }
@@ -82,13 +87,14 @@ public class Credentials implements Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
-    //added in manually
-    public Athlete getAthleteId() {
-        return athleteId;
+
+    @XmlTransient
+    public Collection<Athlete> getAthleteCollection() {
+        return athleteCollection;
     }
 
-    public void setAthleteId(Athlete athleteId) {
-        this.athleteId = athleteId;
+    public void setAthleteCollection(Collection<Athlete> athleteCollection) {
+        this.athleteCollection = athleteCollection;
     }
 
     @Override

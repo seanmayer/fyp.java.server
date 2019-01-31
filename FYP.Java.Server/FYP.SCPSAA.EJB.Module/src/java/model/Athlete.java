@@ -16,7 +16,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -54,11 +53,29 @@ public class Athlete implements Serializable {
     @Column(name = "LASTNAME")
     private String lastname;
     @JoinColumn(name = "CREDENTIALS_ID", referencedColumnName = "CREDENTIALS_ID")
-    @OneToOne(optional = false)
+    @ManyToOne(optional = true)
     private Credentials credentialsId;
 
     public Athlete() {
     }
+
+    public Athlete(Long athleteId, long stravaid, String firstname, String lastname) {
+        this.athleteId = athleteId;
+        this.stravaid = stravaid;
+        this.firstname = firstname;
+        this.lastname = lastname;
+    }
+    
+
+    public Athlete(Long athleteId, long stravaid, String firstname, String lastname, Credentials credentialsId) {
+        this.athleteId = athleteId;
+        this.stravaid = stravaid;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.credentialsId = credentialsId;
+    }
+    
+    
 
     public Athlete(Long athleteId) {
         this.athleteId = athleteId;

@@ -5,6 +5,7 @@
  */
 package dto;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
 
@@ -12,7 +13,7 @@ import java.util.Date;
  *
  * @author 2008s
  */
-class Activity_dto 
+public class Activity_dto implements Serializable
 {
     private Long activityId;
     private long stravaid;

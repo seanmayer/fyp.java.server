@@ -28,7 +28,7 @@ public class WebhookFactory
         return instance;
     }
     
-   public static void createRequest(RequestType type) throws Exception 
+   public void createRequest(RequestType type) throws Exception 
    {
       switch (type) 
       {

@@ -7,7 +7,7 @@ import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 import model.Activity;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2019-01-29T19:15:11")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2019-01-31T12:54:29")
 @StaticMetamodel(ActivitySummary.class)
 public class ActivitySummary_ { 
 

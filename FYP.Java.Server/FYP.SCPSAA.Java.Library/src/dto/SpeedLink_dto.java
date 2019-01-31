@@ -5,11 +5,13 @@
  */
 package dto;
 
+import java.io.Serializable;
+
 /**
  *
  * @author 2008s
  */
-class SpeedLink_dto 
+public class SpeedLink_dto implements Serializable
 {
     private Long speedLinkId;
     private Activity_dto activityId;

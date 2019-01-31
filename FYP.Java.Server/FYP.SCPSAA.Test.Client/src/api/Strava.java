@@ -25,7 +25,6 @@ import org.json.JSONObject;
 public class Strava
 {
 
-    public final String USER_AGENT = "Mozilla/5.0";
     public String STRAVA_USER_ID = "581409";
     public String STRAVA_ACCESS_TOKEN = "3aa96600c17636ee70c0fe95af4a28eeae20de32";
     

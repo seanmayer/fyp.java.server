@@ -5,6 +5,7 @@
  */
 package dto;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Collection;
@@ -13,7 +14,7 @@ import java.util.Collection;
  *
  * @author 2008s
  */
-class Speed_dto 
+public class Speed_dto implements Serializable
 {
     private Long speedId;
     private BigDecimal datapoint;

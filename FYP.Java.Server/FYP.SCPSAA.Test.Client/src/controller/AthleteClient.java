@@ -7,6 +7,9 @@ package controller;
 
 
 import controller.Athlete_FacadeRemote;
+import dto.Athlete_dto;
+import dto.Credentials_dto;
+import static java.lang.Long.parseLong;
 import javax.naming.InitialContext;
 
 
@@ -17,14 +20,17 @@ import javax.naming.InitialContext;
 public class AthleteClient {
 
 
-  private Athlete_FacadeRemote request;  
+  private Athlete_FacadeRemote requestAthlete;  
+  private Credentials_FacadeRemote requestCredentials;
     
-    public AthleteClient()
+    public AthleteClient() throws Exception
     {
-        request = (Athlete_FacadeRemote)getEJBBean("athletefacade"); //cant find athlete facade bug!
+        requestAthlete = (Athlete_FacadeRemote)getEJBBean("athletefacade"); 
+        requestCredentials = (Credentials_FacadeRemote)getEJBBean("credentialsfacade");
+        //createCredentials();
+        createAthlete();
         
         requestActivities();
-        
         //insertInfo();
         //displayInfo();
         //editInfo();
@@ -34,7 +40,7 @@ public class AthleteClient {
   
   
   
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         AthleteClient sac = new AthleteClient();
     }
     
@@ -52,9 +58,31 @@ public class AthleteClient {
         }
     }
 
+private void createCredentials()
+{
+    try
+    { 
+        requestCredentials.createCredentials(new Credentials_dto(parseLong("1"),"Username","Password"));
+    }
+    catch (Exception ex)
+    {
+        System.err.println("Caught an exception:");
+        ex.printStackTrace();
+    } 
+
+}    
+    
+private void createAthlete() throws Exception
+{
+    Credentials_dto credentials = new Credentials_dto(parseLong("1"));
+    requestAthlete.createCredendentedAthlete(credentials , new Athlete_dto(parseLong("1"),parseLong("1234567"),"FirstNameTest","LastNameTest"));
+}
+
+
+    
 private void requestActivities()
 {
-    
+   
 }
 
 private void insertInfo()
