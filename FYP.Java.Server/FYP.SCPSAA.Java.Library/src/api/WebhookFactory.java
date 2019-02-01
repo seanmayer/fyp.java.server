@@ -5,6 +5,10 @@
  */
 package api;
 
+import static java.lang.Math.E;
+import static java.lang.StrictMath.E;
+import static javafx.scene.input.KeyCode.T;
+
 /**
  *
  * @author 2008s
@@ -12,19 +16,26 @@ package api;
 public class WebhookFactory 
 {
    private static WebhookFactory instance = null;
+   private String stravaId;
+   private String accessToken;
    
     private WebhookFactory() 
     {
 
     }
+   
+    private WebhookFactory(String stravaId, String accessToken) 
+    {
+        this.accessToken = accessToken;
+        this.stravaId = stravaId;
+    }
 
-    public static WebhookFactory getInstance() {
+    public static WebhookFactory getInstance(String stravaId, String accessToken) {
 
         if (instance == null)
         {
-            instance =  new WebhookFactory();
+            instance =  new WebhookFactory(stravaId,accessToken);
         }
-
         return instance;
     }
     
@@ -32,11 +43,19 @@ public class WebhookFactory
    {
       switch (type) 
       {
-            case ATHLETE_REQUEST: new ReturnAthlete().getRequest();
+            case ATHLETE_REQUEST: genericRequest(new ReturnAthlete()).getRequest();
             break;
-            case ACTIVITIES_LIST_REQUEST: new ReturnActivitiesList().getRequest();
+            case ACTIVITIES_LIST_REQUEST: genericRequest(new ReturnActivitiesList()).getRequest();
             break;
       }
+    }
+   
+   
+    public <T extends RequestHandler> RequestHandler genericRequest(T requestHandler) 
+    {
+        requestHandler.STRAVA_ACCESS_TOKEN = accessToken;
+        requestHandler.STRAVA_USER_ID = stravaId;
+        return requestHandler;
     }
 
 }

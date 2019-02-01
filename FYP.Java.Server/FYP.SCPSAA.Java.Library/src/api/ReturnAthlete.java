@@ -7,11 +7,9 @@ package api;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import org.json.JSONObject;
 
-/**
- *
- * @author 2008s
- */
+
 public class ReturnAthlete extends RequestHandler
 {
     public URL getAthlete() throws MalformedURLException
@@ -22,7 +20,12 @@ public class ReturnAthlete extends RequestHandler
     @Override
     public void getRequest() throws Exception
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        JSONObject value = getJsonObject(getAthlete());
+        int id = value.getInt("id");
+        String firstName = value.getString("firstname");
+        String lastName = value.getString("lastname");
+        System.out.println(id + firstName + lastName);
     }
-    
 }
+    
+

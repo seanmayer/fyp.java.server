@@ -10,10 +10,6 @@ import java.net.URL;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-/**
- *
- * @author 2008s
- */
 public class ReturnActivitiesList extends RequestHandler 
 {
 
@@ -34,7 +30,5 @@ public class ReturnActivitiesList extends RequestHandler
               System.out.println(id);
         }
     }
-    
-    
     
 }

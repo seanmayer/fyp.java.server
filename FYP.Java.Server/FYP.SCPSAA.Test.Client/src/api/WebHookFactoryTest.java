@@ -5,18 +5,14 @@
  */
 package api;
 
-import static api.RequestType.ATHLETE_REQUEST;
-
-/**
- *
- * @author 2008s
- */
 public class WebHookFactoryTest
 {
-
+    WebhookFactory whf = WebhookFactory.getInstance("581409","3aa96600c17636ee70c0fe95af4a28eeae20de32"); 
+    
     public WebHookFactoryTest() throws Exception 
     {
-        getActivitesData();
+        getAthleteData();
+        //getActivitesData();
     }
     
     public static void main(String[] args) throws Exception {
@@ -24,14 +20,12 @@ public class WebHookFactoryTest
     }
     
     public void getAthleteData() throws Exception
-    {
-        WebhookFactory whf = WebhookFactory.getInstance();    
+    {     
         whf.createRequest(RequestType.ATHLETE_REQUEST); 
     }
     
     public void getActivitesData() throws Exception
-    {
-        WebhookFactory whf = WebhookFactory.getInstance();    
+    {  
         whf.createRequest(RequestType.ACTIVITIES_LIST_REQUEST); 
     }    
     

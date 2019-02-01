@@ -10,37 +10,49 @@ import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 
-public abstract class RequestHandler 
-{
-    //requestHandler.STRAVA_USER_ID = value;
-    
-    public String STRAVA_USER_ID = "581409";
-    public String STRAVA_ACCESS_TOKEN = "3aa96600c17636ee70c0fe95af4a28eeae20de32";
+public abstract class RequestHandler<T> 
+{    
+    public String STRAVA_USER_ID = "";
+    public String STRAVA_ACCESS_TOKEN = "";
 
-    public JSONArray getJsonArray(URL url) throws IOException, JSONException 
+    public Scanner requestConnection(URL url) throws IOException
     {
-        try
-        (
-            InputStream openStream = url.openStream();
-            Scanner scanner = new Scanner(new BufferedInputStream(openStream), StandardCharsets.UTF_8.name());
-        ) 
+        InputStream openStream = url.openStream();
+        return new Scanner(new BufferedInputStream(openStream), StandardCharsets.UTF_8.name());
+    }
+    
+    public Scanner delimitateRequest(Scanner scanner) throws IOException
+    {
+        if (!scanner.useDelimiter("\\A").hasNext()) 
         {
-            if (!scanner.useDelimiter("\\A").hasNext()) 
-            {
-                throw new EOFException("empty response");
-            }
-
-            return new JSONArray(scanner.next());
+            throw new EOFException("empty response");
+        }     
+        return scanner;
+    }
+    
+    public JSONObject getJsonObject(URL url) throws JSONException, IOException
+    {
+        try(Scanner scanner = requestConnection(url);) 
+        {
+            delimitateRequest(scanner);
+            return new JSONObject(scanner.next());
         }
     }
     
-    
-    
+    public JSONArray getJsonArray(URL url) throws IOException, JSONException 
+    {
+        try(Scanner scanner = requestConnection(url);) 
+        {
+            delimitateRequest(scanner);
+            return new JSONArray(scanner.next());
+        }
+    }
+
     public void getRequest() throws Exception
     {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
 }

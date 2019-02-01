@@ -5,8 +5,14 @@
  */
 package services.service;
 
+import controller.Athlete_FacadeRemote;
+import controller.Credentials_FacadeRemote;
+import dto.Athlete_dto;
+import dto.Credentials_dto;
+import static java.lang.Long.parseLong;
 import java.util.List;
 import javax.ejb.Stateless;
+import javax.naming.InitialContext;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.ws.rs.Consumes;
@@ -25,11 +31,51 @@ import javax.ws.rs.core.MediaType;
  */
 @Stateless
 @Path("services.athlete")
-public class AthleteFacadeREST {
+public class AthleteFacadeREST 
+{
+//    private Athlete_FacadeRemote requestAthlete; //theses lines of code break the service, suggest looking at EEA web module!
+//    private Credentials_FacadeRemote requestCredentials;
 
-    public AthleteFacadeREST() {
-
+    public AthleteFacadeREST() 
+    {
+//        requestAthlete = (Athlete_FacadeRemote)getEJBBean("athletefacade"); 
+//        requestCredentials = (Credentials_FacadeRemote)getEJBBean("credentialsfacade");
     }
+    
+    public Object getEJBBean(String beanName)
+    {
+        try
+        {
+            InitialContext ctx=new InitialContext();
+            return ctx.lookup(beanName);
+        }
+        catch (Exception ex)
+        {
+            System.err.println("ERROR: while locating bean from the server " + ex.getMessage());
+            return null;
+        }
+    }
+    
+//    @GET
+//    @Path("createAthlete")
+//    @Produces({MediaType.APPLICATION_JSON})
+//    public String createAthlete() {
+//        
+//        try
+//        {
+//            Credentials_dto credentials = new Credentials_dto(parseLong("1"));
+//            requestAthlete.createCredendentedAthlete(credentials , new Athlete_dto(parseLong("1"),parseLong("1234567"),"Webservice","Webservice"));
+//            
+//            return "Successful";
+//        }
+//        catch(Exception e)
+//        {
+//            return "unsuccessful";
+//        }
+//                
+//        
+//    }    
+//    
 
 //    @POST
 //    @Override
@@ -62,6 +108,7 @@ public class AthleteFacadeREST {
     @Path("getAll")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public String findAll() {
+        
         return "test1";
     }
 //
