@@ -5,25 +5,19 @@
  */
 package services.service;
 
-import controller.Athlete_FacadeRemote;
-import controller.Credentials_FacadeRemote;
-import dto.Athlete_dto;
-import dto.Credentials_dto;
-import static java.lang.Long.parseLong;
-import java.util.List;
+import api.RequestType;
+import api.WebhookFactory;
+import remote.Athlete_FacadeRemote;
+import remote.Credentials_FacadeRemote;
 import javax.ejb.Stateless;
+import javax.json.Json;
+import javax.naming.Context;
 import javax.naming.InitialContext;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import org.json.JSONObject;
 
 /**
  *
@@ -33,28 +27,39 @@ import javax.ws.rs.core.MediaType;
 @Path("services.athlete")
 public class AthleteFacadeREST 
 {
-//    private Athlete_FacadeRemote requestAthlete; //theses lines of code break the service, suggest looking at EEA web module!
-//    private Credentials_FacadeRemote requestCredentials;
 
-    public AthleteFacadeREST() 
-    {
-//        requestAthlete = (Athlete_FacadeRemote)getEJBBean("athletefacade"); 
-//        requestCredentials = (Credentials_FacadeRemote)getEJBBean("credentialsfacade");
-    }
+    private static Athlete_FacadeRemote athleteFacadeRemote;
+    private static Credentials_FacadeRemote credentialsFacadeRemote;
+
     
-    public Object getEJBBean(String beanName)
+    
+    public AthleteFacadeREST() 
     {
         try
         {
-            InitialContext ctx=new InitialContext();
-            return ctx.lookup(beanName);
+            Context initial = new InitialContext();
+            athleteFacadeRemote = (Athlete_FacadeRemote) initial.lookup("athletefacade");
+            credentialsFacadeRemote = (Credentials_FacadeRemote) initial.lookup("credentialsfacade");
         }
-        catch (Exception ex)
+        catch(Exception ex)
         {
-            System.err.println("ERROR: while locating bean from the server " + ex.getMessage());
-            return null;
+            System.out.println("Caught an exception");
+            ex.printStackTrace();
         }
     }
+    
+    @GET
+    @Path("athlete")
+    @Produces({MediaType.APPLICATION_JSON})
+    public String createAthlete() throws Exception 
+    {
+        WebhookFactory whf = WebhookFactory.getInstance("581409","3aa96600c17636ee70c0fe95af4a28eeae20de32");
+        whf.createRequest(RequestType.ATHLETE_REQUEST); 
+        return Json.createObjectBuilder().add("message", "success").build().toString();
+    }
+
+    
+    
     
 //    @GET
 //    @Path("createAthlete")

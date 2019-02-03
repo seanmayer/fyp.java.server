@@ -5,15 +5,17 @@
  */
 package api;
 
+import dto.Activity_dto;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class ReturnActivitiesList extends RequestHandler 
 {
-
-    public URL getActivities() throws MalformedURLException
+    @Override
+    public URL getURL() throws MalformedURLException
     {
         return new URL("https://www.strava.com/api/v3/athlete/activities" + "?access_token=" + STRAVA_ACCESS_TOKEN);
     }
@@ -21,7 +23,7 @@ public class ReturnActivitiesList extends RequestHandler
     @Override
     public void getRequest() throws Exception
     {
-        JSONArray values = getJsonArray(getActivities());
+        JSONArray values = getJsonArray(getURL());
         
         for (int i = 0; i < values.length(); i++) 
         {

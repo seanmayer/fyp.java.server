@@ -5,23 +5,23 @@
  */
 package api;
 
-public class WebHookFactoryTest
+public class WebHookFactory
 {
     WebhookFactory whf = WebhookFactory.getInstance("581409","3aa96600c17636ee70c0fe95af4a28eeae20de32"); 
     
-    public WebHookFactoryTest() throws Exception 
+    public WebHookFactory() throws Exception 
     {
-        getAthleteData();
+        //getAthleteData();
         //getActivitesData();
     }
     
     public static void main(String[] args) throws Exception {
-        WebHookFactoryTest whft = new WebHookFactoryTest();
+        WebHookFactory whft = new WebHookFactory();
     }
     
     public void getAthleteData() throws Exception
     {     
-        whf.createRequest(RequestType.ATHLETE_REQUEST); 
+        whf.createRequest(RequestType.ATHLETE_REQUEST);
     }
     
     public void getActivitesData() throws Exception

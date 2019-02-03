@@ -1,5 +1,6 @@
 package controller;
 
+import remote.Credentials_FacadeRemote;
 import dto.Credentials_dto;
 import java.util.List;
 import javax.ejb.EJBException;

@@ -10,9 +10,11 @@ import java.net.URL;
 import org.json.JSONObject;
 
 
+
 public class ReturnAthlete extends RequestHandler
 {
-    public URL getAthlete() throws MalformedURLException
+    @Override
+    public URL getURL() throws MalformedURLException
     {
         return new URL("https://www.strava.com/api/v3/athletes/" + STRAVA_USER_ID + "?access_token=" + STRAVA_ACCESS_TOKEN);
     }
@@ -20,11 +22,7 @@ public class ReturnAthlete extends RequestHandler
     @Override
     public void getRequest() throws Exception
     {
-        JSONObject value = getJsonObject(getAthlete());
-        int id = value.getInt("id");
-        String firstName = value.getString("firstname");
-        String lastName = value.getString("lastname");
-        System.out.println(id + firstName + lastName);
+        JSONObject value = getJsonObject(getURL());
     }
 }
     

@@ -6,7 +6,8 @@
 package controller;
 
 
-import controller.Athlete_FacadeRemote;
+import remote.Credentials_FacadeRemote;
+import remote.Athlete_FacadeRemote;
 import dto.Athlete_dto;
 import dto.Credentials_dto;
 import static java.lang.Long.parseLong;
@@ -25,10 +26,11 @@ public class AthleteClient {
     
     public AthleteClient() throws Exception
     {
-        requestAthlete = (Athlete_FacadeRemote)getEJBBean("athletefacade"); 
+        
+        
         requestCredentials = (Credentials_FacadeRemote)getEJBBean("credentialsfacade");
         //createCredentials();
-        createAthlete();
+        //createAthlete();
         
         requestActivities();
         //insertInfo();
@@ -58,17 +60,10 @@ public class AthleteClient {
         }
     }
 
-private void createCredentials()
+private void createCredentials() throws Exception
 {
-    try
-    { 
-        requestCredentials.createCredentials(new Credentials_dto(parseLong("1"),"Username","Password"));
-    }
-    catch (Exception ex)
-    {
-        System.err.println("Caught an exception:");
-        ex.printStackTrace();
-    } 
+
+    requestCredentials.createCredentials(new Credentials_dto(parseLong("1"),"Username","Password"));
 
 }    
     

@@ -8,6 +8,8 @@ package api;
 import static java.lang.Math.E;
 import static java.lang.StrictMath.E;
 import static javafx.scene.input.KeyCode.T;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 /**
  *
@@ -44,9 +46,10 @@ public class WebhookFactory
       switch (type) 
       {
             case ATHLETE_REQUEST: genericRequest(new ReturnAthlete()).getRequest();
-            break;
+
             case ACTIVITIES_LIST_REQUEST: genericRequest(new ReturnActivitiesList()).getRequest();
-            break;
+            
+            default: break;
       }
     }
    
