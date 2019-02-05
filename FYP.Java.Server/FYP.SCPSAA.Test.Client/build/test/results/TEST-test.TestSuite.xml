@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="0" failures="0" hostname="DESKTOP-UT2GO9S" name="test.TestSuite" skipped="0" tests="6" time="13.517" timestamp="2019-02-03T19:02:51">
+<testsuite errors="0" failures="0" hostname="DESKTOP-UT2GO9S" name="test.TestSuite" skipped="0" tests="6" time="13.667" timestamp="2019-02-04T20:44:29">
   <properties>
     <property name="libs.jsp-compiler.javadoc" value="" />
     <property name="netbeans.autoupdate.country" value="GB" />
@@ -64,7 +64,7 @@
     <property name="libs.j2me_common_ant.maven-pom" value="" />
     <property name="libs.spring-webmvc3.0.maven-pom" value="" />
     <property name="libs.swing-layout.maven-pom" value="" />
-    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner test.TestSuite skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,Z:\University\FYP\Implementation\FYP.Java.Server\FYP.Java.Server\FYP.SCPSAA.Test.Client\build\test\results\TEST-test.TestSuite.xml crashfile=Z:\University\FYP\Implementation\FYP.Java.Server\FYP.Java.Server\FYP.SCPSAA.Test.Client\build\junitvmwatcher2312128762802337680.properties propsfile=Z:\University\FYP\Implementation\FYP.Java.Server\FYP.Java.Server\FYP.SCPSAA.Test.Client\build\junit3524363440961618471.properties" />
+    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner test.TestSuite skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,Z:\University\FYP\Implementation\FYP.Java.Server\FYP.Java.Server\FYP.SCPSAA.Test.Client\build\test\results\TEST-test.TestSuite.xml crashfile=Z:\University\FYP\Implementation\FYP.Java.Server\FYP.Java.Server\FYP.SCPSAA.Test.Client\build\junitvmwatcher7247634588564232290.properties propsfile=Z:\University\FYP\Implementation\FYP.Java.Server\FYP.Java.Server\FYP.SCPSAA.Test.Client\build\junit9109612579940555675.properties" />
     <property name="build.classes.dir" value="build/classes" />
     <property name="netbeans.accept_license_class" value="org.netbeans.license.AcceptLicense" />
     <property name="build.sysclasspath" value="ignore" />
@@ -87,7 +87,6 @@
     <property name="build.compiler.emacs" value="true" />
     <property name="libs.javaee-web-api-6.0.src" value="" />
     <property name="libs.jsp-compilation-syscp.classpath" value="C:\Program Files\NetBeans 8.2\extide\ant\lib\ant.jar;C:\Program Files\NetBeans 8.2\enterprise\modules\ext\servlet3.1-jsp2.3-api.jar;C:\Program Files\NetBeans 8.2\enterprise\modules\ext\glassfish-jspparser-4.0.jar;C:\Program Files\NetBeans 8.2\enterprise\modules\ext\jstl-impl.jar;C:\Program Files\NetBeans 8.2\enterprise\modules\ext\jsf-2_2\javax.faces.jar" />
-    <property name="nu.validator.checker.imageCandidateString.hasWidth" value="0" />
     <property name="java.endorsed.dirs" value="C:\Program Files\Java\jdk1.8.0_181\jre\lib\endorsed" />
     <property name="libs.Comet-GlassFish-v3.maven-pom" value="" />
     <property name="libs.groovy-all.src" value="" />
@@ -109,7 +108,7 @@
     <property name="javadoc.splitindex" value="true" />
     <property name="file.separator" value="\" />
     <property name="libs.Java-EE-GlassFish-v3-Prelude.maven-pom" value="" />
-    <property name="javac.includesfile.binary" value="Z:\University\FYP\Implementation\FYP.Java.Server\FYP.Java.Server\FYP.SCPSAA.Test.Client\null879212476" />
+    <property name="javac.includesfile.binary" value="Z:\University\FYP\Implementation\FYP.Java.Server\FYP.Java.Server\FYP.SCPSAA.Test.Client\null1650724107" />
     <property name="libs.junit_4.maven-pom" value="" />
     <property name="mkdist.disabled" value="false" />
     <property name="javac.test.processorpath" value="C:\Program Files\glassfish-4.1.1\glassfish\lib\appserv-rt.jar:C:\glassfish4\glassfish\lib\javaee.jar:Z:\JAR FILES\java-json.jar:../FYP.SCPSAA.Java.Library/dist/FYP.SCPSAA.JavaLibrary.jar:C:\Program Files\NetBeans 8.2\platform\modules\ext\junit-4.12.jar:build/classes:C:\Program Files\NetBeans 8.2\platform\modules\ext\junit-4.12.jar:C:\Program Files\NetBeans 8.2\platform\modules\ext\hamcrest-core-1.3.jar" />
@@ -315,10 +314,10 @@
     <property name="jdk.launcher.addexports.1" value="java.base/jdk.internal.jrtfs=ALL-UNNAMED" />
     <property name="jdk.launcher.addexports.0" value="java.desktop/sun.awt=ALL-UNNAMED" />
     <property name="do.depend" value="false" />
-    <property name="dist.javadoc.dir" value="dist/javadoc" />
     <property name="libs.j2me_common_ant.classpath" value="C:\Program Files\NetBeans 8.2\mobility\modules\org-netbeans-modules-j2me-common-ant.jar;C:\Program Files\NetBeans 8.2\java\modules\org-netbeans-modules-classfile.jar" />
-    <property name="libs.spring-webmvc3.0.classpath" value="C:\Program Files\NetBeans 8.2\java\modules\ext\spring-3.0\spring-webmvc-3.2.7.RELEASE.jar" />
+    <property name="dist.javadoc.dir" value="dist/javadoc" />
     <property name="libs.swing-layout.classpath" value="C:\Program Files\NetBeans 8.2\platform\modules\ext\swing-layout-1.0.4.jar" />
+    <property name="libs.spring-webmvc3.0.classpath" value="C:\Program Files\NetBeans 8.2\java\modules\ext\spring-3.0\spring-webmvc-3.2.7.RELEASE.jar" />
     <property name="libs.javaee-web-api-7.0.maven-pom" value="" />
     <property name="libs.restlib.src" value="" />
     <property name="javac.source" value="1.8" />
@@ -334,13 +333,13 @@
     <property name="built-jar.properties" value="Z:\University\FYP\Implementation\FYP.Java.Server\FYP.Java.Server\FYP.SCPSAA.Test.Client\build\built-jar.properties" />
     <property name="build.test.classes.dir" value="build/test/classes" />
     <property name="src.dir" value="src" />
-    <property name="annotation.processing.enabled" value="true" />
     <property name="sun.awt.keepWorkingSetOnMinimize" value="true" />
     <property name="libs.jpa2-persistence.src" value="" />
+    <property name="annotation.processing.enabled" value="true" />
     <property name="libs.jsf20.src" value="" />
     <property name="libs.jpa20-persistence.src" value="" />
-    <property name="libs.jsf12.src" value="" />
     <property name="libs.DataBindingME-SVG.maven-pom" value="" />
+    <property name="libs.jsf12.src" value="" />
     <property name="libs.JAVADB_DRIVER_LABEL.maven-pom" value="" />
     <property name="libs.struts.javadoc" value="C:\Program Files\NetBeans 8.2\enterprise\docs\struts-1.3.10-javadoc.zip" />
     <property name="ignore.failing.tests" value="true" />
@@ -363,14 +362,14 @@
     <property name="libs.junit_4.classpath" value="C:\Program Files\NetBeans 8.2\platform\modules\ext\junit-4.12.jar" />
     <property name="user.timezone" value="" />
     <property name="nb.junit.single" value="false" />
-    <property name="libs.javaee-endorsed-api-6.0.maven-pom" value="" />
     <property name="libs.JAVADB_DRIVER_LABEL.javadoc" value="" />
+    <property name="libs.javaee-endorsed-api-6.0.maven-pom" value="" />
     <property name="netbeans.dirs" value="C:\Program Files\NetBeans 8.2\nb;C:\Program Files\NetBeans 8.2\ergonomics;C:\Program Files\NetBeans 8.2\ide;C:\Program Files\NetBeans 8.2\extide;C:\Program Files\NetBeans 8.2\java;C:\Program Files\NetBeans 8.2\apisupport;C:\Program Files\NetBeans 8.2\webcommon;C:\Program Files\NetBeans 8.2\websvccommon;C:\Program Files\NetBeans 8.2\enterprise;C:\Program Files\NetBeans 8.2\mobility;C:\Program Files\NetBeans 8.2\profiler;C:\Program Files\NetBeans 8.2\python;C:\Program Files\NetBeans 8.2\php;C:\Program Files\NetBeans 8.2\identity;C:\Program Files\NetBeans 8.2\harness;C:\Program Files\NetBeans 8.2\cnd;C:\Program Files\NetBeans 8.2\cndext;C:\Program Files\NetBeans 8.2\dlight;C:\Program Files\NetBeans 8.2\groovy;C:\Program Files\NetBeans 8.2\extra;C:\Program Files\NetBeans 8.2\javacard;C:\Program Files\NetBeans 8.2\javafx" />
     <property name="file.reference.javaee.jar" value="C:\glassfish4\glassfish\lib\javaee.jar" />
     <property name="libs.jsf20.javadoc" value="C:\Program Files\NetBeans 8.2\enterprise\docs\javaee-doc-api.jar" />
     <property name="libs.jstl.javadoc" value="C:\Program Files\NetBeans 8.2\enterprise\docs\javaee-doc-api.jar" />
-    <property name="ant.file.FYP.SCPSAA.Test.Client-impl" value="Z:\University\FYP\Implementation\FYP.Java.Server\FYP.Java.Server\FYP.SCPSAA.Test.Client\nbproject\build-impl.xml" />
     <property name="java.ext.dirs" value="C:\Program Files\Java\jdk1.8.0_181\jre\lib\ext;C:\WINDOWS\Sun\Java\lib\ext" />
+    <property name="ant.file.FYP.SCPSAA.Test.Client-impl" value="Z:\University\FYP\Implementation\FYP.Java.Server\FYP.Java.Server\FYP.SCPSAA.Test.Client\nbproject\build-impl.xml" />
     <property name="libs.metro.src" value="" />
     <property name="libs.absolutelayout.classpath" value="C:\Program Files\NetBeans 8.2\java\modules\ext\AbsoluteLayout.jar" />
     <property name="excludes" value="" />
@@ -394,8 +393,8 @@
     <property name="libs.hibernate4-support.maven-pom" value="" />
     <property name="libs.Comet-GlassFish-v3.src" value="" />
     <property name="libs.restlib.javadoc" value="" />
-    <property name="libs.JAXB-ENDORSED.classpath" value="C:\Program Files\NetBeans 8.2\ide\modules\ext\jaxb\api\jaxb-api.jar" />
     <property name="nb.internal.action.name" value="test.single" />
+    <property name="libs.JAXB-ENDORSED.classpath" value="C:\Program Files\NetBeans 8.2\ide\modules\ext\jaxb\api\jaxb-api.jar" />
     <property name="libs.javaee-api-7.0.javadoc" value="C:\Program Files\NetBeans 8.2\enterprise\docs\javaee-doc-api.jar" />
     <property name="libs.eclipselink.classpath" value="C:\Program Files\NetBeans 8.2\java\modules\ext\eclipselink\eclipselink.jar;C:\Program Files\NetBeans 8.2\java\modules\ext\eclipselink\javax.persistence_2.1.0.v201304241213.jar;C:\Program Files\NetBeans 8.2\java\modules\ext\eclipselink\org.eclipse.persistence.jpa.jpql_2.5.2.v20140319-9ad6abd.jar" />
     <property name="libs.beans-binding.javadoc" value="C:\Program Files\NetBeans 8.2\java\docs\beansbinding-1.2.1-doc.zip" />
@@ -411,32 +410,32 @@
     <property name="dist.archive.excludes" value="" />
     <property name="libs.testng.javadoc" value="C:\Program Files\NetBeans 8.2\platform\docs\testng-6.8.1-javadoc.zip" />
     <property name="libs.DataBindingME-PIM.src" value="C:\Program Files\NetBeans 8.2\mobility\sources\netbeans_databindingme_pim-src.zip" />
-    <property name="libs.PostgreSQLDriver.classpath" value="C:\Program Files\NetBeans 8.2\ide\modules\ext\postgresql-9.4.1209.jar" />
     <property name="user.script" value="" />
+    <property name="libs.PostgreSQLDriver.classpath" value="C:\Program Files\NetBeans 8.2\ide\modules\ext\postgresql-9.4.1209.jar" />
     <property name="libs.jsf12.maven-pom" value="" />
     <property name="libs.hibernate4-persistencemodelgen.classpath" value="C:\Program Files\NetBeans 8.2\java\modules\ext\hibernate4\hibernate-jpamodelgen-4.3.1.Final.jar" />
     <property name="annotation.processing.source.output" value="build/generated-sources/ap-source-output" />
     <property name="main.class" value="controller.AthleteClient" />
-    <property name="libs.CopyLibs.src" value="" />
     <property name="build.dir" value="build" />
+    <property name="libs.CopyLibs.src" value="" />
     <property name="libs.jsp-compilation.classpath" value="C:\Program Files\NetBeans 8.2\extide\ant\lib\ant.jar;C:\Program Files\NetBeans 8.2\enterprise\modules\ext\servlet3.1-jsp2.3-api.jar;C:\Program Files\NetBeans 8.2\enterprise\modules\ext\glassfish-jspparser-4.0.jar;C:\Program Files\NetBeans 8.2\enterprise\modules\ext\jsf-2_2\javax.faces.jar;C:\Program Files\NetBeans 8.2\enterprise\modules\ext\jstl-api.jar;C:\Program Files\NetBeans 8.2\extide\ant\lib\ant-launcher.jar" />
     <property name="ant.version" value="Apache Ant(TM) version 1.9.7 compiled on April 9 2016" />
     <property name="ant.file.type.FYP.SCPSAA.Test.Client" value="file" />
-    <property name="file.encoding" value="Cp1252" />
     <property name="build.classes.excludes" value="**/*.java,**/*.form" />
-    <property name="javadoc.nonavbar" value="false" />
+    <property name="file.encoding" value="Cp1252" />
     <property name="jdkBug6558476" value="false" />
+    <property name="javadoc.nonavbar" value="false" />
     <property name="libs.spring-webmvc4.0.classpath" value="C:\Program Files\NetBeans 8.2\java\modules\ext\spring-4\spring-webmvc-4.0.1.RELEASE.jar" />
     <property name="platform.active" value="default_platform" />
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit" />
     <property name="libs.javaee-web-api-7.0.javadoc" value="C:\Program Files\NetBeans 8.2\enterprise\docs\javaee-doc-api.jar" />
   </properties>
-  <testcase classname="api.WebHookFactoryIT" name="testMain" time="0.0" />
-  <testcase classname="api.WebHookFactoryIT" name="testGetActivitesData" time="1.633" />
-  <testcase classname="api.WebHookFactoryIT" name="testGetAthleteData" time="0.717" />
-  <testcase classname="controller.AthleteClientIT" name="testMain" time="0.001" />
-  <testcase classname="controller.AthleteClientIT" name="createCredentials" time="0.016" />
-  <testcase classname="controller.AthleteClientIT" name="createAthlete" time="0.0" />
+  <testcase classname="api.WebHookFactoryIT" name="testMain" time="0.016" />
+  <testcase classname="api.WebHookFactoryIT" name="testGetActivitesData" time="1.584" />
+  <testcase classname="api.WebHookFactoryIT" name="testGetAthleteData" time="0.583" />
+  <testcase classname="controller.AthleteClientIT" name="testMain" time="0.017" />
+  <testcase classname="controller.AthleteClientIT" name="createCredentials" time="0.184" />
+  <testcase classname="controller.AthleteClientIT" name="createAthlete" time="0.05" />
   <system-out><![CDATA[main
 getActivitesData
 357289858
@@ -494,7 +493,7 @@ getAthleteData
 10718138
 main
 ]]></system-out>
-  <system-err><![CDATA[Feb 03, 2019 7:02:58 PM com.sun.enterprise.v3.server.CommonClassLoaderServiceImpl findDerbyClient
+  <system-err><![CDATA[Feb 04, 2019 8:44:36 PM com.sun.enterprise.v3.server.CommonClassLoaderServiceImpl findDerbyClient
 INFO: Cannot find javadb client jar file, derby jdbc driver will not be available by default.
 ]]></system-err>
 </testsuite>

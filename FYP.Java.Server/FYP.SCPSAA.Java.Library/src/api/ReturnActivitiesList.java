@@ -21,16 +21,15 @@ public class ReturnActivitiesList extends RequestHandler
     }
     
     @Override
-    public void getRequest() throws Exception
+    public String getRequest() throws Exception
     {
-        JSONArray values = getJsonArray(getURL());
+        return getJsonArray(getURL()).toString();
         
-        for (int i = 0; i < values.length(); i++) 
-        {
-              JSONObject jsonObject = values.getJSONObject(i); 
-              int id = jsonObject.getInt("id");
-              System.out.println(id);
-        }
-    }
-    
+//        for (int i = 0; i < values.length(); i++) 
+//        {
+//              JSONObject jsonObject = values.getJSONObject(i); 
+//              int id = jsonObject.getInt("id");
+//              System.out.println(id);
+//        }
+    }   
 }

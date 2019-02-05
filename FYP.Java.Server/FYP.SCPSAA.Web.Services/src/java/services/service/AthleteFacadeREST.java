@@ -7,6 +7,9 @@ package services.service;
 
 import api.RequestType;
 import api.WebhookFactory;
+import dto.Athlete_dto;
+import dto.Credentials_dto;
+import static java.lang.Long.parseLong;
 import remote.Athlete_FacadeRemote;
 import remote.Credentials_FacadeRemote;
 import javax.ejb.Stateless;
@@ -15,6 +18,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import org.json.JSONObject;
@@ -27,11 +31,8 @@ import org.json.JSONObject;
 @Path("services.athlete")
 public class AthleteFacadeREST 
 {
-
-    private static Athlete_FacadeRemote athleteFacadeRemote;
+    private static Athlete_FacadeRemote athleteFacadeRemote;    
     private static Credentials_FacadeRemote credentialsFacadeRemote;
-
-    
     
     public AthleteFacadeREST() 
     {
@@ -49,38 +50,43 @@ public class AthleteFacadeREST
     }
     
     @GET
-    @Path("athlete")
+    @Path("create/athlete/{credentialsId}/{stravaId}/{accessToken}")
     @Produces({MediaType.APPLICATION_JSON})
-    public String createAthlete() throws Exception 
+    public String createAthlete(@PathParam("credentialsId") String credentialsId, @PathParam("stravaId") String stravaId, @PathParam("accessToken") String accessToken) throws Exception 
     {
-        WebhookFactory whf = WebhookFactory.getInstance("581409","3aa96600c17636ee70c0fe95af4a28eeae20de32");
-        whf.createRequest(RequestType.ATHLETE_REQUEST); 
-        return Json.createObjectBuilder().add("message", "success").build().toString();
+        try
+        {
+            JSONObject athleteJsonObject = new JSONObject(WebhookFactory.getInstance(stravaId, accessToken).createRequest(RequestType.ATHLETE_REQUEST));
+            athleteFacadeRemote.createCredendentedAthlete(new Credentials_dto(parseLong(credentialsId)), new Athlete_dto(parseLong("1"),athleteJsonObject.getLong("id"),athleteJsonObject.getString("firstname"),athleteJsonObject.getString("lastname")));
+            return Json.createObjectBuilder().add("message", "success").build().toString();
+        }
+        catch(Exception e)
+        {
+            return Json.createObjectBuilder().add("message", "unsuccessful").build().toString();
+        }
     }
 
     
     
     
-//    @GET
-//    @Path("createAthlete")
-//    @Produces({MediaType.APPLICATION_JSON})
-//    public String createAthlete() {
-//        
-//        try
-//        {
-//            Credentials_dto credentials = new Credentials_dto(parseLong("1"));
-//            requestAthlete.createCredendentedAthlete(credentials , new Athlete_dto(parseLong("1"),parseLong("1234567"),"Webservice","Webservice"));
-//            
-//            return "Successful";
-//        }
-//        catch(Exception e)
-//        {
-//            return "unsuccessful";
-//        }
-//                
-//        
-//    }    
-//    
+    @GET
+    @Path("createAthlete")
+    @Produces({MediaType.APPLICATION_JSON})
+    public String createCredendentedAthlete() 
+    {
+        try
+        {
+            Credentials_dto credentials = new Credentials_dto(parseLong("1"));
+            athleteFacadeRemote.createCredendentedAthlete(credentials , new Athlete_dto(parseLong("1"),parseLong("1234567"),"Webservice","Webservice"));
+            
+            return "Successful";
+        }
+        catch(Exception e)
+        {
+            return "unsuccessful";
+        }                    
+    }    
+    
 
 //    @POST
 //    @Override

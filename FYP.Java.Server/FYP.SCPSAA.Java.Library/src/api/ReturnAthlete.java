@@ -20,9 +20,9 @@ public class ReturnAthlete extends RequestHandler
     }
 
     @Override
-    public void getRequest() throws Exception
+    public String getRequest() throws Exception
     {
-        JSONObject value = getJsonObject(getURL());
+        return getJsonObject(getURL()).toString();
     }
 }
     

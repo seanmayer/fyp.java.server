@@ -10,13 +10,15 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
+import javax.ejb.Remote;
+import javax.ejb.Singleton;
 import javax.naming.InitialContext;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import remote.Athlete_FacadeRemote;
 
-
+@Remote
 public abstract class RequestHandler<T> 
 {    
     public String STRAVA_USER_ID = null;
@@ -60,7 +62,7 @@ public abstract class RequestHandler<T>
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public void getRequest() throws Exception
+    public String getRequest() throws Exception
     {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

@@ -5,19 +5,22 @@
  */
 package services.service;
 
-import java.util.List;
+import com.google.gson.Gson;
+import dto.Credentials_dto;
+import static java.lang.Long.parseLong;
 import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
+import javax.json.Json;
+import javax.naming.Context;
+import javax.naming.InitialContext;
 import javax.ws.rs.Consumes;
-import javax.ws.rs.DELETE;
-import javax.ws.rs.GET;
 import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import org.json.JSONObject;
+import remote.Credentials_FacadeRemote;
+
 
 /**
  *
@@ -27,17 +30,41 @@ import javax.ws.rs.core.MediaType;
 @Path("services.credentials")
 public class CredentialsFacadeREST  {
 
+    private static Credentials_FacadeRemote credentialsFacadeRemote;
 
-    public CredentialsFacadeREST() {
-        
+    public CredentialsFacadeREST() 
+    {
+        try
+        {
+            Context initial = new InitialContext();
+            credentialsFacadeRemote = (Credentials_FacadeRemote) initial.lookup("credentialsfacade");
+        }
+        catch(Exception ex)
+        {
+            System.out.println("Caught an exception");
+            ex.printStackTrace();
+        }
     }
 
-//    @POST
-//    @Override
-//    @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-//    public void create(Credentials entity) {
-//        super.create(entity);
-//    }
+    @POST
+    @Path("create/credentials")
+    @Consumes({MediaType.APPLICATION_JSON})
+    public String createCredentials() 
+    {
+          //Credentials_dto d = new Credentials_dto(parseLong("1"), "username", "password");
+//        Gson gson = new Gson();
+//        return Response.ok(gson.toJson(d)).build();   
+        try
+        {
+
+            //credentialsFacadeRemote.createCredentials(entity);
+            return Json.createObjectBuilder().add("message", "successful").build().toString();
+        }
+        catch(Exception e)
+        {
+            return Json.createObjectBuilder().add("message", "unsuccessful").build().toString();
+        }
+    }
 //
 //    @PUT
 //    @Path("{id}")

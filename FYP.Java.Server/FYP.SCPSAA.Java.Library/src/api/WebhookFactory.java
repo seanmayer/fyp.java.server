@@ -5,55 +5,74 @@
  */
 package api;
 
-import static java.lang.Math.E;
-import static java.lang.StrictMath.E;
-import static javafx.scene.input.KeyCode.T;
-import org.json.JSONArray;
-import org.json.JSONObject;
+import javax.ejb.Remote;
 
 /**
- *
- * @author 2008s
- */
+* @author  Sean Mayer
+* @version 1.0
+* @since   2019-02-05
+*/
+
+@Remote
 public class WebhookFactory 
 {
-   private static WebhookFactory instance = null;
+   private static volatile WebhookFactory instance;
    private String stravaId;
-   private String accessToken;
-   
-    private WebhookFactory() 
-    {
+   private String accessToken;   
 
-    }
-   
-    private WebhookFactory(String stravaId, String accessToken) 
+    /**
+     * This implements the Factory Method and Singleton Pattern.
+     * Its purpose is to make web requests to the Strava API and return JSONString.
+     */
+    public WebhookFactory() {}
+
+    /**
+     * This method instantiates the Singleton with the accessToken and stravaID that is required to make web requests.
+     * @param stravaId
+     * @param accessToken
+     */
+    public WebhookFactory(String stravaId, String accessToken) 
     {
         this.accessToken = accessToken;
         this.stravaId = stravaId;
     }
 
-    public static WebhookFactory getInstance(String stravaId, String accessToken) {
-
-        if (instance == null)
-        {
-            instance =  new WebhookFactory(stravaId,accessToken);
-        }
+    /**
+     * This gets the Singleton instance.
+     * @param stravaId
+     * @param accessToken
+     * @return WebhookFactory
+     */
+    public static WebhookFactory getInstance(String stravaId, String accessToken)
+    {   
+        instance = new WebhookFactory(stravaId,accessToken);
         return instance;
     }
-    
-   public void createRequest(RequestType type) throws Exception 
+
+    /**
+     * This is the webhook request factory, this calls the concrete classes for each use case.
+     * @param type
+     * @return
+     * @throws Exception
+     */
+    public String createRequest(RequestType type) throws Exception 
    {
       switch (type) 
       {
-            case ATHLETE_REQUEST: genericRequest(new ReturnAthlete()).getRequest();
+            case ATHLETE_REQUEST: return genericRequest(new ReturnAthlete()).getRequest();
 
-            case ACTIVITIES_LIST_REQUEST: genericRequest(new ReturnActivitiesList()).getRequest();
+            case ACTIVITIES_LIST_REQUEST: return genericRequest(new ReturnActivitiesList()).getRequest();
             
-            default: break;
+            default: return null;
       }
     }
    
-   
+    /**
+     * This is a Generic Method, that takes in abstract RequestHandler children classes. This instantiates the request handler's STRAVA_ACCESS_TOKEN and STRAVA_USER_ID.
+     * @param <T>
+     * @param requestHandler
+     * @return
+     */
     public <T extends RequestHandler> RequestHandler genericRequest(T requestHandler) 
     {
         requestHandler.STRAVA_ACCESS_TOKEN = accessToken;
