@@ -3,34 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dto;
-
-import java.io.Serializable;
-import java.util.Collection;
+package model.json;
 
 /**
  *
  * @author 2008s
  */
-public class Credentials_dto implements Serializable
+public class CredentialsJSONObject 
 {
     private Long credentialsId;
     private String username;
     private String password;
-//    private Athlete_dto athleteId;
-
-    public Credentials_dto() {
-    }
-
-    public Credentials_dto(Long credentialsId) {
-        this.credentialsId = credentialsId;
-    }
-    
-    public Credentials_dto(Long credentialsId, String username, String password) {
-        this.credentialsId = credentialsId;
-        this.username = username;
-        this.password = password;
-    }
 
     /**
      * @return the credentialsId
@@ -73,25 +56,7 @@ public class Credentials_dto implements Serializable
     public void setPassword(String password) {
         this.password = password;
     }
+    
+    
 
-//    /**
-//     * @return the athleteId
-//     */
-//    public Athlete_dto getAthleteId() {
-//        return athleteId;
-//    }
-//
-//    /**
-//     * @param athleteId the athleteId to set
-//     */
-//    public void setAthleteId(Athlete_dto athleteId) {
-//        this.athleteId = athleteId;
-//    }
-
-    
-    
-    
-    
-    
-    
 }

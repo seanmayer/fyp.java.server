@@ -31,8 +31,8 @@ import org.json.JSONObject;
 @Path("services.athlete")
 public class AthleteFacadeREST 
 {
-    private static Athlete_FacadeRemote athleteFacadeRemote;    
-    private static Credentials_FacadeRemote credentialsFacadeRemote;
+    private static Athlete_FacadeRemote athleteFacadeRemote;  
+    
     
     public AthleteFacadeREST() 
     {
@@ -40,7 +40,6 @@ public class AthleteFacadeREST
         {
             Context initial = new InitialContext();
             athleteFacadeRemote = (Athlete_FacadeRemote) initial.lookup("athletefacade");
-            credentialsFacadeRemote = (Credentials_FacadeRemote) initial.lookup("credentialsfacade");
         }
         catch(Exception ex)
         {
@@ -52,10 +51,11 @@ public class AthleteFacadeREST
     @GET
     @Path("create/athlete/{credentialsId}/{stravaId}/{accessToken}")
     @Produces({MediaType.APPLICATION_JSON})
-    public String createAthlete(@PathParam("credentialsId") String credentialsId, @PathParam("stravaId") String stravaId, @PathParam("accessToken") String accessToken) throws Exception 
+    public String createAthlete(@PathParam("credentialsId") String credentialsId, @PathParam("stravaId") String stravaId, @PathParam("accessToken") String accessToken)
     {
         try
         {
+
             JSONObject athleteJsonObject = new JSONObject(WebhookFactory.getInstance(stravaId, accessToken).createRequest(RequestType.ATHLETE_REQUEST));
             athleteFacadeRemote.createCredendentedAthlete(new Credentials_dto(parseLong(credentialsId)), new Athlete_dto(parseLong("1"),athleteJsonObject.getLong("id"),athleteJsonObject.getString("firstname"),athleteJsonObject.getString("lastname")));
             return Json.createObjectBuilder().add("message", "success").build().toString();
@@ -66,26 +66,6 @@ public class AthleteFacadeREST
         }
     }
 
-    
-    
-    
-    @GET
-    @Path("createAthlete")
-    @Produces({MediaType.APPLICATION_JSON})
-    public String createCredendentedAthlete() 
-    {
-        try
-        {
-            Credentials_dto credentials = new Credentials_dto(parseLong("1"));
-            athleteFacadeRemote.createCredendentedAthlete(credentials , new Athlete_dto(parseLong("1"),parseLong("1234567"),"Webservice","Webservice"));
-            
-            return "Successful";
-        }
-        catch(Exception e)
-        {
-            return "unsuccessful";
-        }                    
-    }    
     
 
 //    @POST

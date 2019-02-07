@@ -7,6 +7,7 @@ package services.service;
 
 import com.google.gson.Gson;
 import dto.Credentials_dto;
+import java.io.Serializable;
 import static java.lang.Long.parseLong;
 import javax.ejb.Stateless;
 import javax.json.Json;
@@ -16,8 +17,10 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import model.json.CredentialsJSONObject;
 import org.json.JSONObject;
 import remote.Credentials_FacadeRemote;
 
@@ -28,7 +31,7 @@ import remote.Credentials_FacadeRemote;
  */
 @Stateless
 @Path("services.credentials")
-public class CredentialsFacadeREST  {
+public class CredentialsFacadeREST implements Serializable {
 
     private static Credentials_FacadeRemote credentialsFacadeRemote;
 
@@ -49,15 +52,12 @@ public class CredentialsFacadeREST  {
     @POST
     @Path("create/credentials")
     @Consumes({MediaType.APPLICATION_JSON})
-    public String createCredentials() 
-    {
-          //Credentials_dto d = new Credentials_dto(parseLong("1"), "username", "password");
-//        Gson gson = new Gson();
-//        return Response.ok(gson.toJson(d)).build();   
+    @Produces({MediaType.APPLICATION_JSON})
+    public String createCredentials(CredentialsJSONObject entity) 
+    { 
         try
         {
-
-            //credentialsFacadeRemote.createCredentials(entity);
+            credentialsFacadeRemote.createCredentials(new Credentials_dto(entity.getCredentialsId(), entity.getUsername(), entity.getPassword()));
             return Json.createObjectBuilder().add("message", "successful").build().toString();
         }
         catch(Exception e)
@@ -65,6 +65,9 @@ public class CredentialsFacadeREST  {
             return Json.createObjectBuilder().add("message", "unsuccessful").build().toString();
         }
     }
+    
+    
+    
 //
 //    @PUT
 //    @Path("{id}")
@@ -111,5 +114,11 @@ public class CredentialsFacadeREST  {
 //    protected EntityManager getEntityManager() {
 //        return em;
 //    }
+    
+}
+
+
+class CredentialsTest
+{
     
 }
