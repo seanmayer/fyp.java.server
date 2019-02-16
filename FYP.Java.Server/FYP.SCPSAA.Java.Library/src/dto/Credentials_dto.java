@@ -25,6 +25,11 @@ public class Credentials_dto implements Serializable
     public Credentials_dto(Long credentialsId) {
         this.credentialsId = credentialsId;
     }
+
+    public Credentials_dto(Long credentialsId, String username) {
+        this.credentialsId = credentialsId;
+        this.username = username;
+    }
     
     public Credentials_dto(Long credentialsId, String username, String password) {
         this.credentialsId = credentialsId;

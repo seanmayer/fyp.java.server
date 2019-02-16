@@ -29,6 +29,7 @@ public class AthleteClient {
         
         
         requestCredentials = (Credentials_FacadeRemote)getEJBBean("credentialsfacade");
+        requestAthlete = (Athlete_FacadeRemote)getEJBBean("athletefacade");
         //createCredentials();
         //createAthlete();
         

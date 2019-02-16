@@ -4,35 +4,32 @@
  * and open the template in the editor.
  */
 package controller;
-import dto.Athlete_dto;
+
 import dto.Credentials_dto;
 import static java.lang.Long.parseLong;
+import java.util.List;
 import javax.naming.InitialContext;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import remote.Athlete_FacadeRemote;
-
+import static org.junit.Assert.*;
+import remote.Credentials_FacadeRemote;
 
 /**
  *
  * @author 2008s
  */
-public class AthleteClientIT {
+public class CredentialsClientIT 
+{
     
-    private Athlete_FacadeRemote requestAthlete;  
+    private Credentials_FacadeRemote requestCredentials;
     
-    
-    
-    public AthleteClientIT() throws Exception
+    public CredentialsClientIT() 
     {
-        requestAthlete = (Athlete_FacadeRemote)getEJBBean("athletefacade"); 
-        
+        requestCredentials = (Credentials_FacadeRemote)getEJBBean("credentialsfacade");
     }
-    
-
     
     @BeforeClass
     public static void setUpClass() {
@@ -50,7 +47,6 @@ public class AthleteClientIT {
     public void tearDown() {
     }
 
-    
 
     public Object getEJBBean(String beanName)
     {
@@ -67,11 +63,27 @@ public class AthleteClientIT {
     }
     
     
+    /**
+     * Test of getEJBBean method, of class CredentialsClient.
+     */
     @Test(expected = Test.None.class /* no exception expected */)
-    public void createAthlete() throws Exception
+    public void createCredentials() throws Exception
     {
-        Credentials_dto credentials = new Credentials_dto(parseLong("1"));
-        requestAthlete.createCredendentedAthlete(credentials , new Athlete_dto(parseLong("1"),parseLong("1234567"),"FirstNameTest","LastNameTest"));
+        requestCredentials.createCredentials(new Credentials_dto(parseLong("1"),"Username","Password"));
+    } 
+
+    /**
+     * Test of displayInfo method, of class CredentialsClient.
+     */
+     @Test(expected = Test.None.class /* no exception expected */)
+    public void testDisplayInfo() throws Exception 
+    {
+        List<Credentials_dto> credList = requestCredentials.findAll();
+
+        for(Credentials_dto c:credList)
+        {
+            System.out.println(c.getCredentialsId() + " " + c.getUsername());
+        }
     }
     
 }

@@ -11,7 +11,6 @@ import dto.Athlete_dto;
 import dto.Credentials_dto;
 import static java.lang.Long.parseLong;
 import remote.Athlete_FacadeRemote;
-import remote.Credentials_FacadeRemote;
 import javax.ejb.Stateless;
 import javax.json.Json;
 import javax.naming.Context;

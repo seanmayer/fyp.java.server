@@ -2,6 +2,8 @@ package controller;
 
 import remote.Credentials_FacadeRemote;
 import dto.Credentials_dto;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import javax.ejb.EJBException;
 import javax.ejb.Stateless;
@@ -12,6 +14,21 @@ import model.Credentials;
 @Stateless(mappedName="credentialsfacade")
 public class CredentialsHandler extends AbstractEntityManager implements Credentials_FacadeRemote 
 {
+    private List<Credentials_dto> copyCredentials(List<Credentials> credentials)
+    {
+        List<Credentials_dto> credentialsList = new ArrayList<>();
+        Iterator i = credentials.iterator();
+    
+            while (i.hasNext())
+            {
+                Credentials c = (Credentials) i.next();
+                Credentials_dto details = new Credentials_dto(c.getCredentialsId(),c.getUsername());
+                credentialsList.add(details);
+            }
+            
+        return credentialsList;
+    }
+    
 
     @Override
     public void createCredentials(Credentials_dto details) {
@@ -50,7 +67,8 @@ public class CredentialsHandler extends AbstractEntityManager implements Credent
 
     @Override
     public List<Credentials_dto> findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         return copyCredentials(em.createQuery("select object(o) from Credentials o ").getResultList());
+
     }
 
 //    private List<Student_dto> copyStudent(List<Student_> students)

@@ -58,6 +58,11 @@ public class Credentials implements Serializable {
         this.credentialsId = credentialsId;
     }
 
+    public Credentials(Long credentialsId, String username) {
+        this.credentialsId = credentialsId;
+        this.username = username;
+    }
+
     public Credentials(Long credentialsId, String username, String password) {
         this.credentialsId = credentialsId;
         this.username = username;

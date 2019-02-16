@@ -5,22 +5,22 @@
  */
 package services.service;
 
-import com.google.gson.Gson;
 import dto.Credentials_dto;
 import java.io.Serializable;
 import static java.lang.Long.parseLong;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.json.Json;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
+import javax.ws.rs.GET;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 import model.json.CredentialsJSONObject;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import remote.Credentials_FacadeRemote;
 
@@ -66,6 +66,20 @@ public class CredentialsFacadeREST implements Serializable {
         }
     }
     
+    @GET
+    @Path("list/credentials")
+    @Produces({MediaType.APPLICATION_JSON})
+    public String findAllCredentials()
+    {
+        try
+        {
+            return new JSONArray(credentialsFacadeRemote.findAll()).toString();
+        }
+        catch(Exception e)
+        {
+            return Json.createObjectBuilder().add("message", "unsuccessful").build().toString();
+        }
+    }
     
     
 //
