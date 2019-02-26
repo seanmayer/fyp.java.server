@@ -11,7 +11,7 @@ import model.CadenceLink;
 import model.PowerLink;
 import model.SpeedLink;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2019-02-16T15:20:42")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2019-02-26T20:18:03")
 @StaticMetamodel(Activity.class)
 public class Activity_ { 
 

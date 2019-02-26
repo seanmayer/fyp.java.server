@@ -3,6 +3,8 @@ package controller;
 import remote.Athlete_FacadeRemote;
 import dto.Athlete_dto;
 import dto.Credentials_dto;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import javax.ejb.EJBException;
 import javax.ejb.Stateless;
@@ -15,6 +17,22 @@ import model.Credentials;
 public class AthleteHandler extends AbstractEntityManager implements Athlete_FacadeRemote 
 {
 
+    private List<Athlete_dto> copyAthletes(List<Athlete> athletes)
+    {
+        List<Athlete_dto> athleteList = new ArrayList<>();
+        Iterator i = athletes.iterator();
+    
+            while (i.hasNext())
+            {
+                Athlete c = (Athlete) i.next();
+                Athlete_dto details = new Athlete_dto(c.getAthleteId(),c.getStravaid(),c.getFirstname(),c.getLastname());
+                athleteList.add(details);
+            }
+            
+        return athleteList;
+    }
+    
+    
     @Override
     public void createCredendentedAthlete(Credentials_dto credentialsDetails, Athlete_dto athleteDetails) {
         try
@@ -48,12 +66,12 @@ public class AthleteHandler extends AbstractEntityManager implements Athlete_Fac
 
     @Override
     public Athlete_dto findById(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.///////////WORK HERE NEED THE ATHLETE RETURN VALUE
     }
 
     @Override
     public List<Athlete_dto> findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return copyAthletes(em.createQuery("select object(o) from Athlete o ").getResultList());
     }
 
 //    private List<Student_dto> copyStudent(List<Student_> students)

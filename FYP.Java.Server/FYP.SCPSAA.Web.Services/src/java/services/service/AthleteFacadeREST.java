@@ -20,6 +20,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 /**
@@ -58,6 +59,21 @@ public class AthleteFacadeREST
             JSONObject athleteJsonObject = new JSONObject(WebhookFactory.getInstance(stravaId, accessToken).createRequest(RequestType.ATHLETE_REQUEST));
             athleteFacadeRemote.createCredendentedAthlete(new Credentials_dto(parseLong(credentialsId)), new Athlete_dto(parseLong("1"),athleteJsonObject.getLong("id"),athleteJsonObject.getString("firstname"),athleteJsonObject.getString("lastname")));
             return Json.createObjectBuilder().add("message", "success").build().toString();
+        }
+        catch(Exception e)
+        {
+            return Json.createObjectBuilder().add("message", "unsuccessful").build().toString();
+        }
+    }
+    
+    @GET
+    @Path("list/athletes")
+    @Produces({MediaType.APPLICATION_JSON})
+    public String findAllCredentials()
+    {
+        try
+        {
+            return new JSONArray(athleteFacadeRemote.findAll()).toString();
         }
         catch(Exception e)
         {

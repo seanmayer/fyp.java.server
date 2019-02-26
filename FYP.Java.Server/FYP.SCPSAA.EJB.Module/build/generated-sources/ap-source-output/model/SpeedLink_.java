@@ -6,7 +6,7 @@ import javax.persistence.metamodel.StaticMetamodel;
 import model.Activity;
 import model.Speed;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2019-02-16T15:20:42")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2019-02-26T20:18:03")
 @StaticMetamodel(SpeedLink.class)
 public class SpeedLink_ { 
 
