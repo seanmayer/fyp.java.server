@@ -38,7 +38,6 @@ public class Athlete implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "ATHLETE_ID")
     private Long athleteId;

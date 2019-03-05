@@ -66,7 +66,8 @@ public class AthleteHandler extends AbstractEntityManager implements Athlete_Fac
 
     @Override
     public Athlete_dto findById(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.///////////WORK HERE NEED THE ATHLETE RETURN VALUE
+         Athlete details = em.find(Athlete.class, id);
+        return new Athlete_dto(details.getAthleteId(), details.getStravaid(), details.getFirstname(), details.getLastname());
     }
 
     @Override

@@ -10,6 +10,7 @@ import api.WebhookFactory;
 import dto.Athlete_dto;
 import dto.Credentials_dto;
 import static java.lang.Long.parseLong;
+import java.math.BigDecimal;
 import remote.Athlete_FacadeRemote;
 import javax.ejb.Stateless;
 import javax.json.Json;
@@ -49,15 +50,15 @@ public class AthleteFacadeREST
     }
     
     @GET
-    @Path("create/athlete/{credentialsId}/{stravaId}/{accessToken}")
+    @Path("create/athlete/{athleteId}/{credentialsId}/{stravaId}/{accessToken}")
     @Produces({MediaType.APPLICATION_JSON})
-    public String createAthlete(@PathParam("credentialsId") String credentialsId, @PathParam("stravaId") String stravaId, @PathParam("accessToken") String accessToken)
+    public String createAthlete(@PathParam("athleteId") String athleteId, @PathParam("credentialsId") String credentialsId, @PathParam("stravaId") String stravaId, @PathParam("accessToken") String accessToken)
     {
         try
         {
 
             JSONObject athleteJsonObject = new JSONObject(WebhookFactory.getInstance(stravaId, accessToken).createRequest(RequestType.ATHLETE_REQUEST));
-            athleteFacadeRemote.createCredendentedAthlete(new Credentials_dto(parseLong(credentialsId)), new Athlete_dto(parseLong("1"),athleteJsonObject.getLong("id"),athleteJsonObject.getString("firstname"),athleteJsonObject.getString("lastname")));
+            athleteFacadeRemote.createCredendentedAthlete(new Credentials_dto(parseLong(credentialsId)), new Athlete_dto(parseLong(athleteId),athleteJsonObject.getLong("id"),athleteJsonObject.getString("firstname"),athleteJsonObject.getString("lastname")));
             return Json.createObjectBuilder().add("message", "success").build().toString();
         }
         catch(Exception e)
@@ -65,6 +66,26 @@ public class AthleteFacadeREST
             return Json.createObjectBuilder().add("message", "unsuccessful").build().toString();
         }
     }
+    
+    @GET
+    @Path("find/athlete/{athleteId}")
+    @Produces({MediaType.APPLICATION_JSON})
+    public String findAthlete(@PathParam("athleteId") String athleteId)
+    {
+        try
+        {
+            Athlete_dto a = athleteFacadeRemote.findById(parseLong(athleteId));
+            
+            return Json.createObjectBuilder().add("athleteId", a.getAthleteId())
+                                             .add("stravaId",a.getStravaid())
+                                             .add("firstname",a.getFirstname())
+                                             .add("lastname",a.getLastname()).build().toString();
+        }
+        catch(Exception e)
+        {
+            return Json.createObjectBuilder().add("message", "unsuccessful").build().toString();
+        }
+    }    
     
     @GET
     @Path("list/athletes")
@@ -82,59 +103,5 @@ public class AthleteFacadeREST
     }
 
     
-
-//    @POST
-//    @Override
-//    @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-//    public void create(Athlete entity) {
-//        super.create(entity);
-//    }
-//
-//    @PUT
-//    @Path("{id}")
-//    @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-//    public void edit(@PathParam("id") Long id, Athlete entity) {
-//        super.edit(entity);
-//    }
-//
-//    @DELETE
-//    @Path("{id}")
-//    public void remove(@PathParam("id") Long id) {
-//        super.remove(super.find(id));
-//    }
-//
-//    @GET
-//    @Path("{id}")
-//    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-//    public Athlete find(@PathParam("id") Long id) {
-//        return super.find(id);
-//    }
-//
-    @GET
-    @Path("getAll")
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public String findAll() {
-        
-        return "test1";
-    }
-//
-//    @GET
-//    @Path("{from}/{to}")
-//    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-//    public List<Athlete> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
-//        return super.findRange(new int[]{from, to});
-//    }
-//
-//    @GET
-//    @Path("count")
-//    @Produces(MediaType.TEXT_PLAIN)
-//    public String countREST() {
-//        return String.valueOf(super.count());
-//    }
-//
-//    @Override
-//    protected EntityManager getEntityManager() {
-//        return em;
-//    }
     
 }

@@ -15,7 +15,6 @@ DROP TABLE Credentials;
 
 CREATE TABLE Credentials
 (Credentials_ID BIGINT NOT NULL
-              GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1)
               CONSTRAINT Credentials_PK PRIMARY KEY,			  
  Username VARCHAR(128),
  Password VARCHAR(9) 
@@ -24,7 +23,6 @@ CREATE TABLE Credentials
 
 CREATE TABLE Athlete
 (Athlete_ID BIGINT NOT NULL
-              GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1)
               CONSTRAINT Athlete_PK PRIMARY KEY,
 Credentials_ID BIGINT NOT NULL
               CONSTRAINT Credentials_ID_FK REFERENCES Credentials(Credentials_Id)
