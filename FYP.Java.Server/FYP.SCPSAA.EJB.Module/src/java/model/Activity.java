@@ -47,7 +47,6 @@ public class Activity implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "ACTIVITY_ID")
     private Long activityId;
@@ -87,6 +86,14 @@ public class Activity implements Serializable {
     public Activity(Long activityId, long stravaid) {
         this.activityId = activityId;
         this.stravaid = stravaid;
+    }
+    
+    public Activity(Long activityId, Long stravaid, String name, Date startDate, String timeZone) {
+        this.activityId = activityId;
+        this.stravaid = stravaid;
+        this.name = name;
+        this.startDate = startDate;
+        this.timeZone = timeZone;
     }
     
     public Activity(Long activityId, Long stravaid, String name, Date startDate, String timeZone, Athlete athleteId) {

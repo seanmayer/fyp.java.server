@@ -15,19 +15,19 @@ import remote.Activity_FacadeRemote;
 public class ActivityHandler extends AbstractEntityManager implements Activity_FacadeRemote 
 {
 
-    private List<Athlete_dto> copyAthletes(List<Athlete> athletes)
+    private List<Activity_dto> copyActivities(List<Activity> activities)
     {
-        List<Athlete_dto> athleteList = new ArrayList<>();
-        Iterator i = athletes.iterator();
+        List<Activity_dto> activityList = new ArrayList<>();
+        Iterator i = activities.iterator();
     
             while (i.hasNext())
             {
-                Athlete c = (Athlete) i.next();
-                Athlete_dto details = new Athlete_dto(c.getAthleteId(),c.getStravaid(),c.getFirstname(),c.getLastname());
-                athleteList.add(details);
+                Activity c = (Activity) i.next();
+                Activity_dto details = new Activity_dto(c.getActivityId(),c.getStravaid(),c.getName(),c.getStartDate(),c.getTimeZone(),new Athlete_dto(c.getAthleteId().getAthleteId()));
+                activityList.add(details);
             }
             
-        return athleteList;
+        return activityList;
     }
 
     @Override
@@ -41,7 +41,7 @@ public class ActivityHandler extends AbstractEntityManager implements Activity_F
         }
         catch (Exception e)
         {
-            throw e;  
+             
         }
     }
 
@@ -67,7 +67,7 @@ public class ActivityHandler extends AbstractEntityManager implements Activity_F
 
     @Override
     public List<Activity_dto> findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       return copyActivities(em.createQuery("select object(o) from Activity o ").getResultList());
     }
     
     

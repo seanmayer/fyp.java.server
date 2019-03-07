@@ -7,6 +7,7 @@ package controller;
 
 import dto.Credentials_dto;
 import static java.lang.Long.parseLong;
+import java.util.Date;
 import java.util.List;
 import javax.naming.InitialContext;
 import org.junit.After;
@@ -69,7 +70,7 @@ public class CredentialsClientIT
     @Test(expected = Test.None.class /* no exception expected */)
     public void createCredentials() throws Exception
     {
-        requestCredentials.createCredentials(new Credentials_dto(parseLong("1"),"Username","Password"));
+        requestCredentials.createCredentials(new Credentials_dto(new Date().getTime(),"JUNIT","JUNIT"));
     } 
 
     /**

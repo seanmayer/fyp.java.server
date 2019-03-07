@@ -2,22 +2,13 @@ package controller;
 
 import dto.ActivitySummary_dto;
 import dto.Activity_dto;
-import remote.Athlete_FacadeRemote;
 import dto.Athlete_dto;
-import dto.Credentials_dto;
-import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import javax.ejb.EJBException;
 import javax.ejb.Stateless;
-import model.Activity;
-import model.ActivitySummary;
 import model.Athlete;
-import model.Credentials;
 import remote.ActivitySummary_FacadeRemote;
-import remote.Activity_FacadeRemote;
 
 
 

@@ -24,8 +24,16 @@ public class Activity_dto implements Serializable
     private Collection<PowerLink_dto> powerLinkCollection;
     private Collection<SpeedLink_dto> speedLinkCollection;
     private Athlete_dto athleteId;
-    
     private ActivitySummary_dto activitySummary;
+
+    public Activity_dto(Long activityId, Long stravaid, String name, Date startDate, String timeZone) {
+        this.activityId = activityId;
+        this.stravaid = stravaid;
+        this.name = name;
+        this.startDate = startDate;
+        this.timeZone = timeZone;
+    }
+
     public Activity_dto(Long activityId, Long stravaid, String name, Date startDate, String timeZone, Athlete_dto athleteId) {
         this.activityId = activityId;
         this.stravaid = stravaid;
@@ -174,6 +182,12 @@ public class Activity_dto implements Serializable
     public void setActivitySummary(ActivitySummary_dto activitySummary) {
         this.activitySummary = activitySummary;
     }
+
+    @Override
+    public String toString() {
+        return "Activity_dto{" + "activityId=" + activityId + ", stravaid=" + stravaid + ", name=" + name + ", startDate=" + startDate + ", timeZone=" + timeZone + '}';
+    }
+    
     
     
 }

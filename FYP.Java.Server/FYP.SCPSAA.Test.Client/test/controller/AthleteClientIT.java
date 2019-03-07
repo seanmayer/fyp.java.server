@@ -7,6 +7,7 @@ package controller;
 import dto.Athlete_dto;
 import dto.Credentials_dto;
 import static java.lang.Long.parseLong;
+import java.util.Date;
 import javax.naming.InitialContext;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -71,7 +72,7 @@ public class AthleteClientIT {
     public void createAthlete() throws Exception
     {
         Credentials_dto credentials = new Credentials_dto(parseLong("1"));
-        requestAthlete.createCredendentedAthlete(credentials , new Athlete_dto(parseLong("1"),parseLong("1234567"),"FirstNameTest","LastNameTest"));
+        requestAthlete.createCredendentedAthlete(credentials , new Athlete_dto(new Date().getTime(),parseLong("1234567"),"JUNIT","JUNIT"));
     }
     
 }

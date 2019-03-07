@@ -6,12 +6,14 @@
 package test;
 
 import api.WebHookFactoryIT;
+import controller.ActivityClientIT;
 import controller.AthleteClientIT;
+import controller.CredentialsClientIT;
 import org.junit.runner.RunWith;  
 import org.junit.runners.Suite;  
   
 @RunWith(Suite.class)  
-@Suite.SuiteClasses({ WebHookFactoryIT.class, AthleteClientIT.class })  
+@Suite.SuiteClasses({ WebHookFactoryIT.class, AthleteClientIT.class, CredentialsClientIT.class,ActivityClientIT.class })  
 public class TestSuite  
 {  
       

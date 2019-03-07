@@ -5,6 +5,8 @@ import api.WebhookFactory;
 import dto.Activity_dto;
 import dto.Athlete_dto;
 import static java.lang.Long.parseLong;
+import java.util.Iterator;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.json.Json;
 import javax.naming.Context;
@@ -49,23 +51,42 @@ public class ActivityFacadeREST
         {
             WebhookFactory whf = WebhookFactory.getInstance(stravaId,accessToken); 
             JSONArray values = new JSONArray(whf.createRequest(RequestType.ACTIVITIES_LIST_REQUEST)); 
-            
+            int count = 0;
             for (int i = 0; i < values.length(); i++) 
             {
+                try
+                {
                   JSONObject jsonObject = values.getJSONObject(i); 
-
-                  activityFacadeRemote.createActivity(new Activity_dto(
-                          jsonObject.getLong("id"),
-                          jsonObject.getJSONObject("athlete").getLong("id"),
-                          jsonObject.getString("name"),
-                          DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm:ssZ").parseDateTime(jsonObject.getString("start_date_local")).toDate(),
-                          jsonObject.getString("timezone"), 
-                          new Athlete_dto(parseLong(athleteId))));
+                  activityFacadeRemote.createActivity(new Activity_dto(jsonObject.getLong("id"),jsonObject.getJSONObject("athlete").getLong("id"),jsonObject.getString("name"),DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm:ssZ").parseDateTime(jsonObject.getString("start_date_local")).toDate(),jsonObject.getString("timezone"), new Athlete_dto(parseLong(athleteId))));
+                  count++;
+                }
+                catch(Exception e)
+                {
+                    
+                }
             }
-            return Json.createObjectBuilder().add("message", "successful").build().toString();
+            return Json.createObjectBuilder().add("message", "successful").add("updateCount", count).build().toString();
         }
         catch(Exception e)
         {
+            return Json.createObjectBuilder().add("message", "unsuccessful").build().toString();
+        }
+    }
+    
+    @GET
+    @Path("list/activities")
+    @Produces({MediaType.APPLICATION_JSON})
+    public String findAllActivities(@QueryParam("athleteId") String athleteId)
+    {
+        try
+        {
+            List<Activity_dto> activityList = activityFacadeRemote.findAll();
+            activityList.removeIf((Activity_dto a) -> a.getAthleteId().getAthleteId() !=  parseLong(athleteId));
+            return new JSONArray(activityList).toString();
+        }
+        catch(Exception e)
+        {
+            System.out.println(e);
             return Json.createObjectBuilder().add("message", "unsuccessful").build().toString();
         }
     }

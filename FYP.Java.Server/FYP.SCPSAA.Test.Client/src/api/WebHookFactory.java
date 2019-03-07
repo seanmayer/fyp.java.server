@@ -26,7 +26,7 @@ public class WebHookFactory
     
     public void getActivitesData() throws Exception
     {  
-        whf.createRequest(RequestType.ACTIVITIES_LIST_REQUEST); 
+        System.out.println(whf.createRequest(RequestType.ACTIVITIES_LIST_REQUEST));
     }    
     
 }

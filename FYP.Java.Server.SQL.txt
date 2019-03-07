@@ -35,7 +35,6 @@ Credentials_ID BIGINT NOT NULL
 
 CREATE TABLE Activity
 (Activity_ID BIGINT NOT NULL
-              GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1)
               CONSTRAINT Activity_PK PRIMARY KEY,
 Athlete_ID BIGINT NOT NULL
               CONSTRAINT Athlete_ID_FK REFERENCES Athlete(Athlete_Id)
