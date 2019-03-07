@@ -12,7 +12,7 @@ public class WebHookFactory
     public WebHookFactory() throws Exception 
     {
         //getAthleteData();
-        //getActivitesData();
+        getActivitesData();
     }
     
     public static void main(String[] args) throws Exception {

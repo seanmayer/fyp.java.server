@@ -804,22 +804,26 @@ exists or setup the property manually. For example like this:
         <copyfiles files="${file.reference.derbyclient.jar}" todir="${build.classes.dir}"/>
         <copyfiles files="${reference.FYP_SCPSAA_JavaLibrary.jar}" todir="${build.classes.dir}"/>
         <copyfiles files="${file.reference.java-json.jar}" todir="${build.classes.dir}"/>
+        <copyfiles files="${file.reference.joda-time-2.4.jar}" todir="${build.classes.dir}"/>
     </target>
     <target if="is.server.weblogic" name="-library-inclusion-in-archive-weblogic">
         <basename file="${file.reference.derbyclient.jar}" property="manifest.file.reference.derbyclient.jar"/>
         <basename file="${reference.FYP_SCPSAA_JavaLibrary.jar}" property="manifest.reference.FYP_SCPSAA_JavaLibrary.jar"/>
         <basename file="${file.reference.java-json.jar}" property="manifest.file.reference.java-json.jar"/>
+        <basename file="${file.reference.joda-time-2.4.jar}" property="manifest.file.reference.joda-time-2.4.jar"/>
         <manifest file="${build.ear.classes.dir}/META-INF/MANIFEST.MF" mode="update">
-            <attribute name="Extension-List" value="jar-1 jar-2 jar-3 "/>
+            <attribute name="Extension-List" value="jar-1 jar-2 jar-3 jar-4 "/>
             <attribute name="jar-1-Extension-Name" value="${manifest.file.reference.derbyclient.jar}"/>
             <attribute name="jar-2-Extension-Name" value="${manifest.reference.FYP_SCPSAA_JavaLibrary.jar}"/>
             <attribute name="jar-3-Extension-Name" value="${manifest.file.reference.java-json.jar}"/>
+            <attribute name="jar-4-Extension-Name" value="${manifest.file.reference.joda-time-2.4.jar}"/>
         </manifest>
     </target>
     <target depends="compile" name="library-inclusion-in-manifest">
         <copyfiles files="${file.reference.derbyclient.jar}" todir="${dist.ear.dir}/lib"/>
         <copyfiles files="${reference.FYP_SCPSAA_JavaLibrary.jar}" todir="${dist.ear.dir}/lib"/>
         <copyfiles files="${file.reference.java-json.jar}" todir="${dist.ear.dir}/lib"/>
+        <copyfiles files="${file.reference.joda-time-2.4.jar}" todir="${dist.ear.dir}/lib"/>
         <manifest file="${build.ear.classes.dir}/META-INF/MANIFEST.MF" mode="update"/>
     </target>
     <target name="-copy-meta-inf">

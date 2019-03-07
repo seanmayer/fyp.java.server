@@ -54,7 +54,7 @@ public class Activity implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "STRAVAID")
-    private long stravaid;
+    private Long stravaid;
     @Size(max = 50)
     @Column(name = "NAME")
     private String name;
@@ -88,6 +88,15 @@ public class Activity implements Serializable {
         this.activityId = activityId;
         this.stravaid = stravaid;
     }
+    
+    public Activity(Long activityId, Long stravaid, String name, Date startDate, String timeZone, Athlete athleteId) {
+        this.activityId = activityId;
+        this.stravaid = stravaid;
+        this.name = name;
+        this.startDate = startDate;
+        this.timeZone = timeZone;
+        this.athleteId = athleteId;
+    }
 
     public Long getActivityId() {
         return activityId;
@@ -97,11 +106,11 @@ public class Activity implements Serializable {
         this.activityId = activityId;
     }
 
-    public long getStravaid() {
+    public Long getStravaid() {
         return stravaid;
     }
 
-    public void setStravaid(long stravaid) {
+    public void setStravaid(Long stravaid) {
         this.stravaid = stravaid;
     }
 

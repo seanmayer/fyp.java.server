@@ -19,7 +19,7 @@ import javax.ejb.Remote;
 @Remote
 public interface Activity_FacadeRemote 
 {
-     public void createActivity(Athlete_dto athleteDetails, Activity_dto activityDetails);
+     public void createActivity(Activity_dto activityDetails);
      public void editActivity(Athlete_dto details, Activity_dto activityDetails);
      public void removeActivity(Long id);
      public Activity_dto find(Object pk);

@@ -8,6 +8,7 @@
             <included-library dirs="200">file.reference.derbyclient.jar</included-library>
             <included-library dirs="200">reference.FYP_SCPSAA_JavaLibrary.jar</included-library>
             <included-library dirs="200">file.reference.java-json.jar</included-library>
+            <included-library dirs="200">file.reference.joda-time-2.4.jar</included-library>
             <source-roots>
                 <root id="src.dir"/>
             </source-roots>

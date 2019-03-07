@@ -1,19 +1,12 @@
 package controller;
-
-import dto.ActivitySummary_dto;
 import dto.Activity_dto;
-import remote.Athlete_FacadeRemote;
 import dto.Athlete_dto;
-import dto.Credentials_dto;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import javax.ejb.EJBException;
 import javax.ejb.Stateless;
 import model.Activity;
-import model.ActivitySummary;
 import model.Athlete;
-import model.Credentials;
 import remote.Activity_FacadeRemote;
 
 
@@ -38,24 +31,18 @@ public class ActivityHandler extends AbstractEntityManager implements Activity_F
     }
 
     @Override
-    public void createActivity(Athlete_dto athleteDetails, Activity_dto activityDetails) {
-//        try
-//        {
-//            Athlete athlete = em.getReference(Athlete.class, athleteDetails.getAthleteId());
-//            Activity activity = new Activity(activityDetails.getActivityId(),
-//                    activityDetails.getStravaid(), 
-//                    activityDetails.getName(), 
-//                    activityDetails.getStartDate(), 
-//                    activityDetails.getTimeZone(), 
-//                    athlete);
-//            
-//            em.persist(activity);
-//
-//        }
-//        catch (Exception ex)
-//        {
-//            throw new EJBException(ex);
-//        }
+    public void createActivity(Activity_dto activityDetails) {
+        
+        try
+        {
+            Athlete athlete = em.getReference(Athlete.class, activityDetails.getAthleteId().getAthleteId());
+            Activity activity = new Activity(activityDetails.getActivityId(),activityDetails.getStravaid(), activityDetails.getName(), activityDetails.getStartDate(), activityDetails.getTimeZone(), athlete);
+            persistMany(activity);
+        }
+        catch (Exception e)
+        {
+            throw e;  
+        }
     }
 
     @Override

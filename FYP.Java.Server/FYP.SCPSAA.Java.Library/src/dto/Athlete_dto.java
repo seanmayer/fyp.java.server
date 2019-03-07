@@ -14,19 +14,23 @@ import java.io.Serializable;
 public class Athlete_dto implements Serializable
 {
     private Long athleteId;
-    private long stravaid;
+    private Long stravaid;
     private String firstname;
     private String lastname;
     private Credentials_dto credentialsId;
 
-    public Athlete_dto(Long athleteId, long stravaid, String firstname, String lastname) {
+    public Athlete_dto(Long athleteId) {
+        this.athleteId = athleteId;
+    }
+
+    public Athlete_dto(Long athleteId, Long stravaid, String firstname, String lastname) {
         this.athleteId = athleteId;
         this.stravaid = stravaid;
         this.firstname = firstname;
         this.lastname = lastname;
     }    
     
-    public Athlete_dto(Long athleteId, long stravaid, String firstname, String lastname, Credentials_dto credentialsId) {
+    public Athlete_dto(Long athleteId, Long stravaid, String firstname, String lastname, Credentials_dto credentialsId) {
         this.athleteId = athleteId;
         this.stravaid = stravaid;
         this.firstname = firstname;
@@ -51,7 +55,7 @@ public class Athlete_dto implements Serializable
     /**
      * @return the stravaid
      */
-    public long getStravaid() {
+    public Long getStravaid() {
         return stravaid;
     }
 

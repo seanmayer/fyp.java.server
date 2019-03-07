@@ -16,7 +16,7 @@ import java.util.Date;
 public class Activity_dto implements Serializable
 {
     private Long activityId;
-    private long stravaid;
+    private Long stravaid;
     private String name;
     private Date startDate;
     private String timeZone;
@@ -26,7 +26,7 @@ public class Activity_dto implements Serializable
     private Athlete_dto athleteId;
     
     private ActivitySummary_dto activitySummary;
-    public Activity_dto(Long activityId, long stravaid, String name, Date startDate, String timeZone, Athlete_dto athleteId) {
+    public Activity_dto(Long activityId, Long stravaid, String name, Date startDate, String timeZone, Athlete_dto athleteId) {
         this.activityId = activityId;
         this.stravaid = stravaid;
         this.name = name;
@@ -59,7 +59,7 @@ public class Activity_dto implements Serializable
     /**
      * @param stravaid the stravaid to set
      */
-    public void setStravaid(long stravaid) {
+    public void setStravaid(Long stravaid) {
         this.stravaid = stravaid;
     }
 
