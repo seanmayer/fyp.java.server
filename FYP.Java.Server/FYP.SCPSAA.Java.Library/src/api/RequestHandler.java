@@ -11,18 +11,16 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 import javax.ejb.Remote;
-import javax.ejb.Singleton;
-import javax.naming.InitialContext;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import remote.Athlete_FacadeRemote;
 
 @Remote
 public abstract class RequestHandler<T> 
 {    
     public String STRAVA_USER_ID = null;
     public String STRAVA_ACCESS_TOKEN = null;
+    public String ACTIVITY_ID = null;
 
     private Scanner requestConnection(URL url) throws IOException
     {

@@ -58,6 +58,14 @@ public class Power implements Serializable {
         this.powerId = powerId;
     }
 
+    public Power(Long powerId, BigDecimal datapoint, BigInteger secondstamp) {
+        this.powerId = powerId;
+        this.datapoint = datapoint;
+        this.secondstamp = secondstamp;
+    }
+    
+     
+
     public Long getPowerId() {
         return powerId;
     }

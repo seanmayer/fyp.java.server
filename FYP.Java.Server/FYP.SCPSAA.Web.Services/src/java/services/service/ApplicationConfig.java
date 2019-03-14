@@ -32,6 +32,7 @@ public class ApplicationConfig extends Application {
         resources.add(services.service.ActivityFacadeREST.class);
         resources.add(services.service.AthleteFacadeREST.class);
         resources.add(services.service.CredentialsFacadeREST.class);
+        resources.add(services.service.PowerFacadeREST.class);
         resources.add(services.service.StravaAuthenticatorREST.class);
     }
     

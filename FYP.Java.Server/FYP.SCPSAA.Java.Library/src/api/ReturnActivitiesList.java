@@ -1,16 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package api;
 
-import dto.Activity_dto;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
-import org.json.JSONArray;
-import org.json.JSONObject;
 
 public class ReturnActivitiesList extends RequestHandler 
 {

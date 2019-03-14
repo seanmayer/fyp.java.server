@@ -20,13 +20,14 @@ import org.json.JSONObject;
 public class Strava
 {
 
-    public String STRAVA_USER_ID = "581409";
-    public String STRAVA_ACCESS_TOKEN = "3aa96600c17636ee70c0fe95af4a28eeae20de32";
+    public String STRAVA_USER_ID = "35193560";
+    public String STRAVA_ACCESS_TOKEN = "e8a14408cd001cb6a86607a21ff50bd42f0b76f8";
+    public String STRAVA_ACTIVITY_ID = "1866935441";
     
     public Strava() throws Exception 
     {
         System.out.println("Testing 1 - Send Http GET request");
-        getActivitiesIDs();
+        //getActivitiesIDs();
     }
     
     
@@ -44,6 +45,7 @@ public class Strava
     {
         return new URL("https://www.strava.com/api/v3/athlete/activities" + "?access_token=" + STRAVA_ACCESS_TOKEN);
     }
+    
     
     public void getActivitiesIDs() throws MalformedURLException, IOException, JSONException
     {

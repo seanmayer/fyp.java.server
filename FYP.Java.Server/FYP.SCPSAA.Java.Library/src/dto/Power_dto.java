@@ -21,6 +21,10 @@ public class Power_dto implements Serializable
     private BigInteger secondstamp;
     private Collection<PowerLink_dto> powerLinkCollection;
 
+    public Power_dto(Long powerId) {
+        this.powerId = powerId;
+    }
+
     public Power_dto(Long powerId, BigDecimal datapoint, BigInteger secondstamp) {
         this.powerId = powerId;
         this.datapoint = datapoint;

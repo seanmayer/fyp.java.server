@@ -47,6 +47,12 @@ public class PowerLink implements Serializable {
     public PowerLink() {
     }
 
+    public PowerLink(Long powerLinkId, Activity activityId, Power powerId) {
+        this.powerLinkId = powerLinkId;
+        this.activityId = activityId;
+        this.powerId = powerId;
+    }
+
     public PowerLink(Long powerLinkId) {
         this.powerLinkId = powerLinkId;
     }

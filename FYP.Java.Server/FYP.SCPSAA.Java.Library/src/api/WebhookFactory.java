@@ -18,7 +18,8 @@ public class WebhookFactory
 {
    private static volatile WebhookFactory instance;
    private String stravaId;
-   private String accessToken;   
+   private String accessToken;  
+   private String activityId;
 
     /**
      * This implements the Factory Method and Singleton Pattern.
@@ -36,6 +37,13 @@ public class WebhookFactory
         this.accessToken = accessToken;
         this.stravaId = stravaId;
     }
+    
+    public WebhookFactory(String stravaId, String accessToken, String activityId) 
+    {
+        this.accessToken = accessToken;
+        this.stravaId = stravaId;
+        this.activityId = activityId;
+    }
 
     /**
      * This gets the Singleton instance.
@@ -46,6 +54,12 @@ public class WebhookFactory
     public static WebhookFactory getInstance(String stravaId, String accessToken)
     {   
         instance = new WebhookFactory(stravaId,accessToken);
+        return instance;
+    }
+    
+    public static WebhookFactory getInstance(String stravaId, String accessToken, String activityId)
+    {   
+        instance = new WebhookFactory(stravaId,accessToken, activityId);
         return instance;
     }
 
@@ -63,6 +77,8 @@ public class WebhookFactory
 
             case ACTIVITIES_LIST_REQUEST: return genericRequest(new ReturnActivitiesList()).getRequest();
             
+            case POWER_STREAM: return genericRequest(new ReturnPower()).getRequest();
+            
             default: return null;
       }
     }
@@ -77,6 +93,7 @@ public class WebhookFactory
     {
         requestHandler.STRAVA_ACCESS_TOKEN = accessToken;
         requestHandler.STRAVA_USER_ID = stravaId;
+        requestHandler.ACTIVITY_ID = activityId;
         return requestHandler;
     }
 

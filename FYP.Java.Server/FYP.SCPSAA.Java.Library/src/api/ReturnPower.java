@@ -8,21 +8,21 @@ package api;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-
-
-public class ReturnAthlete extends RequestHandler
+/**
+ *
+ * @author 2008s
+ */
+public class ReturnPower extends RequestHandler 
 {
     @Override
     public URL getURL() throws MalformedURLException
     {
-        return new URL("https://www.strava.com/api/v3/athletes/" + STRAVA_USER_ID + "?access_token=" + STRAVA_ACCESS_TOKEN);
+        return new URL("https://www.strava.com/api/v3/activities/" + ACTIVITY_ID + "/streams/time,watts?access_token=" + STRAVA_ACCESS_TOKEN);
     }
 
     @Override
     public String getRequest() throws Exception
     {
-        return getJsonObject(getURL()).toString();
+        return getJsonArray(getURL()).toString();
     }
 }
-    
-

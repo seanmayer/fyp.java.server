@@ -26,6 +26,10 @@ public class Activity_dto implements Serializable
     private Athlete_dto athleteId;
     private ActivitySummary_dto activitySummary;
 
+    public Activity_dto(Long activityId) {
+        this.activityId = activityId;
+    }
+
     public Activity_dto(Long activityId, Long stravaid, String name, Date startDate, String timeZone) {
         this.activityId = activityId;
         this.stravaid = stravaid;
