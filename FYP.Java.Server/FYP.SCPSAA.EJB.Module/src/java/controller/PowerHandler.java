@@ -33,17 +33,20 @@ public class PowerHandler extends AbstractEntityManager implements Power_FacadeR
     }
 
     @Override
-    public void createPower(Power_dto powerDetails) {
+    public Long createPower(Power_dto powerDetails) {
         
         try
         {
             Power power = new Power(powerDetails.getPowerId(),powerDetails.getDatapoint(),powerDetails.getSecondstamp());
             persistMany(power);
+            em.flush();
+            return power.getPowerId();
         }
         catch (Exception e)
         {
-             
+           return null;   
         }
+        
     }
 
     @Override

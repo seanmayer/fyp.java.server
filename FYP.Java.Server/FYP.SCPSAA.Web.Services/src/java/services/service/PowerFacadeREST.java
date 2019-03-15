@@ -3,13 +3,16 @@ package services.service;
 import api.RequestType;
 import api.WebhookFactory;
 import dto.Activity_dto;
-import dto.Athlete_dto;
 import dto.PowerLink_dto;
 import dto.Power_dto;
 import static java.lang.Long.parseLong;
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import javax.ejb.Stateless;
 import javax.json.Json;
 import javax.naming.Context;
@@ -19,10 +22,10 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
-import org.joda.time.format.DateTimeFormat;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
-import remote.Activity_FacadeRemote;
+import remote.PowerLink_FacadeRemote;
 import remote.Power_FacadeRemote;
 
 @Stateless
@@ -30,6 +33,9 @@ import remote.Power_FacadeRemote;
 public class PowerFacadeREST 
 {
     private static Power_FacadeRemote powerFacadeRemote;  
+    private static PowerLink_FacadeRemote powerlinkFacadeRemote;
+    private JSONArray watts = null;
+    private JSONArray time = null;
     
     public PowerFacadeREST() 
     {
@@ -37,6 +43,7 @@ public class PowerFacadeREST
         {
             Context initial = new InitialContext();
             powerFacadeRemote = (Power_FacadeRemote) initial.lookup("powerfacade");
+            powerlinkFacadeRemote = (PowerLink_FacadeRemote)initial.lookup("powerlinkfacade");
         }
         catch(Exception ex)
         {
@@ -48,43 +55,72 @@ public class PowerFacadeREST
     @GET
     @Path("create/powerstream")
     @Produces({MediaType.APPLICATION_JSON})
-    public String createActivities(@QueryParam("activityId") String activityId, @QueryParam("stravaId") String stravaId, @QueryParam("accessToken") String accessToken) 
+    public String createPower(@QueryParam("activityId") String activityId, @QueryParam("stravaId") String stravaId, @QueryParam("accessToken") String accessToken) 
     {
         try
         {
             WebhookFactory whf = WebhookFactory.getInstance(stravaId,accessToken,activityId); 
-            JSONArray values = new JSONArray(whf.createRequest(RequestType.POWER_STREAM)); 
-            int count = 0;
-            for (int i = 0; i < values.length(); i++) 
+            getDataStreamJSONArrays(new JSONArray(whf.createRequest(RequestType.POWER_STREAM)));
+            ExecutorService executor = Executors.newCachedThreadPool();
+            Iterator it = createHashmapFromJSONArrays().entrySet().iterator();
+            while (it.hasNext()) 
             {
-                try
+                Map.Entry pair = (Map.Entry)it.next();
+                Runnable task = new Runnable() 
                 {
-                  JSONObject jsonObject = values.getJSONObject(i); 
-                  System.out.println(jsonObject.getString("type")); // gets the type!
-                  //System.out.println(jsonObject.getJSONArray("data")); //gets the data!
-                  
-                  //activityFacadeRemote.createActivity(new Activity_dto(jsonObject.getLong("id"),jsonObject.getJSONObject("athlete").getLong("id"),jsonObject.getString("name"),DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm:ssZ").parseDateTime(jsonObject.getString("start_date_local")).toDate(),jsonObject.getString("timezone"), new Athlete_dto(parseLong(athleteId))));
-                  count++;
-                }
-                catch(Exception e)
-                {
-                    
-                }
+                    public void run()
+                    {
+                        powerlinkFacadeRemote.createPowerLink(new PowerLink_dto(parseLong("1"),
+                                                 new Activity_dto(parseLong("156272543")),
+                                                 new Power_dto(powerFacadeRemote.createPower(new Power_dto(parseLong("1"),
+                                                                         new BigDecimal(pair.getValue().toString()),
+                                                                         new BigInteger(pair.getKey().toString()))))));
+                    }
+                };
+                executor.submit(task);
+                it.remove();
             }
-            return Json.createObjectBuilder().add("message", "successful").add("updateCount", count).build().toString();
+            executor.shutdown();
+            return Json.createObjectBuilder().add("message", "successful").build().toString();
         }
         catch(Exception e)
         {
             return Json.createObjectBuilder().add("message", "unsuccessful").build().toString();
         }
-    } 
+    }
+    public HashMap<Integer, String> createHashmapFromJSONArrays() throws JSONException
+    {
+        HashMap<Integer, String> datastream = new HashMap<Integer, String>();
+            
+        assert(watts.length() == time.length());
+        for (int i=0; i<watts.length(); i++) 
+        {
+            datastream.put(Integer.parseInt(time.get(i).toString()), watts.get(i).toString());
+        }
+        
+        return datastream;
+    }
     
-    
-//            requestPower.createPower(new Power_dto(parseLong("1"),new BigDecimal("2500"),new BigInteger("1")));
-//        requestPowerLink.createPowerLink(new PowerLink_dto(parseLong("1"),
-//                                         new Activity_dto(parseLong("156272543")),
-//                                         new Power_dto(parseLong("1"))));
-    
-   
+    public void getDataStreamJSONArrays(JSONArray values)
+    {
+            for (int i = 0; i < values.length(); i++) 
+            {
+                try
+                {
+                  JSONObject jsonObject = values.getJSONObject(i);
+                  
+                  if(jsonObject.getString("type").equals("watts"))
+                  {
+                      watts = jsonObject.getJSONArray("data");
+                  }
+                  if(jsonObject.getString("type").equals("time"))
+                  {
+                      time = jsonObject.getJSONArray("data");
+                  }
+                }
+                catch(Exception e){}
+            }
+    }
 
+    
 }

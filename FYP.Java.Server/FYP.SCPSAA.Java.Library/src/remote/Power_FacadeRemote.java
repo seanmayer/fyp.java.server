@@ -17,7 +17,7 @@ import javax.ejb.Remote;
 @Remote
 public interface Power_FacadeRemote 
 {
-     public void createPower(Power_dto powerDetails);
+     public Long createPower(Power_dto powerDetails);
      public void editPower(Power_dto powerDetails);
      public void removePower(Long id);
      public Power_dto find(Object pk);
