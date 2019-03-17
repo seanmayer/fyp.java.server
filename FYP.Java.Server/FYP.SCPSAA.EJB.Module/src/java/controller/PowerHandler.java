@@ -1,13 +1,9 @@
 package controller;
 import dto.Power_dto;
-import dto.Athlete_dto;
-import dto.Power_dto;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import javax.ejb.Stateless;
-import model.Power;
-import model.Athlete;
 import model.Power;
 import remote.Power_FacadeRemote;
 
@@ -66,7 +62,8 @@ public class PowerHandler extends AbstractEntityManager implements Power_FacadeR
 
     @Override
     public Power_dto findById(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Power details = em.find(Power.class, id);
+        return new Power_dto(details.getPowerId(),details.getDatapoint(),details.getSecondstamp());
     }
 
     @Override

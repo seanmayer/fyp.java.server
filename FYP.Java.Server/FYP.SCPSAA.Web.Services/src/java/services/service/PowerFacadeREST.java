@@ -8,8 +8,10 @@ import dto.Power_dto;
 import static java.lang.Long.parseLong;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -59,35 +61,85 @@ public class PowerFacadeREST
     {
         try
         {
-            WebhookFactory whf = WebhookFactory.getInstance(stravaId,accessToken,activityId); 
-            getDataStreamJSONArrays(new JSONArray(whf.createRequest(RequestType.POWER_STREAM)));
-            ExecutorService executor = Executors.newCachedThreadPool();
-            Iterator it = createHashmapFromJSONArrays().entrySet().iterator();
-            while (it.hasNext()) 
+            if(checkActivityExists(activityId))
             {
-                Map.Entry pair = (Map.Entry)it.next();
-                Runnable task = new Runnable() 
+                WebhookFactory whf = WebhookFactory.getInstance(stravaId,accessToken,activityId); 
+                getDataStreamJSONArrays(new JSONArray(whf.createRequest(RequestType.POWER_STREAM)));
+                ExecutorService executor = Executors.newCachedThreadPool();
+                Iterator it = createHashmapFromJSONArrays().entrySet().iterator();
+                while (it.hasNext()) 
                 {
-                    public void run()
+                    Map.Entry pair = (Map.Entry)it.next();
+                    Runnable task = new Runnable() 
                     {
-                        powerlinkFacadeRemote.createPowerLink(new PowerLink_dto(parseLong("1"),
-                                                 new Activity_dto(parseLong("156272543")),
-                                                 new Power_dto(powerFacadeRemote.createPower(new Power_dto(parseLong("1"),
-                                                                         new BigDecimal(pair.getValue().toString()),
-                                                                         new BigInteger(pair.getKey().toString()))))));
-                    }
-                };
-                executor.submit(task);
-                it.remove();
+                        public void run()
+                        {
+                            powerlinkFacadeRemote.createPowerLink(new PowerLink_dto(parseLong("1"),new Activity_dto(parseLong(activityId)),new Power_dto(powerFacadeRemote.createPower(new Power_dto(parseLong("1"),new BigDecimal(pair.getValue().toString()),new BigInteger(pair.getKey().toString()))))));
+                        }
+                    };
+                    executor.submit(task);
+                    it.remove();
+                }
+                executor.shutdown();
+                return Json.createObjectBuilder().add("message", "successful").build().toString();
             }
-            executor.shutdown();
-            return Json.createObjectBuilder().add("message", "successful").build().toString();
+            else
+            {
+                return Json.createObjectBuilder().add("message", "already exists").build().toString();
+            }
         }
         catch(Exception e)
         {
             return Json.createObjectBuilder().add("message", "unsuccessful").build().toString();
         }
     }
+    
+    @GET
+    @Path("list/powerstream")
+    @Produces({MediaType.APPLICATION_JSON})
+    public String findAllPowerStream(@QueryParam("activityId") String activityId)
+    {
+        try
+        {
+            List<PowerLink_dto> powerlinkstream = powerlinkFacadeRemote.findAll();
+            powerlinkstream.removeIf((PowerLink_dto a) -> a.getActivityId().getActivityId() !=  parseLong(activityId));
+            List<Power_dto> powerstream = powerFacadeRemote.findAll();
+            HashMap<Long, Long> datastream = new HashMap<Long, Long>();
+
+            
+                for(PowerLink_dto pl : powerlinkstream)
+                { 
+                    for(Power_dto p : powerstream)
+                    { 
+                        datastream.put(p.getSecondstamp().longValue(), p.getDatapoint().longValue());
+                    }
+                }
+
+                System.out.println("COUNTER: " + powerstream.size());
+                return Json.createObjectBuilder().add("powerstream", datastream.toString()).build().toString();
+
+        }
+        catch(Exception e)
+        {
+            System.out.println(e);
+            return Json.createObjectBuilder().add("message", "unsuccessful").build().toString();
+        }
+    }
+    
+    public boolean checkActivityExists(String activityId)
+    {
+        List<PowerLink_dto> powerlinkstream = powerlinkFacadeRemote.findAll();
+        for(PowerLink_dto pl : powerlinkstream)
+        { 
+            if(pl.getActivityId().getActivityId() == parseLong(activityId))
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    
     public HashMap<Integer, String> createHashmapFromJSONArrays() throws JSONException
     {
         HashMap<Integer, String> datastream = new HashMap<Integer, String>();
