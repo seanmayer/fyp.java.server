@@ -74,7 +74,10 @@ public class PowerFacadeREST
                     {
                         public void run()
                         {
-                            powerlinkFacadeRemote.createPowerLink(new PowerLink_dto(parseLong("1"),new Activity_dto(parseLong(activityId)),new Power_dto(powerFacadeRemote.createPower(new Power_dto(parseLong("1"),new BigDecimal(pair.getValue().toString()),new BigInteger(pair.getKey().toString()))))));
+                            if(!pair.getValue().toString().equals("0"))
+                            {
+                                powerlinkFacadeRemote.createPowerLink(new PowerLink_dto(parseLong("1"),new Activity_dto(parseLong(activityId)),new Power_dto(powerFacadeRemote.createPower(new Power_dto(parseLong("1"),new BigDecimal(pair.getValue().toString()),new BigInteger(pair.getKey().toString()))))));
+                            }
                         }
                     };
                     executor.submit(task);
