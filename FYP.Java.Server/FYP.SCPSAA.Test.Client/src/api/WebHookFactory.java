@@ -15,7 +15,9 @@ public class WebHookFactory
     {
         //getAthleteData();
         //getActivityList();
-        getActivityPowerStream();
+        //getActivityPowerStream();
+        //getActivityCadenceStream();
+        getActivitySpeedStream();
     }
     
     public static void main(String[] args) throws Exception {
@@ -35,6 +37,16 @@ public class WebHookFactory
     public void getActivityPowerStream() throws Exception
     {
         System.out.println(whfA.createRequest(RequestType.POWER_STREAM));
+    }
+    
+    public void getActivityCadenceStream() throws Exception
+    {
+        System.out.println(whfA.createRequest(RequestType.CADENCE_STREAM));
+    }
+    
+    public void getActivitySpeedStream() throws Exception
+    {
+        System.out.println(whfA.createRequest(RequestType.SPEED_STREAM));
     }
     
 }

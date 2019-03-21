@@ -16,6 +16,8 @@ import org.junit.Test;
  * @author 2008s
  */
 public class WebHookFactoryIT {
+
+    WebhookFactory instance = WebhookFactory.getInstance("35193560","e8a14408cd001cb6a86607a21ff50bd42f0b76f8","1866935441"); 
     
     public WebHookFactoryIT() {
     }
@@ -52,8 +54,7 @@ public class WebHookFactoryIT {
     @Test(expected = Test.None.class /* no exception expected */)
     public void testGetAthleteData() throws Exception {
         System.out.println("getAthleteData");
-        WebHookFactory instance = new WebHookFactory();
-        instance.whf.createRequest(RequestType.ATHLETE_REQUEST);
+        instance.createRequest(RequestType.ATHLETE_REQUEST);
     }
 
     /**
@@ -62,8 +63,25 @@ public class WebHookFactoryIT {
     @Test(expected = Test.None.class /* no exception expected */)
     public void testGetActivitesData() throws Exception {
         System.out.println("getActivitesData");
-        WebHookFactory instance = new WebHookFactory();
-        instance.whf.createRequest(RequestType.ACTIVITIES_LIST_REQUEST);
+        instance.createRequest(RequestType.ACTIVITIES_LIST_REQUEST);
     }
+    
+    @Test(expected = Test.None.class /* no exception expected */)
+    public void testGetActivitesPowerData() throws Exception {
+        System.out.println("getActivitesPowerData");
+        instance.createRequest(RequestType.POWER_STREAM);
+    }
+    
+    @Test(expected = Test.None.class /* no exception expected */)
+    public void testGetActivitesSpeedData() throws Exception {
+        System.out.println("getActivitesSpeedData");
+        instance.createRequest(RequestType.SPEED_STREAM);
+    }
+    
+    @Test(expected = Test.None.class /* no exception expected */)
+    public void testGetActivitesCadenceData() throws Exception {
+        System.out.println("getActivitesCadenceData");
+        instance.createRequest(RequestType.CADENCE_STREAM);
+    }    
     
 }
