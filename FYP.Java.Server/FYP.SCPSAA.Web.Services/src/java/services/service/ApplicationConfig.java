@@ -31,8 +31,10 @@ public class ApplicationConfig extends Application {
     private void addRestResourceClasses(Set<Class<?>> resources) {
         resources.add(services.service.ActivityFacadeREST.class);
         resources.add(services.service.AthleteFacadeREST.class);
+        resources.add(services.service.CadenceFacadeREST.class);
         resources.add(services.service.CredentialsFacadeREST.class);
         resources.add(services.service.PowerFacadeREST.class);
+        resources.add(services.service.SpeedFacadeREST.class);
         resources.add(services.service.StravaAuthenticatorREST.class);
     }
     

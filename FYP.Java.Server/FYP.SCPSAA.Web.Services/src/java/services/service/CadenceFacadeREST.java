@@ -3,19 +3,16 @@ package services.service;
 import api.RequestType;
 import api.WebhookFactory;
 import dto.Activity_dto;
-import dto.PowerLink_dto;
+import dto.CadenceLink_dto;
+import dto.Cadence_dto;
 import dto.Power_dto;
-import static java.lang.Long.parseLong;
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import javax.ejb.Stateless;
-import javax.json.Json;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.ws.rs.GET;
@@ -24,27 +21,31 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import org.json.JSONArray;
+import remote.CadenceLink_FacadeRemote;
+import remote.Cadence_FacadeRemote;
+import static java.lang.Long.parseLong;
+import java.util.HashMap;
+import java.util.List;
+import javax.json.Json;
 import org.json.JSONException;
 import org.json.JSONObject;
-import remote.PowerLink_FacadeRemote;
-import remote.Power_FacadeRemote;
 
 @Stateless
-@Path("services.power")
-public class PowerFacadeREST 
+@Path("services.cadence")
+public class CadenceFacadeREST 
 {
-    private static Power_FacadeRemote powerFacadeRemote;  
-    private static PowerLink_FacadeRemote powerlinkFacadeRemote;
-    private JSONArray watts = null;
+    private static Cadence_FacadeRemote cadenceFacadeRemote;  
+    private static CadenceLink_FacadeRemote cadencelinkFacadeRemote;
+    private JSONArray cadence = null;
     private JSONArray time = null;
     
-    public PowerFacadeREST() 
+    public CadenceFacadeREST() 
     {
         try
         {
             Context initial = new InitialContext();
-            powerFacadeRemote = (Power_FacadeRemote) initial.lookup("powerfacade");
-            powerlinkFacadeRemote = (PowerLink_FacadeRemote)initial.lookup("powerlinkfacade");
+            cadenceFacadeRemote = (Cadence_FacadeRemote) initial.lookup("cadencefacade");
+            cadencelinkFacadeRemote = (CadenceLink_FacadeRemote)initial.lookup("cadencelinkfacade");
         }
         catch(Exception ex)
         {
@@ -54,16 +55,16 @@ public class PowerFacadeREST
     }
     
     @GET
-    @Path("create/powerstream")
+    @Path("create/cadencestream")
     @Produces({MediaType.APPLICATION_JSON})
-    public String createPower(@QueryParam("activityId") String activityId, @QueryParam("stravaId") String stravaId, @QueryParam("accessToken") String accessToken) 
+    public String createCadence(@QueryParam("activityId") String activityId, @QueryParam("stravaId") String stravaId, @QueryParam("accessToken") String accessToken) 
     {
         try
         {
             if(checkActivityExists(activityId))
             {
                 WebhookFactory whf = WebhookFactory.getInstance(stravaId,accessToken,activityId); 
-                getDataStreamJSONArrays(new JSONArray(whf.createRequest(RequestType.POWER_STREAM)));
+                getDataStreamJSONArrays(new JSONArray(whf.createRequest(RequestType.CADENCE_STREAM)));
                 ExecutorService executor = Executors.newCachedThreadPool();
                 Iterator it = createHashmapFromJSONArrays().entrySet().iterator();
                 while (it.hasNext()) 
@@ -75,7 +76,13 @@ public class PowerFacadeREST
                         {
                             if(!pair.getValue().toString().equals("0"))
                             {
-                                powerlinkFacadeRemote.createPowerLink(new PowerLink_dto(parseLong("1"),new Activity_dto(parseLong(activityId)),new Power_dto(powerFacadeRemote.createPower(new Power_dto(parseLong("1"),new BigDecimal(pair.getValue().toString()),new BigInteger(pair.getKey().toString()))))));
+                                cadencelinkFacadeRemote.createCadenceLink(
+                                        new CadenceLink_dto(parseLong("1"),
+                                        new Activity_dto(parseLong(activityId)),
+                                        new Cadence_dto(cadenceFacadeRemote.createCadence(
+                                                new Cadence_dto(parseLong("1"),
+                                                new BigDecimal(pair.getValue().toString()),
+                                                new BigInteger(pair.getKey().toString()))))));
                             }
                         }
                     };
@@ -97,28 +104,28 @@ public class PowerFacadeREST
     }
     
     @GET
-    @Path("list/powerstream")
+    @Path("list/cadencestream")
     @Produces({MediaType.APPLICATION_JSON})
-    public String findAllPowerStream(@QueryParam("activityId") String activityId)
+    public String findAllCadenceStream(@QueryParam("activityId") String activityId)
     {
         try
         {
-            List<PowerLink_dto> powerlinkstream = powerlinkFacadeRemote.findAll();
-            powerlinkstream.removeIf((PowerLink_dto a) -> a.getActivityId().getActivityId() !=  parseLong(activityId));
-            List<Power_dto> powerstream = powerFacadeRemote.findAll();
+            List<CadenceLink_dto> cadencelinkstream = cadencelinkFacadeRemote.findAll();
+            cadencelinkstream.removeIf((CadenceLink_dto a) -> a.getActivityId().getActivityId() !=  parseLong(activityId));
+            List<Cadence_dto> cadencestream = cadenceFacadeRemote.findAll();
             HashMap<Long, Long> datastream = new HashMap<Long, Long>();
 
             
-                for(PowerLink_dto pl : powerlinkstream)
+                for(CadenceLink_dto cl : cadencelinkstream)
                 { 
-                    for(Power_dto p : powerstream)
+                    for(Cadence_dto c : cadencestream)
                     { 
-                        datastream.put(p.getSecondstamp().longValue(), p.getDatapoint().longValue());
+                        datastream.put(c.getSecondstamp().longValue(), c.getDatapoint().longValue());
                     }
                 }
 
-                System.out.println("COUNTER: " + powerstream.size());
-                return Json.createObjectBuilder().add("powerstream", new JSONObject(datastream).toString()).build().toString();
+                System.out.println("COUNTER: " + cadencestream.size());
+                return Json.createObjectBuilder().add("cadencestream", new JSONObject(datastream).toString()).build().toString();
 
 
         }
@@ -131,10 +138,10 @@ public class PowerFacadeREST
     
     public boolean checkActivityExists(String activityId)
     {
-        List<PowerLink_dto> powerlinkstream = powerlinkFacadeRemote.findAll();
-        for(PowerLink_dto pl : powerlinkstream)
+        List<CadenceLink_dto> cadencelinkstream = cadencelinkFacadeRemote.findAll();
+        for(CadenceLink_dto cl : cadencelinkstream)
         { 
-            if(pl.getActivityId().getActivityId() == parseLong(activityId))
+            if(cl.getActivityId().getActivityId() == parseLong(activityId))
             {
                 return false;
             }
@@ -147,10 +154,10 @@ public class PowerFacadeREST
     {
         HashMap<Integer, String> datastream = new HashMap<Integer, String>();
             
-        assert(watts.length() == time.length());
-        for (int i=0; i<watts.length(); i++) 
+        assert(cadence.length() == time.length());
+        for (int i=0; i<cadence.length(); i++) 
         {
-            datastream.put(Integer.parseInt(time.get(i).toString()), watts.get(i).toString());
+            datastream.put(Integer.parseInt(time.get(i).toString()), cadence.get(i).toString());
         }
         
         return datastream;
@@ -164,9 +171,9 @@ public class PowerFacadeREST
                 {
                   JSONObject jsonObject = values.getJSONObject(i);
                   
-                  if(jsonObject.getString("type").equals("watts"))
+                  if(jsonObject.getString("type").equals("cadence"))
                   {
-                      watts = jsonObject.getJSONArray("data");
+                      cadence = jsonObject.getJSONArray("data");
                   }
                   if(jsonObject.getString("type").equals("time"))
                   {

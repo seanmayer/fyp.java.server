@@ -1,10 +1,12 @@
 package services.service;
 
+import remote.SpeedLink_FacadeRemote;
+import remote.Speed_FacadeRemote;
 import api.RequestType;
 import api.WebhookFactory;
 import dto.Activity_dto;
-import dto.PowerLink_dto;
-import dto.Power_dto;
+import dto.SpeedLink_dto;
+import dto.Speed_dto;
 import static java.lang.Long.parseLong;
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -26,25 +28,25 @@ import javax.ws.rs.core.MediaType;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import remote.PowerLink_FacadeRemote;
-import remote.Power_FacadeRemote;
+
+
 
 @Stateless
-@Path("services.power")
-public class PowerFacadeREST 
+@Path("services.speed")
+public class SpeedFacadeREST 
 {
-    private static Power_FacadeRemote powerFacadeRemote;  
-    private static PowerLink_FacadeRemote powerlinkFacadeRemote;
-    private JSONArray watts = null;
+    private static Speed_FacadeRemote speedFacadeRemote;  
+    private static SpeedLink_FacadeRemote speedlinkFacadeRemote;
+    private JSONArray speed = null;
     private JSONArray time = null;
     
-    public PowerFacadeREST() 
+    public SpeedFacadeREST() 
     {
         try
         {
             Context initial = new InitialContext();
-            powerFacadeRemote = (Power_FacadeRemote) initial.lookup("powerfacade");
-            powerlinkFacadeRemote = (PowerLink_FacadeRemote)initial.lookup("powerlinkfacade");
+            speedFacadeRemote = (Speed_FacadeRemote) initial.lookup("speedfacade");
+            speedlinkFacadeRemote = (SpeedLink_FacadeRemote)initial.lookup("speedlinkfacade");
         }
         catch(Exception ex)
         {
@@ -54,16 +56,16 @@ public class PowerFacadeREST
     }
     
     @GET
-    @Path("create/powerstream")
+    @Path("create/speedstream")
     @Produces({MediaType.APPLICATION_JSON})
-    public String createPower(@QueryParam("activityId") String activityId, @QueryParam("stravaId") String stravaId, @QueryParam("accessToken") String accessToken) 
+    public String createSpeed(@QueryParam("activityId") String activityId, @QueryParam("stravaId") String stravaId, @QueryParam("accessToken") String accessToken) 
     {
         try
         {
             if(checkActivityExists(activityId))
             {
                 WebhookFactory whf = WebhookFactory.getInstance(stravaId,accessToken,activityId); 
-                getDataStreamJSONArrays(new JSONArray(whf.createRequest(RequestType.POWER_STREAM)));
+                getDataStreamJSONArrays(new JSONArray(whf.createRequest(RequestType.SPEED_STREAM)));
                 ExecutorService executor = Executors.newCachedThreadPool();
                 Iterator it = createHashmapFromJSONArrays().entrySet().iterator();
                 while (it.hasNext()) 
@@ -75,7 +77,13 @@ public class PowerFacadeREST
                         {
                             if(!pair.getValue().toString().equals("0"))
                             {
-                                powerlinkFacadeRemote.createPowerLink(new PowerLink_dto(parseLong("1"),new Activity_dto(parseLong(activityId)),new Power_dto(powerFacadeRemote.createPower(new Power_dto(parseLong("1"),new BigDecimal(pair.getValue().toString()),new BigInteger(pair.getKey().toString()))))));
+                                speedlinkFacadeRemote.createSpeedLink(
+                                        new SpeedLink_dto(parseLong("1"),
+                                        new Activity_dto(parseLong(activityId)),
+                                        new Speed_dto(speedFacadeRemote.createSpeed(
+                                                new Speed_dto(parseLong("1"),
+                                                new BigDecimal(pair.getValue().toString()),
+                                                new BigInteger(pair.getKey().toString()))))));
                             }
                         }
                     };
@@ -97,28 +105,28 @@ public class PowerFacadeREST
     }
     
     @GET
-    @Path("list/powerstream")
+    @Path("list/speedstream")
     @Produces({MediaType.APPLICATION_JSON})
-    public String findAllPowerStream(@QueryParam("activityId") String activityId)
+    public String findAllSpeedStream(@QueryParam("activityId") String activityId)
     {
         try
         {
-            List<PowerLink_dto> powerlinkstream = powerlinkFacadeRemote.findAll();
-            powerlinkstream.removeIf((PowerLink_dto a) -> a.getActivityId().getActivityId() !=  parseLong(activityId));
-            List<Power_dto> powerstream = powerFacadeRemote.findAll();
+            List<SpeedLink_dto> speedlinkstream = speedlinkFacadeRemote.findAll();
+            speedlinkstream.removeIf((SpeedLink_dto a) -> a.getActivityId().getActivityId() !=  parseLong(activityId));
+            List<Speed_dto> speedstream = speedFacadeRemote.findAll();
             HashMap<Long, Long> datastream = new HashMap<Long, Long>();
 
             
-                for(PowerLink_dto pl : powerlinkstream)
+                for(SpeedLink_dto sl : speedlinkstream)
                 { 
-                    for(Power_dto p : powerstream)
+                    for(Speed_dto s : speedstream)
                     { 
-                        datastream.put(p.getSecondstamp().longValue(), p.getDatapoint().longValue());
+                        datastream.put(s.getSecondstamp().longValue(), convertVelocityToMph(s.getDatapoint().longValue()));
                     }
                 }
 
-                System.out.println("COUNTER: " + powerstream.size());
-                return Json.createObjectBuilder().add("powerstream", new JSONObject(datastream).toString()).build().toString();
+                System.out.println("COUNTER: " + speedstream.size());
+                return Json.createObjectBuilder().add("speedstream", new JSONObject(datastream).toString()).build().toString();
 
 
         }
@@ -129,12 +137,18 @@ public class PowerFacadeREST
         }
     }
     
+    public long convertVelocityToMph(long velocity)
+    {
+        return (long)(velocity / 0.44704);
+    }
+    
+    
     public boolean checkActivityExists(String activityId)
     {
-        List<PowerLink_dto> powerlinkstream = powerlinkFacadeRemote.findAll();
-        for(PowerLink_dto pl : powerlinkstream)
+        List<SpeedLink_dto> speedlinkstream = speedlinkFacadeRemote.findAll();
+        for(SpeedLink_dto sl : speedlinkstream)
         { 
-            if(pl.getActivityId().getActivityId() == parseLong(activityId))
+            if(sl.getActivityId().getActivityId() == parseLong(activityId))
             {
                 return false;
             }
@@ -147,10 +161,11 @@ public class PowerFacadeREST
     {
         HashMap<Integer, String> datastream = new HashMap<Integer, String>();
             
-        assert(watts.length() == time.length());
-        for (int i=0; i<watts.length(); i++) 
+        assert(speed.length() == time.length());
+        for (int i=0; i<speed.length(); i++) 
         {
-            datastream.put(Integer.parseInt(time.get(i).toString()), watts.get(i).toString());
+            
+            datastream.put(Integer.parseInt(time.get(i).toString()), speed.get(i).toString());
         }
         
         return datastream;
@@ -164,9 +179,9 @@ public class PowerFacadeREST
                 {
                   JSONObject jsonObject = values.getJSONObject(i);
                   
-                  if(jsonObject.getString("type").equals("watts"))
+                  if(jsonObject.getString("type").equals("velocity_smooth"))
                   {
-                      watts = jsonObject.getJSONArray("data");
+                      speed = jsonObject.getJSONArray("data");
                   }
                   if(jsonObject.getString("type").equals("time"))
                   {

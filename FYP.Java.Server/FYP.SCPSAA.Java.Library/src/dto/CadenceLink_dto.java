@@ -17,6 +17,11 @@ public class CadenceLink_dto implements Serializable
     private Activity_dto activityId;
     private Cadence_dto cadenceId;
 
+    public CadenceLink_dto(Long cadenceLinkId) {
+        this.cadenceLinkId = cadenceLinkId;
+    }
+
+    
     public CadenceLink_dto(Long cadenceLinkId, Activity_dto activityId, Cadence_dto cadenceId) {
         this.cadenceLinkId = cadenceLinkId;
         this.activityId = activityId;

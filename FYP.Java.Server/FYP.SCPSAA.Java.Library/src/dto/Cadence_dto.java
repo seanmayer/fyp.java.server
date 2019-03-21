@@ -25,6 +25,8 @@ public class Cadence_dto implements Serializable
         this.cadenceId = cadenceId;
     }
     
+    
+    
     public Cadence_dto(Long cadenceId, BigDecimal datapoint, BigInteger secondstamp, Collection<CadenceLink_dto> cadenceLinkCollection) {
         this.cadenceId = cadenceId;
         this.datapoint = datapoint;
