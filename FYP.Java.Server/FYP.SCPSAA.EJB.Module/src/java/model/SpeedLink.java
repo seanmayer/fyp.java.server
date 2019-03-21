@@ -51,6 +51,12 @@ public class SpeedLink implements Serializable {
         this.speedLinkId = speedLinkId;
     }
 
+    public SpeedLink(Long speedLinkId, Activity activityId, Speed speedId) {
+        this.speedLinkId = speedLinkId;
+        this.activityId = activityId;
+        this.speedId = speedId;
+    }
+
     public Long getSpeedLinkId() {
         return speedLinkId;
     }

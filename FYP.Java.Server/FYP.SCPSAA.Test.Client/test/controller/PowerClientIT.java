@@ -11,13 +11,11 @@ import dto.Power_dto;
 import static java.lang.Long.parseLong;
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.util.Date;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
 import remote.PowerLink_FacadeRemote;
 import remote.Power_FacadeRemote;
 

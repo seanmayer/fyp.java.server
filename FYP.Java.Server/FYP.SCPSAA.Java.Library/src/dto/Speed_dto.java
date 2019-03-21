@@ -21,6 +21,10 @@ public class Speed_dto implements Serializable
     private BigInteger secondstamp;
     private Collection<SpeedLink_dto> speedLinkCollection; 
 
+    public Speed_dto(Long speedId) {
+        this.speedId = speedId;
+    }
+
     public Speed_dto(Long speedId, BigDecimal datapoint, BigInteger secondstamp) {
         this.speedId = speedId;
         this.datapoint = datapoint;

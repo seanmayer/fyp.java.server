@@ -119,7 +119,8 @@ public class PowerFacadeREST
                 }
 
                 System.out.println("COUNTER: " + powerstream.size());
-                return Json.createObjectBuilder().add("powerstream", datastream.toString()).build().toString();
+                return Json.createObjectBuilder().add("powerstream", new JSONObject(datastream).toString()).build().toString();
+
 
         }
         catch(Exception e)

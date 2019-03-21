@@ -11,9 +11,7 @@ import dto.Power_dto;
 import static java.lang.Long.parseLong;
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.util.Date;
 import javax.naming.InitialContext;
-import remote.Credentials_FacadeRemote;
 import remote.PowerLink_FacadeRemote;
 import remote.Power_FacadeRemote;
 

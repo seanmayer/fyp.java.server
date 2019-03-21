@@ -58,6 +58,14 @@ public class Cadence implements Serializable {
         this.cadenceId = cadenceId;
     }
 
+    public Cadence(Long cadenceId, BigDecimal datapoint, BigInteger secondstamp) {
+        this.cadenceId = cadenceId;
+        this.datapoint = datapoint;
+        this.secondstamp = secondstamp;
+    }
+    
+    
+
     public Long getCadenceId() {
         return cadenceId;
     }

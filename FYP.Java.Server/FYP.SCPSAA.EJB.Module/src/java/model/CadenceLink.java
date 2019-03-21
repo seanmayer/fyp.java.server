@@ -51,6 +51,12 @@ public class CadenceLink implements Serializable {
         this.cadenceLinkId = cadenceLinkId;
     }
 
+    public CadenceLink(Long cadenceLinkId, Activity activityId, Cadence cadenceId) {
+        this.cadenceLinkId = cadenceLinkId;
+        this.activityId = activityId;
+        this.cadenceId = cadenceId;
+    }
+    
     public Long getCadenceLinkId() {
         return cadenceLinkId;
     }

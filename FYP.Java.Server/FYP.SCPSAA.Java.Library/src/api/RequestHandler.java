@@ -1,7 +1,6 @@
 
 package api;
 
-import dto.Athlete_dto;
 import java.io.BufferedInputStream;
 import java.io.EOFException;
 import java.io.IOException;

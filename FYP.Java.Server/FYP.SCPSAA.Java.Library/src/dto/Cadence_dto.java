@@ -21,6 +21,10 @@ public class Cadence_dto implements Serializable
     private BigInteger secondstamp;
     private Collection<CadenceLink_dto> cadenceLinkCollection;
 
+    public Cadence_dto(Long cadenceId) {
+        this.cadenceId = cadenceId;
+    }
+    
     public Cadence_dto(Long cadenceId, BigDecimal datapoint, BigInteger secondstamp, Collection<CadenceLink_dto> cadenceLinkCollection) {
         this.cadenceId = cadenceId;
         this.datapoint = datapoint;
@@ -34,6 +38,13 @@ public class Cadence_dto implements Serializable
     public Long getCadenceId() {
         return cadenceId;
     }
+
+    public Cadence_dto(Long cadenceId, BigDecimal datapoint, BigInteger secondstamp) {
+        this.cadenceId = cadenceId;
+        this.datapoint = datapoint;
+        this.secondstamp = secondstamp;
+    }
+    
 
     /**
      * @param cadenceId the cadenceId to set

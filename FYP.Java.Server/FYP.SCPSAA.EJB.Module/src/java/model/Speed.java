@@ -58,6 +58,12 @@ public class Speed implements Serializable {
         this.speedId = speedId;
     }
 
+    public Speed(Long speedId, BigDecimal datapoint, BigInteger secondstamp) {
+        this.speedId = speedId;
+        this.datapoint = datapoint;
+        this.secondstamp = secondstamp;
+    }
+    
     public Long getSpeedId() {
         return speedId;
     }

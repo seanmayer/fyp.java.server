@@ -79,6 +79,10 @@ public class WebhookFactory
             
             case POWER_STREAM: return genericRequest(new ReturnPower()).getRequest();
             
+            case SPEED_STREAM: return genericRequest(new ReturnSpeed()).getRequest();
+            
+            case CADENCE_STREAM: return genericRequest(new ReturnCadence()).getRequest();
+            
             default: return null;
       }
     }
