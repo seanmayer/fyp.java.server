@@ -1,0 +1,1367 @@
+{
+  "front-version": "2.19.1",
+  "version": 3,
+  "nodes": [
+    {
+      "type": "Project",
+      "id": "43db7045-3f5b-4d77-a682-8dce5a521ec2",
+      "lastModified": "2019-02-21T19:07:20.945+00:00",
+      "name": "EEA"
+    },
+    {
+      "type": "Request",
+      "method": {
+        "requestBody": true,
+        "link": "http://tools.ietf.org/html/rfc7231#section-4.3.3",
+        "name": "POST"
+      },
+      "body": {
+        "formBody": {
+          "overrideContentType": true,
+          "encoding": "application/x-www-form-urlencoded",
+          "items": []
+        },
+        "bodyType": "Text",
+        "autoSetLength": true,
+        "textBody": "{\n\"classId\": 1,\n\"name\": \"test\",\n\"startTime\": 1551489600,\n\"endTime\": 1551489600\n}"
+      },
+      "headersType": "Form",
+      "uri": {
+        "query": {
+          "delimiter": "&",
+          "items": []
+        },
+        "scheme": {
+          "name": "http",
+          "version": "V11"
+        },
+        "host": "localhost:8080",
+        "path": "/EEA.STS.Web.Services/webresources/services.class/create/class"
+      },
+      "id": "1735f29d-5c5e-4f9e-8325-3b2cffc2ec19",
+      "lastModified": "2019-02-21T17:36:07.868+00:00",
+      "name": "CreateClass",
+      "headers": [
+        {
+          "enabled": true,
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "metaInfo": {
+        "ownerId": "google-oauth2|112610889347477796560"
+      },
+      "parentId": "43db7045-3f5b-4d77-a682-8dce5a521ec2"
+    },
+    {
+      "uriEditor": true,
+      "type": "Request",
+      "method": {
+        "requestBody": true,
+        "link": "http://tools.ietf.org/html/rfc7231#section-4.3.3",
+        "name": "POST"
+      },
+      "body": {
+        "formBody": {
+          "overrideContentType": true,
+          "encoding": "application/x-www-form-urlencoded",
+          "items": []
+        },
+        "bodyType": "Text",
+        "autoSetLength": true
+      },
+      "headersType": "Form",
+      "uri": {
+        "query": {
+          "delimiter": "&",
+          "items": []
+        },
+        "scheme": {
+          "name": "http",
+          "version": "V11"
+        },
+        "host": "localhost:8080",
+        "path": "/EEA.STS.Web.Services/webresources/services.classlink/create/classlink/3/3"
+      },
+      "id": "b9bb6175-36b8-4965-882e-6450caee1dec",
+      "lastModified": "2019-02-21T18:38:44.655+00:00",
+      "name": "CreateClassLink",
+      "headers": [
+        {
+          "enabled": true,
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "metaInfo": {
+        "ownerId": "google-oauth2|112610889347477796560"
+      },
+      "parentId": "43db7045-3f5b-4d77-a682-8dce5a521ec2"
+    },
+    {
+      "type": "Request",
+      "method": {
+        "link": "http://tools.ietf.org/html/rfc7231#section-4.3.5",
+        "name": "DELETE"
+      },
+      "body": {
+        "formBody": {
+          "overrideContentType": true,
+          "encoding": "application/x-www-form-urlencoded",
+          "items": []
+        },
+        "bodyType": "Text",
+        "autoSetLength": true
+      },
+      "headersType": "Form",
+      "uri": {
+        "query": {
+          "delimiter": "&",
+          "items": []
+        },
+        "scheme": {
+          "name": "http",
+          "version": "V11"
+        },
+        "host": "localhost:8080",
+        "path": "/EEA.STS.Web.Services/webresources/services.classlink/delete/classlink/3/3"
+      },
+      "id": "dac63c4f-ead6-411b-8c75-c880a084f68f",
+      "lastModified": "2019-02-21T18:45:18.724+00:00",
+      "name": "DeleteClassLink",
+      "headers": [],
+      "metaInfo": {
+        "ownerId": "google-oauth2|112610889347477796560"
+      },
+      "parentId": "43db7045-3f5b-4d77-a682-8dce5a521ec2"
+    },
+    {
+      "type": "Request",
+      "method": {
+        "requestBody": true,
+        "link": "http://tools.ietf.org/html/rfc7231#section-4.3.4",
+        "name": "PUT"
+      },
+      "body": {
+        "formBody": {
+          "overrideContentType": true,
+          "encoding": "application/x-www-form-urlencoded",
+          "items": []
+        },
+        "bodyType": "Text",
+        "autoSetLength": true,
+        "textBody": "{\n\"classId\": 2,\n\"name\": \"Picking Potatoe\",\n\"startTime\": 1551489600,\n\"endTime\": 1551489600\n}"
+      },
+      "headersType": "Form",
+      "uri": {
+        "query": {
+          "delimiter": "&",
+          "items": []
+        },
+        "scheme": {
+          "name": "http",
+          "version": "V11"
+        },
+        "host": "localhost:8080",
+        "path": "/EEA.STS.Web.Services/webresources/services.class/edit/class"
+      },
+      "id": "74679370-8fb1-45b8-9b4f-25765897c784",
+      "lastModified": "2019-02-21T19:07:20.945+00:00",
+      "name": "EditClass",
+      "headers": [
+        {
+          "enabled": true,
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "metaInfo": {
+        "ownerId": "google-oauth2|112610889347477796560"
+      },
+      "parentId": "43db7045-3f5b-4d77-a682-8dce5a521ec2"
+    },
+    {
+      "type": "Request",
+      "method": {
+        "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+        "name": "GET"
+      },
+      "body": {
+        "formBody": {
+          "overrideContentType": true,
+          "encoding": "application/x-www-form-urlencoded",
+          "items": []
+        },
+        "bodyType": "Text",
+        "autoSetLength": true
+      },
+      "headersType": "Form",
+      "uri": {
+        "query": {
+          "delimiter": "&",
+          "items": []
+        },
+        "scheme": {
+          "name": "http",
+          "version": "V11"
+        },
+        "host": "localhost:8080",
+        "path": "/EEA.STS.Web.Services/webresources/services.classlink/list"
+      },
+      "id": "56bec82e-f9d2-47fa-a2cb-e8ef7985b429",
+      "lastModified": "2019-02-21T18:50:01.739+00:00",
+      "name": "ListClassLink",
+      "headers": [],
+      "metaInfo": {
+        "ownerId": "google-oauth2|112610889347477796560"
+      },
+      "parentId": "43db7045-3f5b-4d77-a682-8dce5a521ec2"
+    },
+    {
+      "type": "Request",
+      "method": {
+        "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+        "name": "GET"
+      },
+      "body": {
+        "formBody": {
+          "overrideContentType": true,
+          "encoding": "application/x-www-form-urlencoded",
+          "items": []
+        },
+        "bodyType": "Text",
+        "autoSetLength": true
+      },
+      "headersType": "Form",
+      "uri": {
+        "query": {
+          "delimiter": "&",
+          "items": []
+        },
+        "scheme": {
+          "name": "http",
+          "version": "V11"
+        },
+        "host": "localhost:8080",
+        "path": "/EEA.STS.Web.Services/webresources/services.class/list"
+      },
+      "id": "f977b561-7f94-49f2-8062-0c4376d80db9",
+      "lastModified": "2019-02-21T18:35:25.610+00:00",
+      "name": "ListClasses",
+      "headers": [],
+      "metaInfo": {
+        "ownerId": "google-oauth2|112610889347477796560"
+      },
+      "parentId": "43db7045-3f5b-4d77-a682-8dce5a521ec2"
+    },
+    {
+      "type": "Request",
+      "method": {
+        "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+        "name": "GET"
+      },
+      "body": {
+        "formBody": {
+          "overrideContentType": true,
+          "encoding": "application/x-www-form-urlencoded",
+          "items": []
+        },
+        "bodyType": "Text",
+        "autoSetLength": true
+      },
+      "headersType": "Form",
+      "uri": {
+        "query": {
+          "delimiter": "&",
+          "items": []
+        },
+        "scheme": {
+          "name": "http",
+          "version": "V11"
+        },
+        "host": "localhost:8080",
+        "path": "/EEA.STS.Web.Services/webresources/services.room/list"
+      },
+      "id": "31c4570c-e9da-460e-a3b9-0d918ec32093",
+      "lastModified": "2019-02-21T17:38:03.001+00:00",
+      "name": "ListRooms",
+      "headers": [],
+      "metaInfo": {
+        "ownerId": "google-oauth2|112610889347477796560"
+      },
+      "parentId": "43db7045-3f5b-4d77-a682-8dce5a521ec2"
+    },
+    {
+      "type": "Project",
+      "id": "c93e1417-2b91-4017-9d72-3a8f51a6842c",
+      "lastModified": "2019-03-21T18:06:56.037+00:00",
+      "name": "FYP"
+    },
+    {
+      "type": "Service",
+      "id": "9475c242-25a3-4e50-9938-d09f5f5beb27",
+      "lastModified": "2019-03-21T18:00:39.180+00:00",
+      "name": "Activity",
+      "parentId": "c93e1417-2b91-4017-9d72-3a8f51a6842c"
+    },
+    {
+      "uriEditor": true,
+      "type": "Request",
+      "method": {
+        "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+        "name": "GET"
+      },
+      "body": {
+        "formBody": {
+          "overrideContentType": true,
+          "encoding": "application/x-www-form-urlencoded",
+          "items": []
+        },
+        "bodyType": "Text",
+        "autoSetLength": true
+      },
+      "headersType": "Form",
+      "uri": {
+        "query": {
+          "delimiter": "&",
+          "items": [
+            {
+              "enabled": true,
+              "name": "athleteId",
+              "value": "636875770642596840"
+            },
+            {
+              "enabled": true,
+              "name": "stravaId",
+              "value": "35193560"
+            },
+            {
+              "enabled": true,
+              "name": "accessToken",
+              "value": "e8a14408cd001cb6a86607a21ff50bd42f0b76f8"
+            }
+          ]
+        },
+        "scheme": {
+          "name": "http",
+          "version": "V11"
+        },
+        "host": "localhost:8080",
+        "path": "/FYP.SCPSAA.Web.Services/webresources/services.activity/create/activities/"
+      },
+      "id": "ab44f996-8880-4049-8424-32e568a7f484",
+      "lastModified": "2019-03-21T18:00:50.830+00:00",
+      "name": "CreateActivities1",
+      "headers": [],
+      "metaInfo": {
+        "ownerId": "google-oauth2|112610889347477796560"
+      },
+      "parentId": "9475c242-25a3-4e50-9938-d09f5f5beb27"
+    },
+    {
+      "uriEditor": true,
+      "type": "Request",
+      "method": {
+        "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+        "name": "GET"
+      },
+      "body": {
+        "formBody": {
+          "overrideContentType": true,
+          "encoding": "application/x-www-form-urlencoded",
+          "items": []
+        },
+        "bodyType": "Text",
+        "autoSetLength": true
+      },
+      "headersType": "Form",
+      "uri": {
+        "query": {
+          "delimiter": "&",
+          "items": [
+            {
+              "enabled": true,
+              "name": "athleteId",
+              "value": "636875772285848540"
+            },
+            {
+              "enabled": true,
+              "name": "stravaId",
+              "value": "581409"
+            },
+            {
+              "enabled": true,
+              "name": "accessToken",
+              "value": "3aa96600c17636ee70c0fe95af4a28eeae20de32"
+            }
+          ]
+        },
+        "scheme": {
+          "name": "http",
+          "version": "V11"
+        },
+        "host": "localhost:8080",
+        "path": "/FYP.SCPSAA.Web.Services/webresources/services.activity/create/activities/"
+      },
+      "id": "5f4f678a-c1ca-40a1-b334-9c55930164aa",
+      "lastModified": "2019-03-21T18:00:56.789+00:00",
+      "name": "CreateActivities2",
+      "headers": [],
+      "metaInfo": {
+        "ownerId": "google-oauth2|112610889347477796560"
+      },
+      "parentId": "9475c242-25a3-4e50-9938-d09f5f5beb27"
+    },
+    {
+      "uriEditor": true,
+      "type": "Request",
+      "method": {
+        "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+        "name": "GET"
+      },
+      "body": {
+        "formBody": {
+          "overrideContentType": true,
+          "encoding": "application/x-www-form-urlencoded",
+          "items": []
+        },
+        "bodyType": "Text",
+        "autoSetLength": true
+      },
+      "headersType": "Form",
+      "uri": {
+        "query": {
+          "delimiter": "&",
+          "items": [
+            {
+              "enabled": true,
+              "name": "athleteId",
+              "value": "636878914417676880"
+            }
+          ]
+        },
+        "scheme": {
+          "name": "http",
+          "version": "V11"
+        },
+        "host": "192.168.0.130:8080",
+        "path": "/FYP.SCPSAA.Web.Services/webresources/services.activity/list/activities"
+      },
+      "id": "29d30d2f-79bd-4149-8a32-4d6aa432b484",
+      "lastModified": "2019-03-21T18:01:13.398+00:00",
+      "name": "ListActivities",
+      "headers": [],
+      "metaInfo": {
+        "ownerId": "google-oauth2|112610889347477796560"
+      },
+      "parentId": "9475c242-25a3-4e50-9938-d09f5f5beb27"
+    },
+    {
+      "type": "Service",
+      "id": "cee8150a-3326-485a-8254-075b601cf4be",
+      "lastModified": "2019-03-21T18:01:52.204+00:00",
+      "name": "Athlete",
+      "parentId": "c93e1417-2b91-4017-9d72-3a8f51a6842c"
+    },
+    {
+      "uriEditor": true,
+      "type": "Request",
+      "method": {
+        "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+        "name": "GET"
+      },
+      "body": {
+        "formBody": {
+          "overrideContentType": true,
+          "encoding": "application/x-www-form-urlencoded",
+          "items": []
+        },
+        "bodyType": "Text",
+        "autoSetLength": true
+      },
+      "headersType": "Form",
+      "uri": {
+        "query": {
+          "delimiter": "&",
+          "items": []
+        },
+        "scheme": {
+          "name": "http",
+          "version": "V11"
+        },
+        "host": "localhost:8080",
+        "path": "/FYP.SCPSAA.Web.Services/webresources/services.athlete/create/athlete/63687393950978/636873939507029330/35193560/e8a14408cd001cb6a86607a21ff50bd42f0b76f8"
+      },
+      "id": "60e1e782-f862-401c-8a80-896f9bf78d84",
+      "lastModified": "2019-03-21T18:02:02.316+00:00",
+      "name": "CreateAthlete1",
+      "headers": [
+        {
+          "enabled": true,
+          "name": "",
+          "value": ""
+        }
+      ],
+      "metaInfo": {
+        "IS_FROM_HISTORY": null,
+        "ownerId": "google-oauth2|112610889347477796560"
+      },
+      "parentId": "cee8150a-3326-485a-8254-075b601cf4be"
+    },
+    {
+      "uriEditor": true,
+      "type": "Request",
+      "method": {
+        "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+        "name": "GET"
+      },
+      "body": {
+        "formBody": {
+          "overrideContentType": true,
+          "encoding": "application/x-www-form-urlencoded",
+          "items": []
+        },
+        "bodyType": "Text",
+        "autoSetLength": true
+      },
+      "headersType": "Form",
+      "uri": {
+        "query": {
+          "delimiter": "&",
+          "items": []
+        },
+        "scheme": {
+          "name": "http",
+          "version": "V11"
+        },
+        "host": "localhost:8080",
+        "path": "/FYP.SCPSAA.Web.Services/webresources/services.athlete/create/athlete/2/636875657878053320/581409/3aa96600c17636ee70c0fe95af4a28eeae20de32"
+      },
+      "id": "4eda60a1-0e98-49eb-bbb8-25d464c5b1ae",
+      "lastModified": "2019-03-21T18:02:07.412+00:00",
+      "name": "CreateAthlete2",
+      "headers": [
+        {
+          "enabled": true,
+          "name": "",
+          "value": ""
+        }
+      ],
+      "metaInfo": {
+        "IS_FROM_HISTORY": null,
+        "ownerId": "google-oauth2|112610889347477796560"
+      },
+      "parentId": "cee8150a-3326-485a-8254-075b601cf4be"
+    },
+    {
+      "type": "Request",
+      "method": {
+        "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+        "name": "GET"
+      },
+      "body": {
+        "formBody": {
+          "overrideContentType": true,
+          "encoding": "application/x-www-form-urlencoded",
+          "items": []
+        },
+        "bodyType": "Text",
+        "autoSetLength": true
+      },
+      "headersType": "Form",
+      "uri": {
+        "query": {
+          "delimiter": "&",
+          "items": []
+        },
+        "scheme": {
+          "name": "http",
+          "version": "V11"
+        },
+        "host": "localhost:8080",
+        "path": "/FYP.SCPSAA.Web.Services/webresources/services.athlete/find/athlete/636873896034449560"
+      },
+      "id": "59f09db6-9c08-4297-9b24-3601b7924b8b",
+      "lastModified": "2019-03-21T18:02:28.395+00:00",
+      "name": "FindAthlete",
+      "headers": [],
+      "metaInfo": {
+        "ownerId": "google-oauth2|112610889347477796560"
+      },
+      "parentId": "cee8150a-3326-485a-8254-075b601cf4be"
+    },
+    {
+      "type": "Request",
+      "method": {
+        "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+        "name": "GET"
+      },
+      "body": {
+        "formBody": {
+          "overrideContentType": true,
+          "encoding": "application/x-www-form-urlencoded",
+          "items": []
+        },
+        "bodyType": "Text",
+        "autoSetLength": true
+      },
+      "headersType": "Form",
+      "uri": {
+        "query": {
+          "delimiter": "&",
+          "items": []
+        },
+        "scheme": {
+          "name": "http",
+          "version": "V11"
+        },
+        "host": "192.168.0.130:8080",
+        "path": "/FYP.SCPSAA.Web.Services/webresources/services.athlete/get/athlete/by/credentialId/1"
+      },
+      "id": "cad6e19a-583f-4c18-899e-1b71af98664e",
+      "lastModified": "2019-03-21T18:02:17.223+00:00",
+      "name": "GetAthleteByCredentialId",
+      "headers": [],
+      "metaInfo": {
+        "ownerId": "google-oauth2|112610889347477796560"
+      },
+      "parentId": "cee8150a-3326-485a-8254-075b601cf4be"
+    },
+    {
+      "type": "Request",
+      "method": {
+        "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+        "name": "GET"
+      },
+      "uri": {
+        "query": {
+          "delimiter": "&",
+          "items": []
+        },
+        "scheme": {
+          "name": "http",
+          "version": "V11"
+        },
+        "host": "localhost:8080",
+        "path": "/FYP.SCPSAA.Web.Services/webresources/services.athlete/list/athletes/"
+      },
+      "id": "bdf340b9-85d1-45b0-a78a-b18af9eb1cde",
+      "lastModified": "2019-03-21T18:02:23.155+00:00",
+      "name": "ListAthletes",
+      "metaInfo": {
+        "ownerId": "google-oauth2|112610889347477796560"
+      },
+      "parentId": "cee8150a-3326-485a-8254-075b601cf4be"
+    },
+    {
+      "uriEditor": true,
+      "type": "Request",
+      "method": {
+        "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+        "name": "GET"
+      },
+      "body": {
+        "formBody": {
+          "overrideContentType": true,
+          "encoding": "application/x-www-form-urlencoded",
+          "items": []
+        },
+        "bodyType": "Text",
+        "autoSetLength": true
+      },
+      "headersType": "Form",
+      "uri": {
+        "query": {
+          "delimiter": "&",
+          "items": [
+            {
+              "enabled": true,
+              "name": "access_token",
+              "value": "3aa96600c17636ee70c0fe95af4a28eeae20de32"
+            }
+          ]
+        },
+        "scheme": {
+          "secure": true,
+          "name": "https",
+          "version": "V11"
+        },
+        "host": "www.strava.com",
+        "path": "/api/v3/athletes/581409"
+      },
+      "id": "92a22ac2-911e-447d-bc2f-cebb0864830c",
+      "lastModified": "2019-03-21T18:06:42.815+00:00",
+      "name": "StravaGetAthlete",
+      "headers": [
+        {
+          "enabled": true,
+          "name": "",
+          "value": ""
+        }
+      ],
+      "metaInfo": {
+        "IS_FROM_HISTORY": null,
+        "ownerId": "google-oauth2|112610889347477796560"
+      },
+      "parentId": "cee8150a-3326-485a-8254-075b601cf4be"
+    },
+    {
+      "type": "Service",
+      "id": "9131e656-d972-4efb-ab53-0469df32779e",
+      "lastModified": "2019-03-21T18:04:27.556+00:00",
+      "name": "Credentials",
+      "parentId": "c93e1417-2b91-4017-9d72-3a8f51a6842c"
+    },
+    {
+      "uriEditor": true,
+      "bodyEvaluationDisabled": true,
+      "type": "Request",
+      "method": {
+        "requestBody": true,
+        "link": "http://tools.ietf.org/html/rfc7231#section-4.3.3",
+        "name": "POST"
+      },
+      "body": {
+        "formBody": {
+          "overrideContentType": true,
+          "encoding": "application/x-www-form-urlencoded",
+          "items": []
+        },
+        "bodyType": "Text",
+        "autoSetLength": true,
+        "textBody": "{\n\"credentialsId\": 1,\n\"username\": \"test\",\n\"password\": \"password\"\n}"
+      },
+      "headersType": "Form",
+      "uri": {
+        "query": {
+          "delimiter": "&",
+          "items": []
+        },
+        "scheme": {
+          "name": "http",
+          "version": "V11"
+        },
+        "host": "localhost:8080",
+        "path": "/FYP.SCPSAA.Web.Services/webresources/services.credentials/create/credentials/"
+      },
+      "id": "ff6fe061-3bb6-4755-8868-18ad9c4f508c",
+      "lastModified": "2019-03-21T18:04:45.649+00:00",
+      "name": "CreateCredentials",
+      "headers": [
+        {
+          "enabled": true,
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "metaInfo": {
+        "IS_FROM_HISTORY": "85862e4f-9126-41a0-90d1-5d403c437b69",
+        "ownerId": "google-oauth2|112610889347477796560"
+      },
+      "parentId": "9131e656-d972-4efb-ab53-0469df32779e"
+    },
+    {
+      "type": "Request",
+      "method": {
+        "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+        "name": "GET"
+      },
+      "body": {
+        "formBody": {
+          "overrideContentType": true,
+          "encoding": "application/x-www-form-urlencoded",
+          "items": []
+        },
+        "bodyType": "Text",
+        "autoSetLength": true
+      },
+      "headersType": "Form",
+      "uri": {
+        "query": {
+          "delimiter": "&",
+          "items": []
+        },
+        "scheme": {
+          "name": "http",
+          "version": "V11"
+        },
+        "host": "localhost:8080",
+        "path": "/FYP.SCPSAA.Web.Services/webresources/services.credentials/find/credentials/test"
+      },
+      "id": "43e23b4d-a409-41a6-8948-0ab948163406",
+      "lastModified": "2019-03-21T18:04:35.363+00:00",
+      "name": "FindCredentials",
+      "headers": [],
+      "metaInfo": {
+        "ownerId": "google-oauth2|112610889347477796560"
+      },
+      "parentId": "9131e656-d972-4efb-ab53-0469df32779e"
+    },
+    {
+      "uriEditor": true,
+      "bodyEvaluationDisabled": true,
+      "type": "Request",
+      "method": {
+        "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+        "name": "GET"
+      },
+      "body": {
+        "formBody": {
+          "overrideContentType": true,
+          "encoding": "application/x-www-form-urlencoded",
+          "items": []
+        },
+        "bodyType": "Text",
+        "autoSetLength": true,
+        "textBody": "{\n\"credentialsId\": 1,\n\"username\": \"test\",\n\"password\": \"password\"\n}"
+      },
+      "headersType": "Form",
+      "uri": {
+        "query": {
+          "delimiter": "&",
+          "items": []
+        },
+        "scheme": {
+          "name": "http",
+          "version": "V11"
+        },
+        "host": "192.168.0.130:8080",
+        "path": "/FYP.SCPSAA.Web.Services/webresources/services.credentials/list/credentials/"
+      },
+      "id": "0a4cf3cf-72d2-4b93-a096-561532aa5b9b",
+      "lastModified": "2019-03-21T18:04:39.805+00:00",
+      "name": "ListCredentials",
+      "headers": [],
+      "metaInfo": {
+        "IS_FROM_HISTORY": "85862e4f-9126-41a0-90d1-5d403c437b69",
+        "ownerId": "google-oauth2|112610889347477796560"
+      },
+      "parentId": "9131e656-d972-4efb-ab53-0469df32779e"
+    },
+    {
+      "type": "Service",
+      "id": "f9b4ac5c-db9b-411a-9b2c-af4b50de8e12",
+      "lastModified": "2019-03-21T18:06:05.194+00:00",
+      "name": "StravaOAuth",
+      "parentId": "c93e1417-2b91-4017-9d72-3a8f51a6842c"
+    },
+    {
+      "uriEditor": true,
+      "type": "Request",
+      "method": {
+        "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+        "name": "GET"
+      },
+      "body": {
+        "formBody": {
+          "overrideContentType": true,
+          "encoding": "application/x-www-form-urlencoded",
+          "items": []
+        },
+        "bodyType": "Text",
+        "autoSetLength": true
+      },
+      "headersType": "Form",
+      "uri": {
+        "query": {
+          "delimiter": "&",
+          "items": []
+        },
+        "scheme": {
+          "name": "http",
+          "version": "V11"
+        },
+        "host": "172.20.10.5:8080",
+        "path": "/FYP.SCPSAA.Web.Services/webresources/services.strava.authenticator/authenticate/athlete/581409/3aa96600c17636ee70c0fe95af4a28eeae20de32"
+      },
+      "id": "5a677fe6-e771-44ee-9b49-4e6f4979532a",
+      "lastModified": "2019-03-21T18:06:16.594+00:00",
+      "name": "StravaAuthenticator",
+      "headers": [
+        {
+          "enabled": true,
+          "name": "",
+          "value": ""
+        }
+      ],
+      "metaInfo": {
+        "IS_FROM_HISTORY": null,
+        "ownerId": "google-oauth2|112610889347477796560"
+      },
+      "parentId": "f9b4ac5c-db9b-411a-9b2c-af4b50de8e12"
+    },
+    {
+      "uriEditor": true,
+      "type": "Request",
+      "method": {
+        "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+        "name": "GET"
+      },
+      "body": {
+        "formBody": {
+          "overrideContentType": true,
+          "encoding": "application/x-www-form-urlencoded",
+          "items": []
+        },
+        "bodyType": "Text",
+        "autoSetLength": true
+      },
+      "headersType": "Form",
+      "uri": {
+        "query": {
+          "delimiter": "&",
+          "items": [
+            {
+              "enabled": true,
+              "name": "client_id",
+              "value": "28887"
+            },
+            {
+              "enabled": true,
+              "name": "response_type",
+              "value": "code"
+            },
+            {
+              "enabled": true,
+              "name": "redirect_uri",
+              "value": "http://localhost"
+            },
+            {
+              "enabled": true,
+              "name": "approval_prompt",
+              "value": "force"
+            }
+          ]
+        },
+        "scheme": {
+          "secure": true,
+          "name": "https",
+          "version": "V11"
+        },
+        "host": "www.strava.com",
+        "path": "/oauth/authorize"
+      },
+      "id": "0d53d50c-9634-45e2-ab0d-4c8a1c6de62f",
+      "lastModified": "2019-03-21T18:06:51.277+00:00",
+      "name": "StravaOAuthenticate",
+      "headers": [
+        {
+          "enabled": true,
+          "name": "",
+          "value": ""
+        }
+      ],
+      "metaInfo": {
+        "IS_FROM_HISTORY": null,
+        "ownerId": "google-oauth2|112610889347477796560"
+      },
+      "parentId": "f9b4ac5c-db9b-411a-9b2c-af4b50de8e12"
+    },
+    {
+      "uriEditor": true,
+      "type": "Request",
+      "method": {
+        "requestBody": true,
+        "link": "http://tools.ietf.org/html/rfc7231#section-4.3.3",
+        "name": "POST"
+      },
+      "body": {
+        "formBody": {
+          "overrideContentType": true,
+          "encoding": "application/x-www-form-urlencoded",
+          "items": []
+        },
+        "bodyType": "Text",
+        "autoSetLength": true
+      },
+      "headersType": "Form",
+      "uri": {
+        "query": {
+          "delimiter": "&",
+          "items": [
+            {
+              "enabled": true,
+              "name": "client_id",
+              "value": "28887"
+            },
+            {
+              "enabled": true,
+              "name": "client_secret",
+              "value": "e8a867ecc5d1da1993c8216294586c1f89c6a61f "
+            },
+            {
+              "enabled": true,
+              "name": "code",
+              "value": "25f58d3e9c83c019d8e9a747708374aea992da57"
+            },
+            {
+              "enabled": true,
+              "name": "grant_type",
+              "value": "refresh_token"
+            }
+          ]
+        },
+        "scheme": {
+          "secure": true,
+          "name": "https",
+          "version": "V11"
+        },
+        "host": "www.strava.com",
+        "path": "/oauth/token/"
+      },
+      "id": "39083b30-aeac-43ce-ac1f-4226d1f190dd",
+      "lastModified": "2019-03-21T18:06:56.037+00:00",
+      "name": "StravaOAuthenticateJSONPOST",
+      "headers": [
+        {
+          "enabled": true,
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "metaInfo": {
+        "IS_FROM_HISTORY": null,
+        "ownerId": "google-oauth2|112610889347477796560"
+      },
+      "parentId": "f9b4ac5c-db9b-411a-9b2c-af4b50de8e12"
+    },
+    {
+      "type": "Service",
+      "id": "aa94a712-6280-47bd-9d11-979d39692ee5",
+      "lastModified": "2019-03-21T18:02:57.290+00:00",
+      "name": "Streams",
+      "parentId": "c93e1417-2b91-4017-9d72-3a8f51a6842c"
+    },
+    {
+      "uriEditor": true,
+      "type": "Request",
+      "method": {
+        "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+        "name": "GET"
+      },
+      "body": {
+        "formBody": {
+          "overrideContentType": true,
+          "encoding": "application/x-www-form-urlencoded",
+          "items": []
+        },
+        "bodyType": "Text",
+        "autoSetLength": true
+      },
+      "headersType": "Form",
+      "uri": {
+        "query": {
+          "delimiter": "&",
+          "items": [
+            {
+              "enabled": true,
+              "name": "activityId",
+              "value": "1993855025"
+            },
+            {
+              "enabled": true,
+              "name": "stravaId",
+              "value": "35193560"
+            },
+            {
+              "enabled": true,
+              "name": "accessToken",
+              "value": "e8a14408cd001cb6a86607a21ff50bd42f0b76f8"
+            }
+          ]
+        },
+        "scheme": {
+          "name": "http",
+          "version": "V11"
+        },
+        "host": "localhost:8080",
+        "path": "/FYP.SCPSAA.Web.Services/webresources/services.cadence/create/cadencestream/"
+      },
+      "id": "d7948dc7-bad4-4475-879f-84ecdd8f4f78",
+      "lastModified": "2019-03-21T18:03:26.634+00:00",
+      "name": "CreateCadenceStream",
+      "headers": [],
+      "metaInfo": {
+        "ownerId": "google-oauth2|112610889347477796560"
+      },
+      "parentId": "aa94a712-6280-47bd-9d11-979d39692ee5"
+    },
+    {
+      "uriEditor": true,
+      "type": "Request",
+      "method": {
+        "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+        "name": "GET"
+      },
+      "body": {
+        "formBody": {
+          "overrideContentType": true,
+          "encoding": "application/x-www-form-urlencoded",
+          "items": []
+        },
+        "bodyType": "Text",
+        "autoSetLength": true
+      },
+      "headersType": "Form",
+      "uri": {
+        "query": {
+          "delimiter": "&",
+          "items": [
+            {
+              "enabled": true,
+              "name": "activityId",
+              "value": "10718138"
+            },
+            {
+              "enabled": true,
+              "name": "stravaId",
+              "value": "581409"
+            },
+            {
+              "enabled": true,
+              "name": "accessToken",
+              "value": "3aa96600c17636ee70c0fe95af4a28eeae20de32"
+            }
+          ]
+        },
+        "scheme": {
+          "name": "http",
+          "version": "V11"
+        },
+        "host": "localhost:8080",
+        "path": "/FYP.SCPSAA.Web.Services/webresources/services.power/create/powerstream/"
+      },
+      "id": "06a1463f-d423-47f2-8b33-90922b52603c",
+      "lastModified": "2019-03-21T18:03:32.445+00:00",
+      "name": "CreatePowerStream",
+      "headers": [],
+      "metaInfo": {
+        "ownerId": "google-oauth2|112610889347477796560"
+      },
+      "parentId": "aa94a712-6280-47bd-9d11-979d39692ee5"
+    },
+    {
+      "uriEditor": true,
+      "type": "Request",
+      "method": {
+        "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+        "name": "GET"
+      },
+      "body": {
+        "formBody": {
+          "overrideContentType": true,
+          "encoding": "application/x-www-form-urlencoded",
+          "items": []
+        },
+        "bodyType": "Text",
+        "autoSetLength": true
+      },
+      "headersType": "Form",
+      "uri": {
+        "query": {
+          "delimiter": "&",
+          "items": [
+            {
+              "enabled": true,
+              "name": "activityId",
+              "value": "1995720944"
+            },
+            {
+              "enabled": true,
+              "name": "stravaId",
+              "value": "35193560"
+            },
+            {
+              "enabled": true,
+              "name": "accessToken",
+              "value": "e8a14408cd001cb6a86607a21ff50bd42f0b76f8"
+            }
+          ]
+        },
+        "scheme": {
+          "name": "http",
+          "version": "V11"
+        },
+        "host": "localhost:8080",
+        "path": "/FYP.SCPSAA.Web.Services/webresources/services.speed/create/speedstream/"
+      },
+      "id": "d6c24e2e-452b-4e4f-b13d-92a7126d7ada",
+      "lastModified": "2019-03-21T18:03:37.923+00:00",
+      "name": "CreateSpeedStream",
+      "headers": [],
+      "metaInfo": {
+        "ownerId": "google-oauth2|112610889347477796560"
+      },
+      "parentId": "aa94a712-6280-47bd-9d11-979d39692ee5"
+    },
+    {
+      "uriEditor": true,
+      "type": "Request",
+      "method": {
+        "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+        "name": "GET"
+      },
+      "body": {
+        "formBody": {
+          "overrideContentType": true,
+          "encoding": "application/x-www-form-urlencoded",
+          "items": []
+        },
+        "bodyType": "Text",
+        "autoSetLength": true
+      },
+      "headersType": "Form",
+      "uri": {
+        "query": {
+          "delimiter": "&",
+          "items": [
+            {
+              "enabled": true,
+              "name": "activityId",
+              "value": "1993855025"
+            }
+          ]
+        },
+        "scheme": {
+          "name": "http",
+          "version": "V11"
+        },
+        "host": "localhost:8080",
+        "path": "/FYP.SCPSAA.Web.Services/webresources/services.cadence/list/cadencestream"
+      },
+      "id": "3ef26cdc-7c2a-4ad7-b774-a264b74b5c5d",
+      "lastModified": "2019-03-21T18:03:45.667+00:00",
+      "name": "ListCadenceStream",
+      "headers": [],
+      "metaInfo": {
+        "ownerId": "google-oauth2|112610889347477796560"
+      },
+      "parentId": "aa94a712-6280-47bd-9d11-979d39692ee5"
+    },
+    {
+      "uriEditor": true,
+      "type": "Request",
+      "method": {
+        "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+        "name": "GET"
+      },
+      "body": {
+        "formBody": {
+          "overrideContentType": true,
+          "encoding": "application/x-www-form-urlencoded",
+          "items": []
+        },
+        "bodyType": "Text",
+        "autoSetLength": true
+      },
+      "headersType": "Form",
+      "uri": {
+        "query": {
+          "delimiter": "&",
+          "items": [
+            {
+              "enabled": true,
+              "name": "activityId",
+              "value": "1959352778"
+            }
+          ]
+        },
+        "scheme": {
+          "name": "http",
+          "version": "V11"
+        },
+        "host": "localhost:8080",
+        "path": "/FYP.SCPSAA.Web.Services/webresources/services.power/list/powerstream"
+      },
+      "id": "6a92721a-8bfa-4538-ab5c-4db9fe17c7e4",
+      "lastModified": "2019-03-21T18:03:50.363+00:00",
+      "name": "ListPowerStream",
+      "headers": [],
+      "metaInfo": {
+        "ownerId": "google-oauth2|112610889347477796560"
+      },
+      "parentId": "aa94a712-6280-47bd-9d11-979d39692ee5"
+    },
+    {
+      "uriEditor": true,
+      "type": "Request",
+      "method": {
+        "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+        "name": "GET"
+      },
+      "body": {
+        "formBody": {
+          "overrideContentType": true,
+          "encoding": "application/x-www-form-urlencoded",
+          "items": []
+        },
+        "bodyType": "Text",
+        "autoSetLength": true
+      },
+      "headersType": "Form",
+      "uri": {
+        "query": {
+          "delimiter": "&",
+          "items": [
+            {
+              "enabled": true,
+              "name": "activityId",
+              "value": "1995720944"
+            }
+          ]
+        },
+        "scheme": {
+          "name": "http",
+          "version": "V11"
+        },
+        "host": "localhost:8080",
+        "path": "/FYP.SCPSAA.Web.Services/webresources/services.speed/list/speedstream"
+      },
+      "id": "f486f555-3cc2-45bd-a041-050856915830",
+      "lastModified": "2019-03-21T18:03:07.350+00:00",
+      "name": "ListSpeedStream",
+      "headers": [],
+      "metaInfo": {
+        "ownerId": "google-oauth2|112610889347477796560"
+      },
+      "parentId": "aa94a712-6280-47bd-9d11-979d39692ee5"
+    },
+    {
+      "type": "Request",
+      "method": {
+        "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+        "name": "GET"
+      },
+      "body": {
+        "formBody": {
+          "overrideContentType": true,
+          "encoding": "application/x-www-form-urlencoded",
+          "items": []
+        },
+        "bodyType": "Text",
+        "autoSetLength": true
+      },
+      "headersType": "Form",
+      "uri": {
+        "query": {
+          "delimiter": "&",
+          "items": []
+        },
+        "scheme": {
+          "name": "http",
+          "version": "V11"
+        },
+        "host": "192.168.0.130:8080",
+        "path": "/FYP.SCPSAA.Web.Services/"
+      },
+      "id": "8dbdd2f8-eefc-4cee-b65f-79ae5283a97c",
+      "lastModified": "2019-02-24T07:36:51.867+00:00",
+      "name": "CheckConnection",
+      "headers": [],
+      "metaInfo": {
+        "ownerId": "google-oauth2|112610889347477796560"
+      },
+      "parentId": "c93e1417-2b91-4017-9d72-3a8f51a6842c"
+    }
+  ]
+}
