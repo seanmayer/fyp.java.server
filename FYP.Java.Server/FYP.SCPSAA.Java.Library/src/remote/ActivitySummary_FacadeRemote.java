@@ -22,7 +22,7 @@ public interface ActivitySummary_FacadeRemote
      public void createActivitySummary(ActivitySummary_dto activitySummaryDetails);
      public void editActivitySummary(ActivitySummary_dto activitySummaryDetails);
      public void removeActivitySummary(Long id);
-     public Activity_dto find(Object pk);
-     public Activity_dto findById(Long id);
-     public List<Activity_dto> findAll();
+     public ActivitySummary_dto find(Object pk);
+     public ActivitySummary_dto findById(Long id);
+     public List<ActivitySummary_dto> findAll();
 }

@@ -20,23 +20,23 @@ public abstract class AbstractEntityManager<T>
         em.persist(object);
     }
     
-    public void persistMany(T entity) {
-
-    ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
-    Validator validator = factory.getValidator();
-    Set<ConstraintViolation<T>> constraintViolations = validator.validate(entity);
-    if(constraintViolations.size() > 0)
+    public void persistMany(T entity) 
     {
-        Iterator<ConstraintViolation<T>> iterator = constraintViolations.iterator();
-        while(iterator.hasNext())
+        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+        Validator validator = factory.getValidator();
+        Set<ConstraintViolation<T>> constraintViolations = validator.validate(entity);
+        if(constraintViolations.size() > 0)
         {
-            ConstraintViolation<T> cv = iterator.next();
+            Iterator<ConstraintViolation<T>> iterator = constraintViolations.iterator();
+            while(iterator.hasNext())
+            {
+                ConstraintViolation<T> cv = iterator.next();
+            }
+        }
+        else
+        {
+            em.persist(entity);
         }
     }
-    else
-    {
-        em.persist(entity);
-    }
-}
 
 }

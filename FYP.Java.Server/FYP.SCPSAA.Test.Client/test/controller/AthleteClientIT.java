@@ -71,8 +71,8 @@ public class AthleteClientIT {
     @Test(expected = Test.None.class /* no exception expected */)
     public void createAthlete() throws Exception
     {
-        Credentials_dto credentials = new Credentials_dto(parseLong("1"));
-        requestAthlete.createCredendentedAthlete(credentials , new Athlete_dto(new Date().getTime(),parseLong("1234567"),"JUNIT","JUNIT"));
+        //Credentials_dto credentials = new Credentials_dto(parseLong("123456"));
+        //requestAthlete.createCredendentedAthlete(credentials , new Athlete_dto(new Date().getTime(),parseLong("11111111111"),"JUNIT","JUNIT"));
     }
     
 }

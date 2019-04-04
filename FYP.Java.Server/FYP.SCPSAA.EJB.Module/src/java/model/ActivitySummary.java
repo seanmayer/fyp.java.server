@@ -71,6 +71,21 @@ public class ActivitySummary implements Serializable {
     public ActivitySummary() {
     }
 
+    public ActivitySummary(Long activitySummaryId, BigInteger movingTime, BigDecimal distance, BigDecimal maxSpeed, BigDecimal maxWatts, BigDecimal averageSpeed, BigDecimal averageWatts, BigDecimal averageCadence, BigDecimal kilojoules, Activity activityId) {
+        this.activitySummaryId = activitySummaryId;
+        this.movingTime = movingTime;
+        this.distance = distance;
+        this.maxSpeed = maxSpeed;
+        this.maxWatts = maxWatts;
+        this.averageSpeed = averageSpeed;
+        this.averageWatts = averageWatts;
+        this.averageCadence = averageCadence;
+        this.kilojoules = kilojoules;
+        this.activityId = activityId;
+    }
+    
+    
+
     public ActivitySummary(Long activitySummaryId) {
         this.activitySummaryId = activitySummaryId;
     }

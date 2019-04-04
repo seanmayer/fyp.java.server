@@ -83,6 +83,8 @@ public class WebhookFactory
             
             case CADENCE_STREAM: return genericRequest(new ReturnCadence()).getRequest();
             
+            case ACTIVITY_SUMMARY: return genericRequest(new ReturnActivitySummary()).getRequest();
+            
             default: return null;
       }
     }

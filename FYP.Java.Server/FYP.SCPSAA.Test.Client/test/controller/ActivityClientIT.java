@@ -50,7 +50,7 @@ public class ActivityClientIT extends EJBBean{
     @Test(expected = Test.None.class)
     public void createActivity()
     {
-        requestActivity.createActivity(new Activity_dto(parseLong("REQUIRED"),parseLong("REQUIRED"),"JUNIT",new Date(),"JUNIT"));
+        requestActivity.createActivity(new Activity_dto(parseLong("1234"),parseLong("1"),"JUNIT",new Date(),"JUNIT"));
     }
     
 

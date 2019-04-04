@@ -15,12 +15,5 @@ public class ReturnActivitiesList extends RequestHandler
     public String getRequest() throws Exception
     {
         return getJsonArray(getURL()).toString();
-        
-//        for (int i = 0; i < values.length(); i++) 
-//        {
-//              JSONObject jsonObject = values.getJSONObject(i); 
-//              int id = jsonObject.getInt("id");
-//              System.out.println(id);
-//        }
     }   
 }
