@@ -47,7 +47,6 @@ Athlete_ID BIGINT NOT NULL
 
 CREATE TABLE Activity_Summary
 (Activity_Summary_ID BIGINT NOT NULL
-              GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1)
               CONSTRAINT Activity_Summary_PK PRIMARY KEY,
 Activity_ID BIGINT NOT NULL
               CONSTRAINT Activity_ID_FK REFERENCES Activity(Activity_Id)
