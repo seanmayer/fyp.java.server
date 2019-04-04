@@ -43,7 +43,6 @@ public class ActivitySummary implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "ACTIVITY_SUMMARY_ID")
     private Long activitySummaryId;

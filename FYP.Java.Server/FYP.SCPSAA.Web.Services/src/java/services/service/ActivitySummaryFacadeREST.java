@@ -62,7 +62,7 @@ public class ActivitySummaryFacadeREST
                 {
                   JSONObject jsonObject = values.getJSONObject(i); 
                   activitySummaryFacadeRemote.createActivitySummary(new ActivitySummary_dto(
-                            parseLong("1"),
+                            jsonObject.getLong("id"),
                             BigInteger.valueOf(jsonObject.getInt("moving_time")),
                             BigDecimal.valueOf(jsonObject.getLong("distance")),
                             BigDecimal.valueOf(jsonObject.getLong("max_speed")),
