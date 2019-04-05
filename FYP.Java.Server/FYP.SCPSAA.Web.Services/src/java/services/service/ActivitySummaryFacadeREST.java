@@ -8,8 +8,11 @@ import dto.Athlete_dto;
 import static java.lang.Long.parseLong;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 import javax.ejb.Stateless;
 import javax.json.Json;
 import javax.naming.Context;
@@ -24,12 +27,14 @@ import org.joda.time.format.DateTimeFormat;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import remote.ActivitySummary_FacadeRemote;
+import remote.Activity_FacadeRemote;
 
 
 @Stateless
 @Path("services.activitysummary")
 public class ActivitySummaryFacadeREST 
 {
+    private static Activity_FacadeRemote activityFacadeRemote;  
     private static ActivitySummary_FacadeRemote activitySummaryFacadeRemote;  
     
     public ActivitySummaryFacadeREST() 
@@ -37,6 +42,7 @@ public class ActivitySummaryFacadeREST
         try
         {
             Context initial = new InitialContext();
+            activityFacadeRemote = (Activity_FacadeRemote) initial.lookup("activityfacade");
             activitySummaryFacadeRemote = (ActivitySummary_FacadeRemote) initial.lookup("activitysummaryfacade");
         }
         catch(Exception ex)
@@ -63,20 +69,20 @@ public class ActivitySummaryFacadeREST
                   JSONObject jsonObject = values.getJSONObject(i); 
                   activitySummaryFacadeRemote.createActivitySummary(new ActivitySummary_dto(
                             jsonObject.getLong("id"),
-                            BigInteger.valueOf(jsonObject.getInt("moving_time")),
-                            BigDecimal.valueOf(jsonObject.getLong("distance")),
-                            BigDecimal.valueOf(jsonObject.getLong("max_speed")),
-                            BigDecimal.valueOf(jsonObject.getLong("max_watts")),
-                            BigDecimal.valueOf(jsonObject.getLong("average_speed")),
-                            BigDecimal.valueOf(jsonObject.getLong("average_watts")),
-                            BigDecimal.valueOf(jsonObject.getLong("average_cadence")),
-                            BigDecimal.valueOf(jsonObject.getInt("kilojoules")),
+                            BigInteger.valueOf(jsonObject.optInt("moving_time")),
+                            BigDecimal.valueOf(jsonObject.optLong("distance")),
+                            BigDecimal.valueOf(jsonObject.optLong("max_speed")),
+                            BigDecimal.valueOf(jsonObject.optLong("max_watts")),
+                            BigDecimal.valueOf(jsonObject.optLong("average_speed")),
+                            BigDecimal.valueOf(jsonObject.optLong("average_watts")),
+                            BigDecimal.valueOf(jsonObject.optLong("average_cadence")),
+                            BigDecimal.valueOf(jsonObject.optInt("kilojoules")),
                             new Activity_dto(jsonObject.getLong("id"))));
                   count++;
                 }
                 catch(Exception e)
                 {
-                    
+                    System.out.println(e);
                 }
             }
             return Json.createObjectBuilder().add("message", "successful").add("updateCount", count).build().toString();
@@ -87,20 +93,33 @@ public class ActivitySummaryFacadeREST
         }
     }
     
+    
     @GET
     @Path("list/activitysummaries")
     @Produces({MediaType.APPLICATION_JSON})
-    public String findAllActivities(@QueryParam("activityId") String activityId)
+    public String findAllActivities(@QueryParam("athleteId") String athleteId)
     {
         try
         {
+            List<Activity_dto> activityList = activityFacadeRemote.findAll();
+            activityList.removeIf((Activity_dto a) -> a.getAthleteId().getAthleteId() !=  parseLong(athleteId));
             List<ActivitySummary_dto> activitySummaryList = activitySummaryFacadeRemote.findAll();
-            activitySummaryList.removeIf((ActivitySummary_dto a) -> a.getActivityId().getActivityId() !=  parseLong(activityId));
-            return new JSONArray(activitySummaryList).toString();
+            List<ActivitySummary_dto> activitySummaryReturn = new ArrayList<ActivitySummary_dto>();
+            for (Activity_dto activity : activityList) 
+            {
+                for (ActivitySummary_dto activitySummary : activitySummaryList) 
+                {
+                    if(activitySummary.getActivityId().getActivityId().equals(activity.getActivityId()))
+                    {
+                        activitySummaryReturn.add(activitySummary);
+                    }
+                }
+            }
+            
+            return new JSONArray(activitySummaryReturn).toString();
         }
         catch(Exception e)
         {
-            System.out.println(e);
             return Json.createObjectBuilder().add("message", "unsuccessful").build().toString();
         }
     }

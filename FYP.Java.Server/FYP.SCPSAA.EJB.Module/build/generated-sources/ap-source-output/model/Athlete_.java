@@ -5,7 +5,7 @@ import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 import model.Credentials;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2019-04-04T21:17:17")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2019-04-05T18:04:45")
 @StaticMetamodel(Athlete.class)
 public class Athlete_ { 
 
