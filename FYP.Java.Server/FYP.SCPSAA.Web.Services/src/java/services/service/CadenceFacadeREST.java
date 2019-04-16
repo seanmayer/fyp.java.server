@@ -65,31 +65,20 @@ public class CadenceFacadeREST
             {
                 WebhookFactory whf = WebhookFactory.getInstance(stravaId,accessToken,activityId); 
                 getDataStreamJSONArrays(new JSONArray(whf.createRequest(RequestType.CADENCE_STREAM)));
-                ExecutorService executor = Executors.newCachedThreadPool();
-                Iterator it = createHashmapFromJSONArrays().entrySet().iterator();
-                while (it.hasNext()) 
-                {
-                    Map.Entry pair = (Map.Entry)it.next();
-                    Runnable task = new Runnable() 
+                
+                for (Map.Entry pair : createHashmapFromJSONArrays().entrySet()) {
+                    if(!pair.getValue().toString().equals("0"))
                     {
-                        public void run()
-                        {
-                            if(!pair.getValue().toString().equals("0"))
-                            {
-                                cadencelinkFacadeRemote.createCadenceLink(
-                                        new CadenceLink_dto(parseLong("1"),
+                        cadencelinkFacadeRemote.createCadenceLink(
+                                new CadenceLink_dto(parseLong("1"),
                                         new Activity_dto(parseLong(activityId)),
                                         new Cadence_dto(cadenceFacadeRemote.createCadence(
                                                 new Cadence_dto(parseLong("1"),
-                                                new BigDecimal(pair.getValue().toString()),
-                                                new BigInteger(pair.getKey().toString()))))));
-                            }
-                        }
-                    };
-                    executor.submit(task);
-                    it.remove();
+                                                        new BigDecimal(pair.getValue().toString()),
+                                                        new BigInteger(pair.getKey().toString()))))));
+                    }
                 }
-                executor.shutdown();
+                
                 return Json.createObjectBuilder().add("message", "successful").build().toString();
             }
             else

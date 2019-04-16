@@ -56,7 +56,7 @@ public class PowerFacadeREST
     @GET
     @Path("create/powerstream")
     @Produces({MediaType.APPLICATION_JSON})
-    public String createPower(@QueryParam("activityId") String activityId, @QueryParam("stravaId") String stravaId, @QueryParam("accessToken") String accessToken) 
+    public String createPower(@QueryParam("activityId") String activityId, @QueryParam("stravaId") String stravaId, @QueryParam("accessToken") String accessToken)
     {
         try
         {
@@ -64,25 +64,17 @@ public class PowerFacadeREST
             {
                 WebhookFactory whf = WebhookFactory.getInstance(stravaId,accessToken,activityId); 
                 getDataStreamJSONArrays(new JSONArray(whf.createRequest(RequestType.POWER_STREAM)));
-                ExecutorService executor = Executors.newCachedThreadPool();
-                Iterator it = createHashmapFromJSONArrays().entrySet().iterator();
-                while (it.hasNext()) 
+
+                for (Map.Entry pair : createHashmapFromJSONArrays().entrySet()) 
                 {
-                    Map.Entry pair = (Map.Entry)it.next();
-                    Runnable task = new Runnable() 
+                    if(!pair.getValue().toString().equals("0"))
                     {
-                        public void run()
-                        {
-                            if(!pair.getValue().toString().equals("0"))
-                            {
-                                powerlinkFacadeRemote.createPowerLink(new PowerLink_dto(parseLong("1"),new Activity_dto(parseLong(activityId)),new Power_dto(powerFacadeRemote.createPower(new Power_dto(parseLong("1"),new BigDecimal(pair.getValue().toString()),new BigInteger(pair.getKey().toString()))))));
-                            }
-                        }
-                    };
-                    executor.submit(task);
-                    it.remove();
+                        powerlinkFacadeRemote.createPowerLink(new PowerLink_dto(parseLong("1"),new Activity_dto(parseLong(activityId)),new Power_dto(
+                        powerFacadeRemote.createPower(new Power_dto(parseLong("1"),new BigDecimal(pair.getValue().toString()),new BigInteger(pair.getKey().toString()))))));
+                    }
+
                 }
-                executor.shutdown();
+
                 return Json.createObjectBuilder().add("message", "successful").build().toString();
             }
             else
@@ -95,6 +87,7 @@ public class PowerFacadeREST
             return Json.createObjectBuilder().add("message", "unsuccessful").build().toString();
         }
     }
+
     
     @GET
     @Path("list/powerstream")
@@ -172,6 +165,7 @@ public class PowerFacadeREST
                   if(jsonObject.getString("type").equals("watts"))
                   {
                       watts = jsonObject.getJSONArray("data");
+
                   }
                   if(jsonObject.getString("type").equals("time"))
                   {
