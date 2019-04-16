@@ -119,8 +119,11 @@ public class CadenceFacadeREST
                 for(CadenceLink_dto cl : cadencelinkstream)
                 { 
                     for(Cadence_dto c : cadencestream)
-                    { 
-                        datastream.put(c.getSecondstamp().longValue(), c.getDatapoint().longValue());
+                    {   
+                        if(cl.getCadenceId().getCadenceId().equals(c.getCadenceId()))
+                        {
+                            datastream.put(c.getSecondstamp().longValue(), c.getDatapoint().longValue());
+                        }
                     }
                 }
 

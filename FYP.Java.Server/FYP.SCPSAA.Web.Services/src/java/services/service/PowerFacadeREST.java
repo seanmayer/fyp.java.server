@@ -108,16 +108,21 @@ public class PowerFacadeREST
             List<Power_dto> powerstream = powerFacadeRemote.findAll();
             HashMap<Long, Long> datastream = new HashMap<Long, Long>();
 
-            
+            int found = 0;
                 for(PowerLink_dto pl : powerlinkstream)
                 { 
                     for(Power_dto p : powerstream)
                     { 
-                        datastream.put(p.getSecondstamp().longValue(), p.getDatapoint().longValue());
+                        if(pl.getPowerId().getPowerId().equals(p.getPowerId()))
+                        {
+                            found++;
+                            datastream.put(p.getSecondstamp().longValue(), p.getDatapoint().longValue());
+                        }
+                        
                     }
                 }
 
-                System.out.println("COUNTER: " + powerstream.size());
+                System.out.println("COUNTER: " + powerstream.size() + "\n" + "FOUND: "+ found);
                 return Json.createObjectBuilder().add("powerstream", new JSONObject(datastream).toString()).build().toString();
 
 

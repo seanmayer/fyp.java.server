@@ -121,7 +121,10 @@ public class SpeedFacadeREST
                 { 
                     for(Speed_dto s : speedstream)
                     { 
-                        datastream.put(s.getSecondstamp().longValue(), convertVelocityToMph(s.getDatapoint().longValue()));
+                        if(sl.getSpeedId().getSpeedId().equals(s.getSpeedId()))
+                        {
+                            datastream.put(s.getSecondstamp().longValue(), convertVelocityToMph(s.getDatapoint().longValue()));
+                        }
                     }
                 }
 
