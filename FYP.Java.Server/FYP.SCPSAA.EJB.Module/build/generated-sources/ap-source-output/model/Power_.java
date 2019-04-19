@@ -8,7 +8,7 @@ import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 import model.PowerLink;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2019-04-15T11:49:17")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2019-04-19T09:21:25")
 @StaticMetamodel(Power.class)
 public class Power_ { 
 

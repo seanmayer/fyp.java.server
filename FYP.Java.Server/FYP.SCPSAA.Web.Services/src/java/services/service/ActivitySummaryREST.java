@@ -4,40 +4,40 @@ import api.RequestType;
 import api.WebhookFactory;
 import dto.ActivitySummary_dto;
 import dto.Activity_dto;
-import dto.Athlete_dto;
 import static java.lang.Long.parseLong;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 import javax.ejb.Stateless;
 import javax.json.Json;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
-import org.joda.time.format.DateTimeFormat;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import remote.ActivitySummary_FacadeRemote;
 import remote.Activity_FacadeRemote;
 
-
+/**
+ * @author Sean Mayer
+ * Activity Summary Web Service
+ */
 @Stateless
 @Path("services.activitysummary")
-public class ActivitySummaryFacadeREST 
+public class ActivitySummaryREST 
 {
     private static Activity_FacadeRemote activityFacadeRemote;  
     private static ActivitySummary_FacadeRemote activitySummaryFacadeRemote;  
     
-    public ActivitySummaryFacadeREST() 
+    /**
+     * Constructor for initiating Context and looking up activityfacade bean and activitysummaryfacade bean
+     */
+    public ActivitySummaryREST() 
     {
         try
         {
@@ -52,6 +52,12 @@ public class ActivitySummaryFacadeREST
         }
     }
     
+    /**
+     *
+     * @param stravaId - Strava ID retrieved from Strava API
+     * @param accessToken - Access Token retrieved from Strava API
+     * @return JSONObjectBuilder message:success or message unsuccessful
+     */
     @GET
     @Path("create/activitysummaries")
     @Produces({MediaType.APPLICATION_JSON})
@@ -93,7 +99,11 @@ public class ActivitySummaryFacadeREST
         }
     }
     
-    
+    /**
+     *
+     * @param athleteId - Athlete ID retrieved from Strava API
+     * @return JSONObjectBuilder JSONArray or message unsuccessful
+     */
     @GET
     @Path("list/activitysummaries")
     @Produces({MediaType.APPLICATION_JSON})

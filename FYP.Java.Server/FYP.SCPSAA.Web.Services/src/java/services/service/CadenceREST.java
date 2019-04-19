@@ -5,13 +5,9 @@ import api.WebhookFactory;
 import dto.Activity_dto;
 import dto.CadenceLink_dto;
 import dto.Cadence_dto;
-import dto.Power_dto;
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.util.Iterator;
 import java.util.Map;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import javax.ejb.Stateless;
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -30,16 +26,24 @@ import javax.json.Json;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+/**
+ * @author Sean Mayer
+ * Cadence Web Service
+ */
 @Stateless
 @Path("services.cadence")
-public class CadenceFacadeREST 
+public class CadenceREST 
 {
     private static Cadence_FacadeRemote cadenceFacadeRemote;  
     private static CadenceLink_FacadeRemote cadencelinkFacadeRemote;
     private JSONArray cadence = null;
     private JSONArray time = null;
     
-    public CadenceFacadeREST() 
+
+     /**
+     * Constructor for initiating Context and looking up cadencefacade bean and cadencelinkfacade bean
+     */
+    public CadenceREST() 
     {
         try
         {
@@ -54,6 +58,13 @@ public class CadenceFacadeREST
         }
     }
     
+    /**
+     * Create Cadence
+     * @param activityId - Activity ID retrieved from Strava API Activity IDs
+     * @param stravaId - Strava ID retrieved from Strava API
+     * @param accessToken - Access Token retrieved from Strava API
+     * @return JSONObjectBuilder message:success or message unsuccessful or already exists
+     */
     @GET
     @Path("create/cadencestream")
     @Produces({MediaType.APPLICATION_JSON})
@@ -92,6 +103,11 @@ public class CadenceFacadeREST
         }
     }
     
+    /**
+     * Find All Cadence Stream
+     * @param activityId Activity ID retrieved from Strava API Activity IDs
+     * @return JSONObjectBuilder JSONObject that returns a HashMap Array of Stream Data
+     */
     @GET
     @Path("list/cadencestream")
     @Produces({MediaType.APPLICATION_JSON})
@@ -128,6 +144,11 @@ public class CadenceFacadeREST
         }
     }
     
+    /**
+     * Check Activity Exists
+     * @param activityId Activity ID retrieved from Strava API Activity IDs
+     * @return true or false
+     */
     public boolean checkActivityExists(String activityId)
     {
         List<CadenceLink_dto> cadencelinkstream = cadencelinkFacadeRemote.findAll();
@@ -141,7 +162,11 @@ public class CadenceFacadeREST
         return true;
     }
     
-    
+    /**
+     * Creates HashMap From JSON Arrays
+     * @return HashMap
+     * @throws JSONException
+     */
     public HashMap<Integer, String> createHashmapFromJSONArrays() throws JSONException
     {
         HashMap<Integer, String> datastream = new HashMap<Integer, String>();
@@ -155,6 +180,10 @@ public class CadenceFacadeREST
         return datastream;
     }
     
+    /**
+     * Get Data Stream JSON Arrays
+     * @param values Strava API JSON Return for Activity Stream Cadence
+     */
     public void getDataStreamJSONArrays(JSONArray values)
     {
             for (int i = 0; i < values.length(); i++) 

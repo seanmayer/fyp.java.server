@@ -22,13 +22,20 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import remote.Activity_FacadeRemote;
 
+/**
+ * @author Sean Mayer
+ * Activity Web Service 
+ */
 @Stateless
 @Path("services.activity")
-public class ActivityFacadeREST 
+public class ActivityREST 
 {
     private static Activity_FacadeRemote activityFacadeRemote;  
     
-    public ActivityFacadeREST() 
+    /**
+     * Constructor for initiating Context and looking up activityfacade bean
+     */
+    public ActivityREST() 
     {
         try
         {
@@ -42,6 +49,13 @@ public class ActivityFacadeREST
         }
     }
     
+    /**
+     * Creates Activities  
+     * @param athleteId - Athlete ID retrieved from Strava API
+     * @param stravaId - Strava ID retrieved from Strava API
+     * @param accessToken - Access Token retrieved from Strava API
+     * @return JSONObjectBuilder message:success or message unsuccessful
+     */
     @GET
     @Path("create/activities")
     @Produces({MediaType.APPLICATION_JSON})
@@ -73,6 +87,11 @@ public class ActivityFacadeREST
         }
     }
     
+    /**
+     * Lists All Activities
+     * @param athleteId - Athlete ID retrieved from Strava API
+     * @return JSONObjectBuilder JSONArray or message unsuccessful
+     */
     @GET
     @Path("list/activities")
     @Produces({MediaType.APPLICATION_JSON})

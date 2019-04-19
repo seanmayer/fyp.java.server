@@ -6,8 +6,8 @@
 package model.json;
 
 /**
- *
- * @author 2008s
+ * @author Sean Mayer
+ * Credentials JSONObject
  */
 public class CredentialsJSONObject 
 {

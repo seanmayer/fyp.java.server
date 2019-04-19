@@ -10,7 +10,6 @@ import api.WebhookFactory;
 import dto.Athlete_dto;
 import dto.Credentials_dto;
 import static java.lang.Long.parseLong;
-import java.math.BigDecimal;
 import remote.Athlete_FacadeRemote;
 import javax.ejb.Stateless;
 import javax.json.Json;
@@ -25,17 +24,19 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 /**
- *
- * @author 2008s
+ * @author Sean Mayer
+ * Athlete Web Service
  */
 @Stateless
 @Path("services.athlete")
-public class AthleteFacadeREST 
+public class AthleteREST 
 {
     private static Athlete_FacadeRemote athleteFacadeRemote;  
     
-    
-    public AthleteFacadeREST() 
+     /**
+     * Constructor for initiating Context and looking up athletefacade bean 
+     */
+    public AthleteREST() 
     {
         try
         {
@@ -49,6 +50,14 @@ public class AthleteFacadeREST
         }
     }
     
+    /**
+     * Create Athlete
+     * @param credentialsId - CredentialID Unique ID Inserted by External Application
+     * @param athleteId - Athlete ID retrieved from Strava API
+     * @param stravaId - Strava ID retrieved from Strava API
+     * @param accessToken - Access Token retrieved from Strava API
+     * @return JSONObjectBuilder message:success or message unsuccessful
+     */
     @GET
     @Path("create/athlete/{athleteId}/{credentialsId}/{stravaId}/{accessToken}")
     @Produces({MediaType.APPLICATION_JSON})
@@ -67,6 +76,11 @@ public class AthleteFacadeREST
         }
     }
     
+    /**
+     * Find Athlete
+     * @param athleteId  - Athlete ID retrieved from Strava API
+     * @return JSONObjectBuilder JSONObject or message unsuccessful
+     */
     @GET
     @Path("find/athlete/{athleteId}")
     @Produces({MediaType.APPLICATION_JSON})
@@ -87,10 +101,14 @@ public class AthleteFacadeREST
         }
     }    
     
+    /**
+     * Find All Athletes
+     * @return JSONObjectBuilder JSONArray or message unsuccessful
+     */
     @GET
     @Path("list/athletes")
     @Produces({MediaType.APPLICATION_JSON})
-    public String findAllCredentials()
+    public String findAllAthletes()
     {
         try
         {

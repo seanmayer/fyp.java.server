@@ -7,12 +7,8 @@ package services.service;
 
 import api.RequestType;
 import api.WebhookFactory;
-import dto.Athlete_dto;
-import dto.Credentials_dto;
 import java.io.Serializable;
-import static java.lang.Long.parseLong;
 import javax.ejb.Singleton;
-import javax.ejb.Stateless;
 import javax.json.Json;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -22,14 +18,20 @@ import javax.ws.rs.core.MediaType;
 import org.json.JSONObject;
 
 /**
- *
- * @author 2008s
+ * @author Sean Mayer
+ * Strava Authentication Web Service (deprecated)
  */
 @Singleton
 @Path("services.strava.authenticator")
 public class StravaAuthenticatorREST implements Serializable 
 {
 
+    /**
+     *
+     * @param stravaId
+     * @param accessToken
+     * @return
+     */
     @GET
     @Path("authenticate/athlete/{stravaId}/{accessToken}")
     @Produces({MediaType.APPLICATION_JSON})

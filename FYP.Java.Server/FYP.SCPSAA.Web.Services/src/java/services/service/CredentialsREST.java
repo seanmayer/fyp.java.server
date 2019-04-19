@@ -26,16 +26,19 @@ import remote.Credentials_FacadeRemote;
 
 
 /**
- *
- * @author 2008s
+ * @author Sean Mayer
+ * Credentials Web Service 
  */
 @Stateless
 @Path("services.credentials")
-public class CredentialsFacadeREST implements Serializable {
+public class CredentialsREST implements Serializable {
 
     private static Credentials_FacadeRemote credentialsFacadeRemote;
 
-    public CredentialsFacadeREST() 
+    /**
+     * Constructor for initiating Context and looking up credentialsfacade bean
+     */
+    public CredentialsREST() 
     {
         try
         {
@@ -49,6 +52,11 @@ public class CredentialsFacadeREST implements Serializable {
         }
     }
 
+    /**
+     * Create Credentials
+     * @param entity CredentialsJSONObject
+     * @return JSONObjectBuilder message:success or message unsuccessful
+     */
     @POST
     @Path("create/credentials")
     @Consumes({MediaType.APPLICATION_JSON})
@@ -66,6 +74,10 @@ public class CredentialsFacadeREST implements Serializable {
         }
     }
     
+    /**
+     * Find All Credentials
+     * @return JSONObjectBuilder JSONArray or message unsuccessful
+     */
     @GET
     @Path("list/credentials")
     @Produces({MediaType.APPLICATION_JSON})
@@ -80,59 +92,6 @@ public class CredentialsFacadeREST implements Serializable {
             return Json.createObjectBuilder().add("message", "unsuccessful").build().toString();
         }
     }
-    
-    
-//
-//    @PUT
-//    @Path("{id}")
-//    @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-//    public void edit(@PathParam("id") Long id, Credentials entity) {
-//        super.edit(entity);
-//    }
-//
-//    @DELETE
-//    @Path("{id}")
-//    public void remove(@PathParam("id") Long id) {
-//        super.remove(super.find(id));
-//    }
-//
-//    @GET
-//    @Path("{id}")
-//    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-//    public Credentials find(@PathParam("id") Long id) {
-//        return super.find(id);
-//    }
-//
-//    @GET
-//    @Override
-//    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-//    public List<Credentials> findAll() {
-//        return super.findAll();
-//    }
-//
-//    @GET
-//    @Path("{from}/{to}")
-//    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-//    public List<Credentials> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
-//        return super.findRange(new int[]{from, to});
-//    }
-//
-//    @GET
-//    @Path("count")
-//    @Produces(MediaType.TEXT_PLAIN)
-//    public String countREST() {
-//        return String.valueOf(super.count());
-//    }
-//
-//    @Override
-//    protected EntityManager getEntityManager() {
-//        return em;
-//    }
-    
-}
 
-
-class CredentialsTest
-{
     
 }

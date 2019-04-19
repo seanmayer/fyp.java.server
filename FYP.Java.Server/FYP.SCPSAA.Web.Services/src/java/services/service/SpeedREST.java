@@ -11,11 +11,8 @@ import static java.lang.Long.parseLong;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import javax.ejb.Stateless;
 import javax.json.Json;
 import javax.naming.Context;
@@ -29,18 +26,23 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-
-
+/**
+ * @author Sean Mayer
+ * Speed Web Service
+ */
 @Stateless
 @Path("services.speed")
-public class SpeedFacadeREST 
+public class SpeedREST 
 {
     private static Speed_FacadeRemote speedFacadeRemote;  
     private static SpeedLink_FacadeRemote speedlinkFacadeRemote;
     private JSONArray speed = null;
     private JSONArray time = null;
     
-    public SpeedFacadeREST() 
+     /**
+     * Constructor for initiating Context and looking up speedfacade bean and speedlinkfacade bean
+     */
+    public SpeedREST() 
     {
         try
         {
@@ -55,6 +57,14 @@ public class SpeedFacadeREST
         }
     }
     
+    /**
+     *
+     * Create Speed
+     * @param activityId - Activity ID retrieved from Strava API Activity IDs
+     * @param stravaId - Strava ID retrieved from Strava API
+     * @param accessToken - Access Token retrieved from Strava API
+     * @return JSONObjectBuilder message:success or message unsuccessful or already exists
+     */
     @GET
     @Path("create/speedstream")
     @Produces({MediaType.APPLICATION_JSON})
@@ -93,6 +103,11 @@ public class SpeedFacadeREST
         }
     }
     
+    /**
+     * Find All Speed Stream
+     * @param activityId Activity ID retrieved from Strava API Activity IDs
+     * @return JSONObjectBuilder JSONObject that returns a HashMap Array of Stream Data
+     */
     @GET
     @Path("list/speedstream")
     @Produces({MediaType.APPLICATION_JSON})
@@ -129,12 +144,21 @@ public class SpeedFacadeREST
         }
     }
     
+    /**
+     * Converts Velocity To MPH
+     * @param velocity retrieved from Strava API
+     * @return (velocity / 0.44704)
+     */
     public long convertVelocityToMph(long velocity)
     {
         return (long)(velocity / 0.44704);
     }
     
-    
+    /**
+     * Check Activity Exists
+     * @param activityId Activity ID retrieved from Strava API Activity IDs
+     * @return true or false
+     */
     public boolean checkActivityExists(String activityId)
     {
         List<SpeedLink_dto> speedlinkstream = speedlinkFacadeRemote.findAll();
@@ -148,7 +172,11 @@ public class SpeedFacadeREST
         return true;
     }
     
-    
+    /**
+     * Creates HashMap From JSON Arrays
+     * @return HashMap
+     * @throws JSONException
+     */
     public HashMap<Integer, String> createHashmapFromJSONArrays() throws JSONException
     {
         HashMap<Integer, String> datastream = new HashMap<Integer, String>();
@@ -163,6 +191,10 @@ public class SpeedFacadeREST
         return datastream;
     }
     
+    /**
+     * Get Data Stream JSON Arrays
+     * @param values Strava API JSON Return for Activity Stream Power
+     */
     public void getDataStreamJSONArrays(JSONArray values)
     {
             for (int i = 0; i < values.length(); i++) 

@@ -9,11 +9,8 @@ import static java.lang.Long.parseLong;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import javax.ejb.Stateless;
 import javax.json.Json;
 import javax.naming.Context;
@@ -29,16 +26,23 @@ import org.json.JSONObject;
 import remote.PowerLink_FacadeRemote;
 import remote.Power_FacadeRemote;
 
+/**
+ * @author Sean Mayer
+ * Power Web Service
+ */
 @Stateless
 @Path("services.power")
-public class PowerFacadeREST 
+public class PowerREST 
 {
     private static Power_FacadeRemote powerFacadeRemote;  
     private static PowerLink_FacadeRemote powerlinkFacadeRemote;
     private JSONArray watts = null;
     private JSONArray time = null;
     
-    public PowerFacadeREST() 
+     /**
+     * Constructor for initiating Context and looking up powerfacade bean and powerlinkfacade bean
+     */
+    public PowerREST() 
     {
         try
         {
@@ -53,6 +57,14 @@ public class PowerFacadeREST
         }
     }
     
+    /**
+     *
+     * Create Cadence
+     * @param activityId - Activity ID retrieved from Strava API Activity IDs
+     * @param stravaId - Strava ID retrieved from Strava API
+     * @param accessToken - Access Token retrieved from Strava API
+     * @return JSONObjectBuilder message:success or message unsuccessful or already exists
+     */
     @GET
     @Path("create/powerstream")
     @Produces({MediaType.APPLICATION_JSON})
@@ -88,7 +100,11 @@ public class PowerFacadeREST
         }
     }
 
-    
+    /**
+     * Find All Power Stream
+     * @param activityId Activity ID retrieved from Strava API Activity IDs
+     * @return JSONObjectBuilder JSONObject that returns a HashMap Array of Stream Data
+     */
     @GET
     @Path("list/powerstream")
     @Produces({MediaType.APPLICATION_JSON})
@@ -127,6 +143,11 @@ public class PowerFacadeREST
         }
     }
     
+    /**
+     * Check Activity Exists
+     * @param activityId Activity ID retrieved from Strava API Activity IDs
+     * @return true or false
+     */
     public boolean checkActivityExists(String activityId)
     {
         List<PowerLink_dto> powerlinkstream = powerlinkFacadeRemote.findAll();
@@ -140,7 +161,11 @@ public class PowerFacadeREST
         return true;
     }
     
-    
+    /**
+     * Creates HashMap From JSON Arrays
+     * @return HashMap
+     * @throws JSONException
+     */
     public HashMap<Integer, String> createHashmapFromJSONArrays() throws JSONException
     {
         HashMap<Integer, String> datastream = new HashMap<Integer, String>();
@@ -154,6 +179,10 @@ public class PowerFacadeREST
         return datastream;
     }
     
+    /**
+     * Get Data Stream JSON Arrays
+     * @param values Strava API JSON Return for Activity Stream Power
+     */
     public void getDataStreamJSONArrays(JSONArray values)
     {
             for (int i = 0; i < values.length(); i++) 
