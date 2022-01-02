@@ -1,5 +1,5 @@
 # fyp.java.server
-Key features: 
+Key concepts included: 
 - Data cleaning
 - Data mining
 - Design Patterns
